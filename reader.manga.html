@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8" />
+        <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+        Remove this if you use the .htaccess -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <title>nehan</title>
+        <meta name="description" content="" />
+        <meta name="author" content="桜井雄介" />
+        <meta name="viewport" content="width=device-width; initial-scale=1.0" />
+        <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="stylesheet" href="style.css" />
+        <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui.custom.min.js"></script>
+        <script type="text/javascript" src="js/jquery.easing.js"></script>
+        <script type="text/javascript" src="js/jquery.hashChangeEvent.js"></script>
+        <script type="text/javascript" src="js/jquery.ui.touch-punch.js"></script>
+        <script type="text/javascript" src="js/SCReader.js"></script>
+        <script type="text/javascript">
+			$(document).ready(function()
+			{
+				Reader.Manga.init();
+				Reader.Debuger.init();
+			})
+        </script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="notice"></div>
+            <div id="drawer">
+                <div id="slidepanel">
+                    <div id="taskbar">
+                        <div id="taskhead">
+                            <button onclick="Reader.Slidepanel.toRight();" class="button gBlue">作品情報</button>
+                            <button onclick="Reader.Taskbar.init();" class="button gGlay">設定の初期化</button>
+                            <button onclick="Reader.Manga.slideR();" class="button gGlay">次へ</button>
+                            <button onclick="Reader.Manga.slideL();" class="button gGlay">前へ</button>
+                            <button onclick="Reader.Manga.imageJustify();" class="button gGlay">フィット</button>
+                        </div>
+                        <div id="tasklist">
+                            <hr />
+                            <h2 rel="fonttask" onclick="Reader.Drawer.toggle('fonttask')" class="toggler">文字設定</h2>
+                            <div id="fonttask" class="taskgroup">
+                                <div class="slider-box">
+                                    <div class="slider-label-box">
+                                        <label for="fontsize-value" class="slider-name">サイズ</label>
+                                        <input type="text" id="fontsize-value" class="slider-value"/>
+                                    </div>
+                                    <div id="fontsize" class="slider"></div>
+                                </div>
+                                <div class="slider-box">
+                                    <div class="slider-label-box">
+                                        <label for="fontcolor-value" class="slider-name">カラー</label>
+                                        <input type="text" id="fontcolor-value" class="slider-value" />
+                                    </div>
+                                    <div id="fontcolor" class="slider"></div>
+                                </div>
+                                <div class="field-box">
+                                    <div class="field-label-box">
+                                        <label for="fontface" class="field-box-name">フォント</label>
+                                        <input type="text" id="fontface-value" class="field-box-value"/>
+                                    </div>
+                                    <div  id="fontface" class="field-list">
+                                        <button id="bold-mincho" onclick="Reader.Taskbar.fontface('bold-mincho')" class="boxradio mincho bold">あA</button>
+                                        <button id="mincho" onclick="Reader.Taskbar.fontface('mincho')" class="boxradio mincho">あA</button>
+                                        <button id="bold-gothic" onclick="Reader.Taskbar.fontface('bold-gothic')" class="boxradio gothic bold">あA</button>
+                                        <button id="gothic" onclick="Reader.Taskbar.fontface('gothic')" class="boxradio gothic holc">あA</button>
+                                    </div>
+                                </div>
+                                <div class="slider-box">
+                                    <div class="slider-label-box">
+                                        <label for="lineheight-value" class="slider-name">行間</label>
+                                        <input type="text" id="lineheight-value" class="slider-value" />
+                                    </div>
+                                    <div id="lineheight" class="slider"></div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <h2 rel="layouttask" onclick="Reader.Drawer.toggle('layouttask')" class="toggler">レイアウト設定</h2>
+                            <div id="layouttask" class="taskgroup">
+                                <div class="slider-box">
+                                    <div class="slider-label-box">
+                                        <label for="width-value" class="slider-name">ページ幅</label>
+                                        <input type="text" id="width-value" class="slider-value" />
+                                    </div>
+                                    <div id="width" class="slider"></div>
+                                </div>
+                                <div id="screen" class="field-list">
+                                    <label id="fit" for="fit"> <span class="label">フィット</span><span class="field">
+                                            <input type="radio" name="screen" class="" onclick="Reader.Taskbar.screen('fit');" />
+                                        </span> </label>
+                                    <label id="defaultFit" for="defaultFit"> <span class="label">初期化</span><span class="field">
+                                            <input type="radio" name="screen" class="" onclick="Reader.Taskbar.screen('defaultFit');" />
+                                        </span> </label>
+                                    <label id="full" for="full" > <span class="label">フルスクリーン</span><span class="field">
+                                            <input type="radio" name="screen" onclick="Reader.Taskbar.screen('full');" />
+                                        </span> </label>
+                                    <label id="narrow" for="narrow" class="velc" > <span class="label">最小化</span><span class="field">
+                                            <input type="radio" name="screen" onclick="Reader.Taskbar.screen('narrow');"/>
+                                        </span> </label>
+                                </div>
+                            </div>
+                            <hr/>
+                            <h2 rel="optiontask" onclick="Reader.Drawer.toggle('optiontask')" class="toggler">オプション</h2>
+                            <div id="optiontask" class="taskgroup">
+                                <div class="field-box">
+                                    <div class="field-label-box">
+                                        <label for="background" class="field-box-name">背景設定</label>
+                                    </div>
+                                </div>
+                                <div class="field-box">
+                                    <div class="field-label-box">
+                                        <label for="" class="field-box-name">twitter設定</label>
+                                    </div>
+                                    <div class="field-list">
+                                        <label for="sel2" > <span class="label">選択肢４</span><span class="field">
+                                                <input type="checkbox" />
+                                            </span> </label>
+                                        <label for="sel2" > <span class="label">選択肢５</span><span class="field">
+                                                <input type="checkbox" />
+                                            </span> </label>
+                                        <label for="sel2" class="velc"> <span class="label">選択肢６</span><span class="field">
+                                                <input type="checkbox" />
+                                            </span> </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+                        </div>
+                    </div>
+                    <div id="infobar">
+                        <div id="infohead">
+                            <button onclick="Reader.Slidepanel.toLeft();" class="button gBlue">タスクバー</button>
+                        </div>
+                        <div id="infolist">
+                            <hr />
+                            <h2  rel="basicinfo" onclick="Reader.Drawer.toggle('basicinfo')" class="toggler">作品情報</h2>
+                            <div id="basicinfo" class="infogroup">
+                                <div class="field-box">
+                                    <div class="field-label-box">
+                                        <label class="field-box-name">基本情報</label>
+                                    </div>
+                                    <div class="field-list">
+                                        <label for="sel1"> <span class="label text_field_control">タイトル</span><span class="field text_info"> 宇宙日和 </span> </label>
+                                        <label for="sel2"> <span class="label text_field_control">著者</span><span class="field text_info"> 遊子 </span> </label>
+                                    </div>
+                                </div>
+                                <div class="field-box">
+                                    <div class="field-label-box">
+                                        <label class="field-box-name">アイキャッチ</label>
+                                    </div>
+                                    <div class="field-list">
+                                        <a href=""><img src="images/material/ub.png" alt="宇宙日和" /></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="manga-main">
+                <div id="book-body">
+                    <article id="manga-stream" class="">
+                        <section id="next-page" class="manga-page">
+                            <div class="manga-image-box">
+                                <a href=""><img src="images/material/karakyo/005.png" rel="600x850" alt="" /></a>
+                            </div>
+                        </section>
+                        <section id="current-page" class="manga-page">
+                            <div class="manga-image-box">
+                                <a href=""><img src="images/material/karakyo/004.png" id="i5" rel="600x850" alt="" /></a>
+                            </div>
+                        </section>
+                        <section id="prev-page" class="manga-page">
+                            <div class="manga-image-box">
+                                <a href=""><img src="images/material/karakyo/003.png" rel="600x850" alt="" /></a>
+                            </div>
+                        </section>
+                    </article>
+                </div>
+                <div id="book-footer"></div>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; Copyright  by 桜井雄介</p>
+        </footer>
+    </body>
+</html>

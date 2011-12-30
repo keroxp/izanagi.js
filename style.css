@@ -1,0 +1,124 @@
+@charset "utf-8";
+
+/*
+ Theme Name: scrivel reader
+ Theme URI: http://books.scrivel.org/
+ Description: This is a wordpress theme for "scrivel", dojin circle.
+ Author: keroxp
+ Author URI: http://twitter.com/#!/keroxp
+ Version: 0.9(α)
+
+ This theme is developed for our private use.
+ So basically don't intend to license to use.
+
+ このテーマは私的な利用のために開発されました。
+ そのため、原則として本テーマの利用許諾は受け付けておりません。
+ */
+
+@import "css/util.css";
+@import "css/font.css";
+@import "css/drawer.css";
+@import "css/jquery-ui.css";
+@import "css/manga.css";
+/*button interface*/
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+}
+body {
+    background: white url("images/bg/backw.png");
+}
+#loadingLayer {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    background:rgba(255,255,255,0.5) url("images/util/loader.gif") no-repeat center center !important;
+}
+.loading {
+    background: url("images/util/loader.gif") no-repeat center center !important;
+}
+button {
+    cursor: pointer;
+}
+/* taskbar */
+
+#wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+#notice {
+    position: fixed;
+    padding: 25px;
+    overflow: hidden;
+    text-align: right;
+    top: 0;
+    right: 0;
+    background: white;
+    border: 1px solid red;
+    color: #555;
+    font-weight: bold;
+}
+#main {
+    position: absolute;
+    width: 744px;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 280px;
+    overflow-x: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 100;
+}
+#manga-main {
+    position: fixed;
+    top: 0;
+    left: 280px;
+    bottom: 0;
+    width: 744px;
+    overflow: hidden;
+}
+#book-body {
+}
+#main #article {
+    padding: 0 44px 49px 49px;
+    background: white;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    overflow-y: auto;
+    /*core text styles exist in "font.css" */
+}
+#manga-main #manga {
+    padding: 0 44px 49px 49px;
+    background: white;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    overflow-y: auto;
+}
+#book-footer {
+    height: 100px;
+    background: whiteSmoke;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+#drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    overflow: hidden;
+    background: #222222 url("images/bg/cardboard.png");
+}
+/* -webkit-scrollbar extend*/
