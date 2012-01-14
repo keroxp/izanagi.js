@@ -10,7 +10,9 @@
 .floatRight{
     float:right;
 }
-
+.hidden{
+	display:none;
+}
 /* scrollbar extend*/
 
 .custom_scrollbars ::-webkit-scrollbar {
@@ -49,7 +51,7 @@
     font-family: "Lucida Grande", "ＭＳ Ｐゴシック","ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Arial, Verdana, sans-serif !important;
 }
 .mincho {
-    font-family: "IPA明朝", "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "ＭＳ 明朝", Times, 'Times New Roman', serif !important;
+    font-family: "IPA明朝",Times, 'Times New Roman',"ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "ＭＳ 明朝",serif!important;
 }
 .bold {
     font-weight: bold !important;
@@ -138,8 +140,8 @@
     background: -webkit-linear-gradient(top, #7cbc0a 0%,#9dd53a 99%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #7cbc0a 0%,#9dd53a 99%); /* Opera11.10+ */
     background: -ms-linear-gradient(top, #7cbc0a 0%,#9dd53a 99%); /* IE10+ */
-    filter: progid :DXImageTransform.Microsoft.gradient( startColorstr='#7cbc0a', endColorstr='#9dd53a',GradientType=0 ); /* IE6-9 */
     background: linear-gradient(top, #7cbc0a 0%,#9dd53a 99%); /* W3C */
+    filter: progid :DXImageTransform.Microsoft.gradient( startColorstr='#7cbc0a', endColorstr='#9dd53a',GradientType=0 ); /* IE6-9 */
 }
 .gBlack:active {
     background: #222222; /* Old browsers */
