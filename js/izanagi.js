@@ -3,17 +3,17 @@
  * developed by @keroxp / Kaeru Yana / Yusuke Sakurai
  */
 
-var Reader;
+var Izng;
 
-if(!Reader) {
-	Reader = {};
+if(!Izng) {
+	Izng = {};
 }
 
 /*
  * loaded initialization
  */
 
-Reader.init = function() {
+Izng.init = function() {
 	this.BrowserDetect.init();
 	this.Env.init();
 	this.Drawer.init();
@@ -22,7 +22,7 @@ Reader.init = function() {
 	//this.Ajax.init();
 }
 
-Reader.Debuger = {
+Izng.Debuger = {
 	init : function() {
 		BrowserDetect.dispStatus();
 		Env.window.dispAllInfo();
@@ -33,8 +33,8 @@ var DEFAULT_COLOR = {
 	"forDisp" : "#555555"
 }
 var DEFAULT_SIZE = {
-	"forSet" : 60,
-	"forDisp" : "16px"
+	"forSet" : 40,
+	"forDisp" : "14px"
 };
 var DEFAULT_LINEHEIGHT = {
 	"forSet" : 40,
@@ -323,11 +323,11 @@ var Taskbar = {
 		jQuery("#fontsize").slider({
 			orientation : "horizontal",
 			range : "min",
-			min : 20,
-			max : 120,
+			min : 00,
+			max : 100,
 			value : DEFAULT_SIZE["forSet"],
 			slide : function(event, ui) {
-				var size = 12 + Math.ceil(ui.value / 10);
+				var size = 10 + Math.ceil(ui.value / 10);
 				jQuery("#fontsize-value").val(size + "px");
 				jQuery("#article").css("font-size", size + "px");
 				//jQuery.cookie("user_font_size", size);
@@ -408,7 +408,7 @@ var Taskbar = {
 			this.width(w);
 			if(type == "full") {
 				window.scroll(DEFAULT_WIDTH["taskbar"], 0);
-				//var remover =　"<button class='button fullscreenRemover gBlue' onclick='Reader.Taskbar.width();jQuery(this).remove()'>フルスクリーンモードを終了</button>"
+				//var remover =　"<button class='button fullscreenRemover gBlue' onclick='Izng.Taskbar.width();jQuery(this).remove()'>フルスクリーンモードを終了</button>"
 				//$("#wrapper").append(remover);
 			}
 		} else {
@@ -615,10 +615,10 @@ var Ajax = {
 /*
  * namespaces
  */
-Reader.BrowserDetect = BrowserDetect;
-Reader.Env = Env;
-Reader.Drawer = Drawer;
-Reader.Slidepanel = Slidepanel;
-Reader.Taskbar = Taskbar;
-Reader.Util = Util;
-Reader.Ajax = Ajax;
+Izng.BrowserDetect = BrowserDetect;
+Izng.Env = Env;
+Izng.Drawer = Drawer;
+Izng.Slidepanel = Slidepanel;
+Izng.Taskbar = Taskbar;
+Izng.Util = Util;
+Izng.Ajax = Ajax;

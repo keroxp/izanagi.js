@@ -14,40 +14,40 @@
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="stylesheet" href="style.css" />
         <!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"</script>
-		<style type="text/css">
-			article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
-				display: block;
-			}
-		</style>
-		<![endif]-->
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>        <script type="text/javascript" src="js/jquery-ui.custom.min.js"></script>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"</script>
+        <style type="text/css">
+            article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+                display: block;
+            }
+        </style>
+        <![endif]-->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>        <script type="text/javascript" src="js/jquery-ui.custom.min.js"></script>
         <script type="text/javascript" src="js/jquery.easing.js"></script>
         <script type="text/javascript" src="js/jquery.hashChangeEvent.js"></script>
         <script type="text/javascript" src="js/jquery.ui.touch-punch.js"></script>
         <script type="text/javascript" src="js/izanagi.js"></script>
         <script type="text/javascript">
-			$(document).ready(function() {
-				Reader.init();
-				Reader.Debuger.init();
-				Reader.Util.loadOut("#load-layer");
-			})
+            $(document).ready(function() {
+                Izng.init();
+                Izng.Debuger.init();
+                Izng.Util.loadOut("#load-layer");
+            })
         </script>
     </head>
     <body>
         <div id="wrapper">
-        	<div id="load-layer"></div>
+            <div id="load-layer"></div>
             <div id="notice"></div>
             <div id="drawer">
                 <div id="slidepanel">
                     <div id="taskbar">
                         <div id="taskhead">
-                            <button onclick="Reader.Taskbar.init();" class="button floatLeft gGlay">設定の初期化</button>
-                            <button onclick="Reader.Slidepanel.toRight();" class="button floatRight gBlue">作品情報</button>
+                            <button onclick="Izng.Taskbar.init();" class="button floatLeft gGlay">設定の初期化</button>
+                            <button onclick="Izng.Slidepanel.toRight();" class="button floatRight gBlue">作品情報</button>
                         </div>
                         <div id="tasklist">
                             <hr />
-                            <h2 rel="fonttask" onclick="Reader.Drawer.toggle('fonttask')" class="toggler">文字設定</h2>
+                            <h2 rel="fonttask" onclick="Izng.Drawer.toggle('fonttask')" class="toggler">文字設定</h2>
                             <div id="fonttask" class="taskgroup hidden">
                                 <div class="slider-box">
                                     <div class="slider-label-box">
@@ -69,10 +69,10 @@
                                         <input type="text" id="fontface-value" class="field-box-value"/>
                                     </div>
                                     <div  id="fontface" class="field-list">
-                                        <button id="bold-mincho" onclick="Reader.Taskbar.fontface('bold-mincho')" class="boxradio mincho bold">あA</button>
-                                        <button id="mincho" onclick="Reader.Taskbar.fontface('mincho')" class="boxradio mincho">あA</button>
-                                        <button id="bold-gothic" onclick="Reader.Taskbar.fontface('bold-gothic')" class="boxradio gothic bold">あA</button>
-                                        <button id="gothic" onclick="Reader.Taskbar.fontface('gothic')" class="boxradio gothic holc">あA</button>
+                                        <button id="bold-mincho" onclick="Izng.Taskbar.fontface('bold-mincho')" class="boxradio mincho bold">あA</button>
+                                        <button id="mincho" onclick="Izng.Taskbar.fontface('mincho')" class="boxradio mincho">あA</button>
+                                        <button id="bold-gothic" onclick="Izng.Taskbar.fontface('bold-gothic')" class="boxradio gothic bold">あA</button>
+                                        <button id="gothic" onclick="Izng.Taskbar.fontface('gothic')" class="boxradio gothic holc">あA</button>
                                     </div>
                                 </div>
                                 <div class="slider-box">
@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                             <hr/>
-                            <h2 rel="layouttask" onclick="Reader.Drawer.toggle('layouttask')" class="toggler">レイアウト設定</h2>
+                            <h2 rel="layouttask" onclick="Izng.Drawer.toggle('layouttask')" class="toggler">レイアウト設定</h2>
                             <div id="layouttask" class="taskgroup hidden">
                                 <div class="slider-box">
                                     <div class="slider-label-box">
@@ -95,21 +95,41 @@
                                 </div>
                                 <div id="screen" class="field-list">
                                     <label id="fit" for="fit"> <span class="label radio_f_control">フィット</span><span class="radio_f field">
-                                            <input type="radio" name="screen" onclick="Reader.Taskbar.screen('fit');" />
+                                            <input type="radio" name="screen" onclick="Izng.Taskbar.screen('fit');" />
                                         </span> </label>
                                     <label id="defaultFit" for="defaultFit" class="radioSelected"> <span class="label radio_f_control">初期化</span><span class="radio_f field">
-                                            <input type="radio" name="screen" checked onclick="Reader.Taskbar.screen('defaultFit');" />
+                                            <input type="radio" name="screen" checked onclick="Izng.Taskbar.screen('defaultFit');" />
                                         </span> </label>
                                     <label id="full" for="full" > <span class="label radio_f_control">フルスクリーン</span><span class="radio_f field">
-                                            <input type="radio" name="screen" onclick="Reader.Taskbar.screen('full');" />
+                                            <input type="radio" name="screen" onclick="Izng.Taskbar.screen('full');" />
                                         </span> </label>
                                     <label id="narrow" for="narrow" class="velc" > <span class="label radio_f_control">最小化</span><span class="radio_f field">
-                                            <input type="radio" name="screen" onclick="Reader.Taskbar.screen('narrow');"/>
+                                            <input type="radio" name="screen" onclick="Izng.Taskbar.screen('narrow');"/>
                                         </span> </label>
                                 </div>
                             </div>
                             <hr/>
-                            <h2 rel="optiontask" onclick="Reader.Drawer.toggle('optiontask')" class="toggler">オプション</h2>
+                            <h2 rel="sharetask" onclick="Izng.Drawer.toggle('sharetask')" class="toggler">共有</h2>
+                            <div id="sharetask" class="taskgroup hidden">                               
+                                <div class="field-box">
+                                    <div class="field-label-box">
+                                        <label for="" class="field-box-name">twitter設定</label>
+                                    </div>
+                                    <div class="field-list">
+                                        <label for="sel2" > <span class="label checkbox_f_control">Twitter</span><span class="checkbox_f field">
+                                                <input type="checkbox" />
+                                            </span> </label>
+                                        <label for="sel2" > <span class="label checkbox_f_control">Facebook</span><span class="checkbox_f field">
+                                                <input type="checkbox"/>
+                                            </span> </label>
+                                        <label for="sel2" > <span class="label checkbox_f_control">Facebook</span><span class="checkbox_f field">
+                                            <input type="checkbox"/>
+                                        </span> </label>                     
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <h2 rel="optiontask" onclick="Izng.Drawer.toggle('optiontask')" class="toggler">オプション</h2>
                             <div id="optiontask" class="taskgroup hidden">
                                 <div class="field-box">
                                     <div class="field-label-box">
@@ -130,16 +150,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr/>
+                            <hr>
                         </div>
                     </div>
                     <div id="infobar">
                         <div id="infohead">
-                            <button onclick="Reader.Slidepanel.toLeft();" class="button gBlue">タスクバー</button>
+                            <button onclick="Izng.Slidepanel.toLeft();" class="button gBlue">タスクバー</button>
                         </div>
                         <div id="infolist">
                             <hr />
-                            <h2  rel="basicinfo" onclick="Reader.Drawer.toggle('basicinfo')" class="toggler">作品情報</h2>
+                            <h2  rel="basicinfo" onclick="Izng.Drawer.toggle('basicinfo')" class="toggler">作品情報</h2>
                             <div id="basicinfo" class="infogroup hidden">
                                 <div class="field-box">
                                     <div class="field-label-box">
@@ -147,11 +167,11 @@
                                     </div>
                                     <div class="field-list">
                                         <label for="title"> <span class="label text_f_control">タイトル</span><span class="field text_f"> 
-                                        	夢十夜
-                                        	 </span> </label>
+                                            夢十夜
+                                             </span> </label>
                                         <label for="author"> <span class="label text_f_control">著者</span><span class="field text_f">
-											夏目漱石                                        	 
-											</span> </label>
+                                            夏目漱石                                             
+                                            </span> </label>
                                     </div>
                                 </div>
                                 <div class="field-box">
@@ -164,26 +184,26 @@
                                 </div>
                             </div>
                             <hr />
-                            <h2  rel="toc" onclick="Reader.Drawer.toggle('toc')" class="toggler">目次</h2>
+                            <h2  rel="toc" onclick="Izng.Drawer.toggle('toc')" class="toggler">目次</h2>
                             <div id="toc" class="infogroup hidden">
                                 <div class="field-box">
                                     <div class="field-label-box">
                                         <label class="field-box-name"></label>
                                     </div>
                                     <div id="toclist" class="field-list">
-                                    	<label id="toc1" for="toc1" class="tocSelected"> <span class="label radio_f_control">『第一夜』</span><span class="radio_f field">
-                                            <input type="radio" name="toc" checked onclick="Reader.Ajax.hashChange('/data/1.html');" />
+                                        <label id="toc1" for="toc1" class="tocSelected"> <span class="label radio_f_control">『第一夜』</span><span class="radio_f field">
+                                            <input type="radio" name="toc" checked onclick="Izng.Ajax.hashChange('/data/1.html');" />
                                         </span> </label>
                                     <label id="toc2" for="toc2" > <span class="label radio_f_control">『第二夜』</span><span class="radio_f field">
-                                            <input type="radio" name="toc"  onclick="Reader.Ajax.hashChange('/data/2.html');" />
+                                            <input type="radio" name="toc"  onclick="Izng.Ajax.hashChange('/data/2.html');" />
                                         </span> </label>
                                     <label id="toc3" for="toc3" > <span class="label radio_f_control">『第三夜』</span><span class="radio_f field">
-                                            <input type="radio" name="toc" onclick="Reader.Ajax.hashChange('/data/3.html');" />
+                                            <input type="radio" name="toc" onclick="Izng.Ajax.hashChange('/data/3.html');" />
                                         </span> </label>
                                     <label id="toc4" for="toc4" class="velc" > <span class="label radio_f_control">『第四夜』</span><span class="radio_f field">
-                                            <input type="radio" name="toc" onclick="Reader.Ajax.hashChange('/data/4.html');"/>
-                                        </span> </label>                                   	
-                                  	</div>
+                                            <input type="radio" name="toc" onclick="Izng.Ajax.hashChange('/data/4.html');"/>
+                                        </span> </label>                                    
+                                    </div>
                                 </div>
                             </div>
                             <hr />
@@ -193,28 +213,36 @@
             </div>
             <div id="main">
                 <div id="book-body">
-                    <article id="article"  class="pat2">
-                         	<h2>第一夜</h2>
-									<p>　こんな夢を見た。</p>
-									<p>　腕組をして枕元に<ruby><rb>坐</rb><rp>（</rp><rt>すわ</rt><rp>）</rp></ruby>っていると、<ruby><rb>仰向</rb><rp>（</rp><rt>あおむき</rt><rp>）</rp></ruby>に寝た女が、静かな声でもう死にますと云う。女は長い髪を枕に敷いて、<ruby><rb>輪郭</rb><rp>（</rp><rt>りんかく</rt><rp>）</rp></ruby>の<ruby><rb>柔</rb><rp>（</rp><rt>やわ</rt><rp>）</rp></ruby>らかな<ruby><rb>瓜実</rb><rp>（</rp><rt>うりざね</rt><rp>）</rp></ruby><ruby><rb>顔</rb><rp>（</rp><rt>がお</rt><rp>）</rp></ruby>をその中に横たえている。真白な頬の底に温かい血の色がほどよく差して、<ruby><rb>唇</rb><rp>（</rp><rt>くちびる</rt><rp>）</rp></ruby>の色は無論赤い。とうてい死にそうには見えない。しかし女は静かな声で、もう死にますと<ruby><rb>判然</rb><rp>（</rp><rt>はっきり</rt><rp>）</rp></ruby>云った。自分も<ruby><rb>確</rb><rp>（</rp><rt>たしか</rt><rp>）</rp></ruby>にこれは死ぬなと思った。そこで、そうかね、もう死ぬのかね、と上から<ruby><rb>覗</rb><rp>（</rp><rt>のぞ</rt><rp>）</rp></ruby>き込むようにして聞いて見た。死にますとも、と云いながら、女はぱっちりと眼を<ruby><rb>開</rb><rp>（</rp><rt>あ</rt><rp>）</rp></ruby>けた。大きな<ruby><rb>潤</rb><rp>（</rp><rt>うるおい</rt><rp>）</rp></ruby>のある眼で、長い<ruby><rb>睫</rb><rp>（</rp><rt>まつげ</rt><rp>）</rp></ruby>に包まれた中は、ただ一面に真黒であった。その真黒な<ruby><rb>眸</rb><rp>（</rp><rt>ひとみ</rt><rp>）</rp></ruby>の奥に、自分の姿が<ruby><rb>鮮</rb><rp>（</rp><rt>あざやか</rt><rp>）</rp></ruby>に浮かんでいる。</p>
-									<p>　自分は<ruby><rb>透</rb><rp>（</rp><rt>す</rt><rp>）</rp></ruby>き<ruby><rb>徹</rb><rp>（</rp><rt>とお</rt><rp>）</rp></ruby>るほど深く見えるこの黒眼の<ruby><rb>色沢</rb><rp>（</rp><rt>つや</rt><rp>）</rp></ruby>を眺めて、これでも死ぬのかと思った。それで、ねんごろに枕の<ruby><rb>傍</rb><rp>（</rp><rt>そば</rt><rp>）</rp></ruby>へ口を付けて、死ぬんじゃなかろうね、大丈夫だろうね、とまた聞き返した。すると女は黒い眼を眠そうに<ruby><rb><img src="../../../gaiji/1-88/1-88-85.png" alt="※(「目＋爭」、第3水準1-88-85)" class="gaiji"></rb><rp>（</rp><rt>みはっ</rt><rp>）</rp></ruby>たまま、やっぱり静かな声で、でも、死ぬんですもの、仕方がないわと云った。</p>
-									<p>　じゃ、<ruby><rb>私</rb><rp>（</rp><rt>わたし</rt><rp>）</rp></ruby>の顔が見えるかいと<ruby><rb>一心</rb><rp>（</rp><rt>いっしん</rt><rp>）</rp></ruby>に聞くと、見えるかいって、そら、そこに、写ってるじゃありませんかと、にこりと笑って見せた。自分は黙って、顔を枕から離した。腕組をしながら、どうしても死ぬのかなと思った。</p>
-									<p>　しばらくして、女がまたこう云った。</p>
-									<p>「死んだら、<ruby><rb>埋</rb><rp>（</rp><rt>う</rt><rp>）</rp></ruby>めて下さい。大きな真珠貝で穴を掘って。そうして天から落ちて来る星の<ruby><rb>破片</rb><rp>（</rp><rt>かけ</rt><rp>）</rp></ruby>を<ruby><rb>墓標</rb><rp>（</rp><rt>はかじるし</rt><rp>）</rp></ruby>に置いて下さい。そうして墓の傍に待っていて下さい。また<ruby><rb>逢</rb><rp>（</rp><rt>あ</rt><rp>）</rp></ruby>いに来ますから」</p>
-									<p>　自分は、いつ逢いに来るかねと聞いた。</p>
-									<p>「日が出るでしょう。それから日が沈むでしょう。それからまた出るでしょう、そうしてまた沈むでしょう。――赤い日が東から西へ、東から西へと落ちて行くうちに、――あなた、待っていられますか」</p>
-									<p>　自分は黙って<ruby><rb>首肯</rb><rp>（</rp><rt>うなず</rt><rp>）</rp></ruby>いた。女は静かな調子を一段張り上げて、</p>
-									<p>「百年待っていて下さい」と思い切った声で云った。</p>
-									<p>「百年、私の墓の<ruby><rb>傍</rb><rp>（</rp><rt>そば</rt><rp>）</rp></ruby>に坐って待っていて下さい。きっと逢いに来ますから」</p>
-									<p>　自分はただ待っていると答えた。すると、黒い<ruby><rb>眸</rb><rp>（</rp><rt>ひとみ</rt><rp>）</rp></ruby>のなかに<ruby><rb>鮮</rb><rp>（</rp><rt>あざやか</rt><rp>）</rp></ruby>に見えた自分の姿が、ぼうっと<ruby><rb>崩</rb><rp>（</rp><rt>くず</rt><rp>）</rp></ruby>れて来た。静かな水が動いて写る影を乱したように、流れ出したと思ったら、女の眼がぱちりと閉じた。長い<ruby><rb>睫</rb><rp>（</rp><rt>まつげ</rt><rp>）</rp></ruby>の間から涙が頬へ垂れた。――もう死んでいた。</p>
-									<p>　自分はそれから庭へ下りて、真珠貝で穴を掘った。真珠貝は大きな<ruby><rb>滑</rb><rp>（</rp><rt>なめら</rt><rp>）</rp></ruby>かな<ruby><rb>縁</rb><rp>（</rp><rt>ふち</rt><rp>）</rp></ruby>の<ruby><rb>鋭</rb><rp>（</rp><rt>する</rt><rp>）</rp></ruby>どい貝であった。土をすくうたびに、貝の裏に月の光が差してきらきらした。<ruby><rb>湿</rb><rp>（</rp><rt>しめ</rt><rp>）</rp></ruby>った土の<ruby><rb>匂</rb><rp>（</rp><rt>におい</rt><rp>）</rp></ruby>もした。穴はしばらくして掘れた。女をその中に入れた。そうして柔らかい土を、上からそっと掛けた。掛けるたびに真珠貝の裏に月の光が差した。</p>
-									<p>　それから星の<ruby><rb>破片</rb><rp>（</rp><rt>かけ</rt><rp>）</rp></ruby>の落ちたのを拾って来て、かろく土の上へ乗せた。星の破片は丸かった。長い間大空を落ちている<ruby><rb>間</rb><rp>（</rp><rt>ま</rt><rp>）</rp></ruby>に、<ruby><rb>角</rb><rp>（</rp><rt>かど</rt><rp>）</rp></ruby>が取れて<ruby><rb>滑</rb><rp>（</rp><rt>なめら</rt><rp>）</rp></ruby>かになったんだろうと思った。<ruby><rb>抱</rb><rp>（</rp><rt>だ</rt><rp>）</rp></ruby>き<ruby><rb>上</rb><rp>（</rp><rt>あ</rt><rp>）</rp></ruby>げて土の上へ置くうちに、自分の胸と手が少し暖くなった。</p>
-									<p>　自分は<ruby><rb>苔</rb><rp>（</rp><rt>こけ</rt><rp>）</rp></ruby>の上に坐った。これから百年の間こうして待っているんだなと考えながら、腕組をして、丸い<ruby><rb>墓石</rb><rp>（</rp><rt>はかいし</rt><rp>）</rp></ruby>を眺めていた。そのうちに、女の云った通り日が東から出た。大きな赤い日であった。それがまた女の云った通り、やがて西へ落ちた。赤いまんまでのっと落ちて行った。一つと自分は<ruby><rb>勘定</rb><rp>（</rp><rt>かんじょう</rt><rp>）</rp></ruby>した。</p>
-									<p>　しばらくするとまた<ruby><rb>唐紅</rb><rp>（</rp><rt>からくれない</rt><rp>）</rp></ruby>の<ruby><rb>天道</rb><rp>（</rp><rt>てんとう</rt><rp>）</rp></ruby>がのそりと<ruby><rb>上</rb><rp>（</rp><rt>のぼ</rt><rp>）</rp></ruby>って来た。そうして黙って沈んでしまった。二つとまた勘定した。</p>
-									<p>　自分はこう云う風に一つ二つと勘定して行くうちに、赤い日をいくつ見たか分らない。勘定しても、勘定しても、しつくせないほど赤い日が頭の上を通り越して行った。それでも百年がまだ来ない。しまいには、<ruby><rb>苔</rb><rp>（</rp><rt>こけ</rt><rp>）</rp></ruby>の<ruby><rb>生</rb><rp>（</rp><rt>は</rt><rp>）</rp></ruby>えた丸い石を眺めて、自分は女に<ruby><rb>欺</rb><rp>（</rp><rt>だま</rt><rp>）</rp></ruby>されたのではなかろうかと思い出した。</p>
-									<p>　すると石の下から<ruby><rb>斜</rb><rp>（</rp><rt>はす</rt><rp>）</rp></ruby>に自分の方へ向いて青い<ruby><rb>茎</rb><rp>（</rp><rt>くき</rt><rp>）</rp></ruby>が伸びて来た。見る間に長くなってちょうど自分の胸のあたりまで来て留まった。と思うと、すらりと<ruby><rb>揺</rb><rp>（</rp><rt>ゆら</rt><rp>）</rp></ruby>ぐ<ruby><rb>茎</rb><rp>（</rp><rt>くき</rt><rp>）</rp></ruby>の<ruby><rb>頂</rb><rp>（</rp><rt>いただき</rt><rp>）</rp></ruby>に、心持首を<ruby><rb>傾</rb><rp>（</rp><rt>かたぶ</rt><rp>）</rp></ruby>けていた細長い一輪の<ruby><rb>蕾</rb><rp>（</rp><rt>つぼみ</rt><rp>）</rp></ruby>が、ふっくらと<ruby><rb>弁</rb><rp>（</rp><rt>はなびら</rt><rp>）</rp></ruby>を開いた。真白な<ruby><rb>百合</rb><rp>（</rp><rt>ゆり</rt><rp>）</rp></ruby>が鼻の先で骨に<ruby><rb>徹</rb><rp>（</rp><rt>こた</rt><rp>）</rp></ruby>えるほど匂った。そこへ<ruby><rb>遥</rb><rp>（</rp><rt>はるか</rt><rp>）</rp></ruby>の上から、ぽたりと<ruby><rb>露</rb><rp>（</rp><rt>つゆ</rt><rp>）</rp></ruby>が落ちたので、花は自分の重みでふらふらと動いた。自分は首を前へ出して冷たい露の<ruby><rb>滴</rb><rp>（</rp><rt>したた</rt><rp>）</rp></ruby>る、白い<ruby><rb>花弁</rb><rp>（</rp><rt>はなびら</rt><rp>）</rp></ruby>に<ruby><rb>接吻</rb><rp>（</rp><rt>せっぷん</rt><rp>）</rp></ruby>した。自分が百合から顔を離す<ruby><rb>拍子</rb><rp>（</rp><rt>ひょうし</rt><rp>）</rp></ruby>に思わず、遠い空を見たら、<ruby><rb>暁</rb><rp>（</rp><rt>あかつき</rt><rp>）</rp></ruby>の星がたった一つ<ruby><rb>瞬</rb><rp>（</rp><rt>またた</rt><rp>）</rp></ruby>いていた。</p>
-									<p>「百年はもう来ていたんだな」とこの時始めて気がついた。</p>
-                                 
+                    <article id="article">
+                        <h2>Prologue／エミル・シェーファーについて</h2>
+                        <p>　エミル・シェーファーは、ある日突然この世界の救世主になった。</p>
+                        <p>　だが、彼が何か特別な力を持っていたかといえば、そんなことはなかった。</p>
+                        <p>　彼は他の子供達と同じように無自覚で、無関心で、向上心のない――普通の少年だった。</p>
+                        <p>　ならばなぜそんな普通の少年がその国を救うという大役を仰せつかったのか？</p>
+                        <p>　それは、ごく単純な理由だった。</p>
+                        <p>　その日、エミルふとこう思ったのだ。</p>
+                        <p>　――何でもいいから世界が変わればいいのに、と。</p>
+                        <p>　それはエミルが15年というさほど長くもない人生を生きてきた中で自然と心の中に浮かんだ感情だったし、それ自体が特別な考えだったとも言えない。なにより、彼の中に変革の明確なヴィジョンというものがなかった。</p>
+                        <p>　だから――エミルは単に思っただけなのだ。</p>
+                        <p>　なんとなく。それとなく。深い意味などなく。</p>
+                        <p>　ただ『どうにかなればいいのに』という無責任な願いを世界に捧げただけ。</p>
+                        <p>　しかし、幸か不幸か世界はその願いを聞き入れた。</p>
+                        <p>　――『お前がこの世界を救え』という無責任な指示と共に。</p>
+                        <p>　世界という秩序が、彼のような茫漠さを受け入れたのは決して偶然などではない。</p>
+                        <p>　他の何よりも、それが世界にとって最も重要なことだったからだ。</p>
+                        <p>　その方向性や願いに差はあれど、エミルと時を同じくして『この世界を変えたい』と願った人間たちが6人いた。彼らは地位も、思想も、性別も、願いも、まったく異なった6人だった。しかし、今の世界を壊してでも明日という灰色に手を伸ばしたい――そういう人間たちだった。</p>
+                        <p>　世界にとって、重要なのはそれだけだった。</p>
+                        <p>　世界は硬直を、停滞を、均質化を嫌う。常に変化を希求し、その存在を揺蕩わせている。</p>
+                        <p>　だから、世界にとって彼らの人間としての側面などどうでもいいことだったのだ。</p>
+                        <p>　ただ一点、世界の変革を望んでさえいれば、それで。</p>
+                        <p>　だが、どうしようもなく複雑で、どうしようもなく<ruby><rb>歪</rb><rp>(</rp><rt>いびつ</rt><rp>)</rp></ruby>なこの世界を前にして、途方に暮れない人間がいるだろうか？　――否。大抵の人間はそこで考えることを止めてしまうだろう。何故なら、それはほとんど無意味な行為だからだ。世界という巨大な枠組みに対して個人ができることなど皆無に等しいし、誰もがその矛盾を胸に抱えながら今日を生きている。そして、何よりそんなことを続けるのは辛すぎる。</p>
+                        <p>　だが、エミルはその矛盾の糸をほどき、二本の白糸と黒糸を分かつことを強いられた。</p>
+                        <p>　〝世界を変える〟ということはつまり――権利などではなく義務なのである。</p>
+                        <p>　……だからといって、彼が仕方なくこの世界の救世主になったというわけではない。</p>
+                        <p>　なぜなら、エミルはその時たしかに世界の変革を望んだからだ。</p>
+                        <p>　今という幻想を否定し、未来という灰色を選びとろうという意思が間違いなく彼の中にあったからだ。黒でもなく、白でもなく、確かな約束など何一つない１ｍ先の暗闇に手を伸ばそうとする――そういう意志が。</p>
+                        <p>　たとえそこに意思がなく、願いもなく、<ruby><rb>自我</rb><rp>(</rp><rt>エゴ</rt><rp>)</rp></ruby>すらなくとも、エミルは骨接ぎを繰り返すこの廃墟のような世界に、炎を放つことを決めた。そこに、光があると信じていたから。</p>
+                        <p>　――エミル・シェーファーは、こうしてこの世界の<ruby><rb>救世主</rb><rp>(</rp><rt>メシア</rt><rp>)</rp></ruby>になった。</p>
                     </article>
                 </div>
                 <div id="book-footer"></div>

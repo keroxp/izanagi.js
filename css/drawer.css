@@ -60,7 +60,7 @@
 	background: transparent;
 }
 .radioSelected , .tocSelected{
-	background: #006BFF;
+	background: #4787ED;
 	color: white;
 }
 .radioSelected span , .tocSelected span{
@@ -114,7 +114,7 @@ label {
 	border: none;
 	text-align: left;
 	margin-left: 15px;
-	color: #0080FF;
+	color: #4787ED;
 	font-size: 14px;
 	display: table-cell;
 	vertical-align: middle;
@@ -188,7 +188,7 @@ span.radio_f, span.checkbox_f {
 	text-decoration:none;
 }
 #toclist a:hover{
-	background:#006BFF;
+	background:#4787ED;
 }
 
 #taskbar hr, #infobar hr {

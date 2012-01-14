@@ -15,110 +15,107 @@
  そのため、原則として本テーマの利用許諾は受け付けておりません。
  */
 
+@import "css/reset.css";
 @import "css/util.css";
 @import "css/font.css";
 @import "css/drawer.css";
 @import "css/jquery-ui.css";
 /* html5 for IE display */
 
-
 /*button interface*/
 
 html, body {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	color: white;
-	-webkit-font-smoothing: antialiased;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color: white;
+    -webkit-font-smoothing: antialiased;
 }
 body {
-	/*background: white url("images/bg/backw.png");*/
-	background: white;
+    /*background: white url("images/bg/backw.png");*/
+    background: #222222 url("images/bg/cardboard.png");
 }
-
-.pat1{
-	background:#E4E4E4!important;
-	color:#68667b!important;
+.pat1 {
+    background: #E4E4E4 !important;
+    color: #68667b !important;
 }
-.pat2{
-	background:#EFEACC!important;
+.pat2 {
+    background: #EFEACC !important;
 }
 #load-layer {
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	z-index: 999;
-	background: rgba(255,255,255,0.7) url("images/util/loader.gif") no-repeat center center !important;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    background: rgba(255,255,255,0.7) url("images/util/loader.gif") no-repeat center center !important;
 }
 button {
-	cursor: pointer;
+    cursor: pointer;
 }
 /* taskbar */
 
 #wrapper {
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 #notice {
-	position: fixed;
-	padding: 25px;
-	overflow: hidden;
-	text-align: right;
-	top: 0;
-	right: 0;
-	background: white;
-	border: 1px solid red;
-	color: #555;
-	font-weight: bold;
+    position: fixed;
+    padding: 25px;
+    overflow: hidden;
+    text-align: right;
+    top: 0;
+    right: 0;
+    background: white;
+    border: 1px solid red;
+    color: #555;
+    font-weight: bold;
 }
 #main {
-	position: fixed;
-	width: 744px;
-	height: 100%;
-	top: 0;
-	bottom: 0;
-	left: 275px;
-	overflow-y: auto;
-	-webkit-overflow-scrolling: touch;
-	z-index: 100;
-	-webkit-box-shadow: 0 0 8px rgba(0,0,0,0.7);
-	-moz-box-shadow: 0 0 8px rgba(0,0,0,0.7);
+    position: fixed;
+    width: 744px;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 275px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 100;
+    -webkit-box-shadow: 0 0 8px rgba(0,0,0,0.7);
+    -moz-box-shadow: 0 0 8px rgba(0,0,0,0.7);
 }
-
 #book-body {
 }
-#main #article {	
-	padding: 24px 44px 49px 49px;
-	background:white url("images/bg/kami.png");
-	border-right: 1px solid #ccc;
-	border-left: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+#main #article {
+    padding: 24px 44px 49px 49px;
+    background: white url("images/bg/kami.png");
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
 }
 #manga-main #manga {
-	padding: 0 44px 49px 49px;
-	background: white;
-	border-right: 1px solid #ccc;
-	border-left: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	overflow-y: auto;
+    padding: 0 44px 49px 49px;
+    background: white;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    overflow-y: auto;
 }
 #book-footer {
-	height: 100px;
-	background: whiteSmoke;
-	border-right: 1px solid #ccc;
-	border-left: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+    height: 100px;
+    background: whiteSmoke;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
 }
 #drawer {
-	position: fixed;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	width: 280px;
-	/*overflow: hidden;*/
-	background: #222222 url("images/bg/cardboard.png");
-	}
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    /*overflow: hidden;*/
+}
 /* -webkit-scrollbar extend*/
