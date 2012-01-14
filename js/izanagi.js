@@ -13,7 +13,8 @@ if(!Izng) {
  * loaded initialization
  */
 
-Izng.init = function() {
+Izng.init = function()
+{
 	this.BrowserDetect.init();
 	this.Env.init();
 	this.Drawer.init();
@@ -23,7 +24,8 @@ Izng.init = function() {
 }
 
 Izng.Debuger = {
-	init : function() {
+	init : function()
+	{
 		BrowserDetect.dispStatus();
 		Env.window.dispAllInfo();
 	}
@@ -64,12 +66,14 @@ var FONT_LIST = {
  */
 
 var BrowserDetect = {
-	init : function() {
+	init : function()
+	{
 		this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
 		this.version = this.searchVersion(navigator.userAgent) || this.searchVersion(navigator.appVersion) || "an unknown version";
 		this.OS = this.searchString(this.dataOS) || "an unknown OS";
 	},
-	searchString : function(data) {
+	searchString : function(data)
+	{
 		for(var i = 0; i < data.length; i++) {
 			var dataString = data[i].string;
 			var dataProp = data[i].prop;
@@ -81,18 +85,21 @@ var BrowserDetect = {
 				return data[i].identity;
 		}
 	},
-	searchVersion : function(dataString) {
+	searchVersion : function(dataString)
+	{
 		var index = dataString.indexOf(this.versionSearchString);
 		if(index == -1)
 			return;
 		return parseFloat(dataString.substring(index + this.versionSearchString.length + 1));
 	},
-	dispStatus : function() {
+	dispStatus : function()
+	{
 		var to = "#notice";
 		if(arguments.length > 0)
 			to = arguments[0];
 		var contents = ["Browser : " + this.browser, "Version : " + this.version, "OS : " + this.OS];
-		jQuery.each(contents, function() {
+		jQuery.each(contents, function()
+		{
 			jQuery(to).append(this + "<br>");
 		})
 	},
@@ -173,7 +180,8 @@ var BrowserDetect = {
  */
 
 var Env = {
-	init : function() {
+	init : function()
+	{
 		var browser = BrowserDetect.browser.toLowerCase();
 		var version = BrowserDetect.version;
 		var os = BrowserDetect.OS;
@@ -202,22 +210,26 @@ var Env = {
 		}
 	},
 	window : {
-		dispAllInfo : function() {
+		dispAllInfo : function()
+		{
 			var to = "#notice";
 			if(arguments.length > 0)
 				to = arguments[0];
 			var _innerWidth = this.innerWidth();
 			var _innerHeight = this.innerHeight();
 			var contents = ["name : " + this.name, "innerWidth : " + _innerWidth, "innerHeigth : " + _innerHeight, "outerHeight : " + this.outerHeight, "outerHeight : " + this.outerHeight, "pageXOffset : " + this.pageXOffset, "pageYOffset" + this.pageYOffset]
-			jQuery.each(contents, function() {
+			jQuery.each(contents, function()
+			{
 				jQuery(to).append(this + "<br>");
 			})
 		},
 		name : window.name,
-		innerWidth : function() {
+		innerWidth : function()
+		{
 			return (this.isIE) ? document.body.clientWidth : window.innerWidth;
 		},
-		innerHeight : function() {
+		innerHeight : function()
+		{
 			return (this.isIE) ? document.body.clientHeight : window.innerHeight;
 		},
 		outerHeight : window.outerHeight,
@@ -232,10 +244,12 @@ var Env = {
  */
 
 var Drawer = {
-	init : function() {
+	init : function()
+	{
 
 	},
-	toggle : function(rel) {
+	toggle : function(rel)
+	{
 		var _rel = "#" + rel;
 		if(jQuery(_rel).hasClass("hidden")) {
 			jQuery(_rel).slideDown().removeClass("hidden");
@@ -243,38 +257,27 @@ var Drawer = {
 			jQuery(_rel).slideUp().addClass("hidden");
 		}
 	},
-	fixMainWindow : function() {
-		document.body.clientWidth
+	slide : function(dir)
+	{
+		var speed = 500;
+		var distance;
+		if(dir == "L") {
+			distance = "+=280px";
+		} else if(dir == "R") {
+			distance = "-=280px";
+		}
+		jQuery("#slidepanel").animate({
+			marginLeft : distance
+		}, speed);
 	}
 }
-/*
- * Slidepanel
- */
-
-var Slidepanel = {
-	speed : 500,
-	distance : "280px",
-	init : function() {
-		return 0;
-	},
-	toRight : function() {
-		jQuery("#slidepanel").animate({
-			marginLeft : "-" + this.distance
-		}, this.speed);
-	},
-	toLeft : function() {
-		jQuery("#slidepanel").animate({
-			marginLeft : 0
-		}, this.speed)
-	}
-}
-
 /*
  * Task bar
  */
 
 var Taskbar = {
-	init : function() {
+	init : function()
+	{
 		jQuery("#article").removeAttr("style");
 		jQuery("#article").removeAttr("style").removeClass();
 		jQuery(".slider").removeClass();
@@ -283,31 +286,39 @@ var Taskbar = {
 		this.fontcolor();
 		this.lineheight();
 		this.width();
+		this.bg("kami1");
 	},
-	setDefaultValue : function() {
+	setDefaultValue : function()
+	{
 
 	},
-	fontface : function(target) {
+	fontface : function(target)
+	{
 		var disp = FONT_LIST[target];
+		var fonts = ["mincho","gothic","bold","normal"];
 		var fc = target.split("-");
 		target = "#" + target;
+		for(var i = 0 ; i < 0 ; i++){
+			jQuery("#article").removeClass(fonts[i]);	
+		}
 		jQuery("#fontface").children().removeClass("radioSelected");
-		jQuery(target).addClass("radioSelected");
-		jQuery("#article").removeClass();
+		jQuery(target).addClass("radioSelected");		
 		jQuery("#article").addClass(fc[0]);
 		if(fc.length > 1)
 			jQuery("#article").addClass(fc[1]);
 		jQuery("#fontface-value").val(disp);
 
 	},
-	fontcolor : function() {
+	fontcolor : function()
+	{
 		jQuery("#fontcolor").slider({
 			orientation : "horizontal",
 			range : "min",
 			min : 0,
 			max : 150,
 			value : DEFAULT_COLOR["forSet"],
-			slide : function(event, ui) {
+			slide : function(event, ui)
+			{
 				var a = ui.value;
 				var hexColor = Util.rgbToHex(a, a, a);
 				var rgbColor = "r : " + a + "g : " + a + "b : " + a;
@@ -316,34 +327,38 @@ var Taskbar = {
 				//jQuery.cookie("user_color", color);
 			}
 		});
-		jQuery("#article").css("color",DEFAULT_COLOR["forDisp"]);
+		jQuery("#article").css("color", DEFAULT_COLOR["forDisp"]);
 		jQuery("#fontcolor-value").val(DEFAULT_COLOR["forDisp"]);
 	},
-	fontsize : function() {
+	fontsize : function()
+	{
 		jQuery("#fontsize").slider({
 			orientation : "horizontal",
 			range : "min",
 			min : 00,
 			max : 100,
 			value : DEFAULT_SIZE["forSet"],
-			slide : function(event, ui) {
+			slide : function(event, ui)
+			{
 				var size = 10 + Math.ceil(ui.value / 10);
 				jQuery("#fontsize-value").val(size + "px");
 				jQuery("#article").css("font-size", size + "px");
 				//jQuery.cookie("user_font_size", size);
 			}
 		});
-		jQuery("#article").css("font-size",DEFAULT_SIZE["forDisp"]);
+		jQuery("#article").css("font-size", DEFAULT_SIZE["forDisp"]);
 		jQuery("#fontsize-value").val(DEFAULT_SIZE["forDisp"]);
 	},
-	lineheight : function() {
+	lineheight : function()
+	{
 		jQuery("#lineheight").slider({
 			orientation : "horizontal",
 			range : "min",
 			min : 0,
 			max : 100,
 			value : DEFAULT_LINEHEIGHT["forSet"],
-			slide : function(event, ui) {
+			slide : function(event, ui)
+			{
 				var lh = Math.ceil(ui.value / 10);
 				var lh = 1 + lh / 4;
 				jQuery("#lineheight-value").val(lh + "em");
@@ -351,10 +366,11 @@ var Taskbar = {
 				//jQuery.cookie("user_font_size", lh);
 			}
 		});
-		jQuery("#article").css("line-height",DEFAULT_LINEHEIGHT["forDisp"]);
+		jQuery("#article").css("line-height", DEFAULT_LINEHEIGHT["forDisp"]);
 		jQuery("#lineheight-value").val(DEFAULT_LINEHEIGHT["forDisp"]);
 	},
-	width : function() {
+	width : function()
+	{
 		jQuery("#main").removeAttr("style");
 		var dw = [];
 		if(arguments.length > 0) {
@@ -373,7 +389,8 @@ var Taskbar = {
 			min : -DEFAULT_WIDTH["canchange"],
 			max : Env.window.innerWidth() - DEFAULT_WIDTH["visible"],
 			value : dw["forSet"],
-			slide : function(event, ui) {
+			slide : function(event, ui)
+			{
 				var w = DEFAULT_WIDTH["visible"] + ui.value;
 				jQuery("#width-value").val(w + "px");
 				jQuery("#main").css("width", w + "px");
@@ -383,12 +400,14 @@ var Taskbar = {
 		jQuery("#width-value").val(dw["forDisp"] + "px");
 		jQuery("#main").css("width", dw["forDisp"] + "px");
 	},
-	screen : function(type) {
+	screen : function(type)
+	{
 		jQuery("#screen > label").removeClass("radioSelected");
 		jQuery("#" + type).addClass("radioSelected");
 		var transitTypes = ["full", "fit", "narrow", "defaultFit"];
 		var _type;
-		jQuery.each(transitTypes, function() {
+		jQuery.each(transitTypes, function()
+		{
 			if(this == type)
 				_type = this;
 		})
@@ -416,6 +435,14 @@ var Taskbar = {
 		}
 
 	},
+	bg : function(im)
+	{
+		var bgs = ["novel","kami1", "kami2", "kami3", "kami4"];
+		for(var i = 0; i < bgs.length; i++) {
+			$("#article").removeClass(bgs[i]);
+		}
+		$("#article").addClass(im)
+	}
 };
 
 var Util = {
@@ -437,26 +464,30 @@ var Util = {
 		"e" : 14,
 		"f" : 15,
 	},
-	decToHex : function(dec) {
+	decToHex : function(dec)
+	{
 		var a = dec, b = 16;
 		var q = dec % 16, p = (a - q) / b;
 		p = this.hexArray[p].toString();
 		q = this.hexArray[q].toString();
 		return p + q;
 	},
-	rgbToHex : function(r, g, b) {
+	rgbToHex : function(r, g, b)
+	{
 		var _r = this.decToHex(r), _g = this.decToHex(g), _b = this.decToHex(b);
 		var hex = "#" + _r.toString() + _g.toString() + _b.toString();
 		return hex;
 	},
-	hexToDec : function(hex) {
+	hexToDec : function(hex)
+	{
 		if(hex.toString().length > 2)
 			return false;
 		var p = hex.charAt(0);
 		q = hex.charAt(1);
 		return this.decArray[p] * 16 + this.decArray[q];
 	},
-	hexToRgb : function(hex) {
+	hexToRgb : function(hex)
+	{
 		var rgb = hex.replace("#", "");
 		if(rgb.length < 6)
 			rbg = rbg + rgb;
@@ -466,28 +497,32 @@ var Util = {
 		b = hexToDec(b);
 		return (r, g, b);
 	},
-	notice : function() {
+	notice : function()
+	{
 		var target = arguments[0];
 		var to = "#notice";
 		if(arguments.length > 1)
 			to = arguments[1];
 		jQuery(to).append(target);
 	},
-	loadIn : function(hash) {
+	loadIn : function(hash)
+	{
 		var _hash = hash
 		if(arguments.length > 0)
 			_hash = arguments[0];
 		if(jQuery(_hash).css("display") == "none")
 			jQuery("#load-layer").show();
 	},
-	loadOut : function(hash) {
+	loadOut : function(hash)
+	{
 		var _hash = hash
 		if(arguments.length > 0)
 			_hash = arguments[0];
 		if(jQuery(_hash).css("display") != "none")
 			jQuery("#load-layer").hide();
 	},
-	imageSize : function(image) {
+	imageSize : function(image)
+	{
 		var w = image.width, h = image.height;
 
 		if( typeof image.naturalWidth !== 'undefined') {// for Firefox, Safari, Chrome
@@ -530,8 +565,10 @@ var Util = {
 }
 
 var Ajax = {
-	init : function() {
-		jQuery(window).hashchange(function() {
+	init : function()
+	{
+		jQuery(window).hashchange(function()
+		{
 			//URLに変化があれば、変化後のハッシュを含むURLから#!を削除 => 普通のアドレスへ
 			var setHash = location.hash.replace('#!/', '');
 			if(!setHash) {
@@ -547,8 +584,10 @@ var Ajax = {
 		Ajax.setAnchor("#toclist a");
 		location.hash = "#!/data/1.html";
 	},
-	setAnchor : function(a) {
-		jQuery(a).each(function() {
+	setAnchor : function(a)
+	{
+		jQuery(a).each(function()
+		{
 			$("#notice").append("setAnchor<br>")
 			var setHref = jQuery(this).attr("href").replace("./", "#!/");
 			jQuery(this).attr({
@@ -556,7 +595,8 @@ var Ajax = {
 			});
 		});
 	},
-	loadText : function(hash) {
+	loadText : function(hash)
+	{
 		//コンテナーをクリーニング
 		/*
 		 jQuery("#article").fadeOut();
@@ -578,32 +618,38 @@ var Ajax = {
 		 */
 		jQuery("#article").fadeOut();
 		jQuery("#article").empty()
-		setTimeout(function(){
+		setTimeout(function()
+		{
 			jQuery.ajax({
-			beforeSend : function() {
+				beforeSend : function()
+				{
 
-				Util.loadIn("#load-layer");
-			},
-			type : "GET",
-			datatype : "html",
-			url : hash,
-			complete : function() {
-				Util.loadOut("#load-layer");
-			},
-			success : function(data, datatype) {
-				jQuery("#article").append(data);
-				jQuery("#article").fadeIn();
-			},
-			error : function() {
-				jQuery("#article").hide();
-				jQuery("#article").html("error");
-				jQuery("#article").fadeIn();
-				Util.loadOut("#load-layer");
-			}
+					Util.loadIn("#load-layer");
+				},
+				type : "GET",
+				datatype : "html",
+				url : hash,
+				complete : function()
+				{
+					Util.loadOut("#load-layer");
+				},
+				success : function(data, datatype)
+				{
+					jQuery("#article").append(data);
+					jQuery("#article").fadeIn();
+				},
+				error : function()
+				{
+					jQuery("#article").hide();
+					jQuery("#article").html("error");
+					jQuery("#article").fadeIn();
+					Util.loadOut("#load-layer");
+				}
 			});
-		},300);		
+		}, 300);
 	},
-	hashChange : function(hash) {
+	hashChange : function(hash)
+	{
 		$("#toclist label").removeClass("tocSelected");
 		var _dec = hash.match(/[0-9]/);
 		$("#toc" + _dec).addClass("tocSelected");
@@ -618,7 +664,6 @@ var Ajax = {
 Izng.BrowserDetect = BrowserDetect;
 Izng.Env = Env;
 Izng.Drawer = Drawer;
-Izng.Slidepanel = Slidepanel;
 Izng.Taskbar = Taskbar;
 Izng.Util = Util;
 Izng.Ajax = Ajax;

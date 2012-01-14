@@ -16,22 +16,24 @@
         <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"</script>
         <style type="text/css">
-            article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
-                display: block;
-            }
+        article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+        display: block;
+        }
         </style>
         <![endif]-->
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>        <script type="text/javascript" src="js/jquery-ui.custom.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui.custom.min.js"></script>
         <script type="text/javascript" src="js/jquery.easing.js"></script>
         <script type="text/javascript" src="js/jquery.hashChangeEvent.js"></script>
         <script type="text/javascript" src="js/jquery.ui.touch-punch.js"></script>
         <script type="text/javascript" src="js/izanagi.js"></script>
         <script type="text/javascript">
-            $(document).ready(function() {
-                Izng.init();
-                Izng.Debuger.init();
-                Izng.Util.loadOut("#load-layer");
-            })
+			$(document).ready(function()
+			{
+				Izng.init();
+				Izng.Debuger.init();
+				Izng.Util.loadOut("#load-layer");
+			})
         </script>
     </head>
     <body>
@@ -43,7 +45,7 @@
                     <div id="taskbar">
                         <div id="taskhead">
                             <button onclick="Izng.Taskbar.init();" class="button floatLeft gGlay">設定の初期化</button>
-                            <button onclick="Izng.Slidepanel.toRight();" class="button floatRight gBlue">作品情報</button>
+                            <button onclick="Izng.Drawer.slide('R');" class="button floatRight gBlue">作品情報</button>
                         </div>
                         <div id="tasklist">
                             <hr />
@@ -110,21 +112,12 @@
                             </div>
                             <hr/>
                             <h2 rel="sharetask" onclick="Izng.Drawer.toggle('sharetask')" class="toggler">共有</h2>
-                            <div id="sharetask" class="taskgroup hidden">                               
+                            <div id="sharetask" class="taskgroup hidden">
                                 <div class="field-box">
-                                    <div class="field-label-box">
-                                        <label for="" class="field-box-name">twitter設定</label>
-                                    </div>
                                     <div class="field-list">
-                                        <label for="sel2" > <span class="label checkbox_f_control">Twitter</span><span class="checkbox_f field">
-                                                <input type="checkbox" />
-                                            </span> </label>
-                                        <label for="sel2" > <span class="label checkbox_f_control">Facebook</span><span class="checkbox_f field">
-                                                <input type="checkbox"/>
-                                            </span> </label>
-                                        <label for="sel2" > <span class="label checkbox_f_control">Facebook</span><span class="checkbox_f field">
-                                            <input type="checkbox"/>
-                                        </span> </label>                     
+                                        <label for="sel2" > <span class="label checkbox_f_control">Twitter</span><span class="checkbox_f field"> <a href="" id="share_twitter" class="share" title="Twitterで共有"></a> </span> </label>
+                                        <label for="sel2" > <span class="label checkbox_f_control">Facebook</span><span class="checkbox_f field"> <a href="" id="share_facebook" class="share" title="Facebookで共有"> </a> </span> </label>
+                                        <label for="sel2" > <span class="label checkbox_f_control">Google Plus</span><span class="checkbox_f field"> <a href="" id="share_google_plus" class="share" title="Google Plustで共有"> </a> </span> </label>
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +126,28 @@
                             <div id="optiontask" class="taskgroup hidden">
                                 <div class="field-box">
                                     <div class="field-label-box">
-                                        <label for="background" class="field-box-name">背景設定</label>
+                                        <label for="fontface" class="field-box-name">背景</label>
+                                        <input type="text" id="fontface-value" class="field-box-value"/>
+                                    </div>
+                                    <div  id="bg" class="field-list">
+                                        <label id="bg-default" for="fit"> <span class="label radio_f_control">なし</span><span class="radio_f field">
+                                                <input type="radio" name="bg" onclick="Izng.Taskbar.bg('default');" />
+                                            </span> </label>
+                                            <label id="bg-novel" class="novel" for="fit"> <span class="label radio_f_control">薄茶</span><span class="radio_f field">
+                                                <input type="radio" name="bg" onclick="Izng.Taskbar.bg('novel');" />
+                                            </span> </label>
+                                        <label id="bg-kami1" class="kami1" for="defaultFit"> <span class="label radio_f_control">紙１</span><span class="radio_f field">
+                                                <input type="radio" name="bg" checked onclick="Izng.Taskbar.bg('kami1');" />
+                                            </span> </label>
+                                        <label id="bg-kami2" class="kami2" for="full" > <span class="label radio_f_control">紙２</span><span class="radio_f field">
+                                                <input type="radio" name="bg" onclick="Izng.Taskbar.bg('kami2');" />
+                                            </span> </label>
+                                        <label id="bg-kami3" class="kami3" for="narrow" class="velc" > <span class="label radio_f_control">紙３</span><span class="radio_f field">
+                                                <input type="radio" name="bg" onclick="Izng.Taskbar.bg('kami3');"/>
+                                            </span> </label>
+                                        <label id="bg-kami4" class="kami4" for="narrow" class="velc" > <span class="label radio_f_control">紙４</span><span class="radio_f field">
+                                                <input type="radio" name="bg" onclick="Izng.Taskbar.bg('kami4');"/>
+                                            </span> </label>
                                     </div>
                                 </div>
                                 <div class="field-box">
@@ -146,7 +160,7 @@
                                             </span> </label>
                                         <label for="sel2" > <span class="label checkbox_f_control">選択肢５</span><span class="checkbox_f field">
                                                 <input type="checkbox"/>
-                                            </span> </label>                     
+                                            </span> </label>
                                     </div>
                                 </div>
                             </div>
@@ -155,7 +169,7 @@
                     </div>
                     <div id="infobar">
                         <div id="infohead">
-                            <button onclick="Izng.Slidepanel.toLeft();" class="button gBlue">タスクバー</button>
+                            <button onclick="Izng.Drawer.slide('L');" class="button gBlue">タスクバー</button>
                         </div>
                         <div id="infolist">
                             <hr />
@@ -166,12 +180,8 @@
                                         <label class="field-box-name">基本情報</label>
                                     </div>
                                     <div class="field-list">
-                                        <label for="title"> <span class="label text_f_control">タイトル</span><span class="field text_f"> 
-                                            夢十夜
-                                             </span> </label>
-                                        <label for="author"> <span class="label text_f_control">著者</span><span class="field text_f">
-                                            夏目漱石                                             
-                                            </span> </label>
+                                        <label for="title"> <span class="label text_f_control">タイトル</span><span class="field text_f"> 夢十夜 </span> </label>
+                                        <label for="author"> <span class="label text_f_control">著者</span><span class="field text_f"> 夏目漱石 </span> </label>
                                     </div>
                                 </div>
                                 <div class="field-box">
@@ -192,17 +202,17 @@
                                     </div>
                                     <div id="toclist" class="field-list">
                                         <label id="toc1" for="toc1" class="tocSelected"> <span class="label radio_f_control">『第一夜』</span><span class="radio_f field">
-                                            <input type="radio" name="toc" checked onclick="Izng.Ajax.hashChange('/data/1.html');" />
-                                        </span> </label>
-                                    <label id="toc2" for="toc2" > <span class="label radio_f_control">『第二夜』</span><span class="radio_f field">
-                                            <input type="radio" name="toc"  onclick="Izng.Ajax.hashChange('/data/2.html');" />
-                                        </span> </label>
-                                    <label id="toc3" for="toc3" > <span class="label radio_f_control">『第三夜』</span><span class="radio_f field">
-                                            <input type="radio" name="toc" onclick="Izng.Ajax.hashChange('/data/3.html');" />
-                                        </span> </label>
-                                    <label id="toc4" for="toc4" class="velc" > <span class="label radio_f_control">『第四夜』</span><span class="radio_f field">
-                                            <input type="radio" name="toc" onclick="Izng.Ajax.hashChange('/data/4.html');"/>
-                                        </span> </label>                                    
+                                                <input type="radio" name="toc" checked onclick="Izng.Ajax.hashChange('/data/1.html');" />
+                                            </span> </label>
+                                        <label id="toc2" for="toc2" > <span class="label radio_f_control">『第二夜』</span><span class="radio_f field">
+                                                <input type="radio" name="toc"  onclick="Izng.Ajax.hashChange('/data/2.html');" />
+                                            </span> </label>
+                                        <label id="toc3" for="toc3" > <span class="label radio_f_control">『第三夜』</span><span class="radio_f field">
+                                                <input type="radio" name="toc" onclick="Izng.Ajax.hashChange('/data/3.html');" />
+                                            </span> </label>
+                                        <label id="toc4" for="toc4" class="velc" > <span class="label radio_f_control">『第四夜』</span><span class="radio_f field">
+                                                <input type="radio" name="toc" onclick="Izng.Ajax.hashChange('/data/4.html');"/>
+                                            </span> </label>
                                     </div>
                                 </div>
                             </div>
@@ -215,34 +225,76 @@
                 <div id="book-body">
                     <article id="article">
                         <h2>Prologue／エミル・シェーファーについて</h2>
-                        <p>　エミル・シェーファーは、ある日突然この世界の救世主になった。</p>
-                        <p>　だが、彼が何か特別な力を持っていたかといえば、そんなことはなかった。</p>
-                        <p>　彼は他の子供達と同じように無自覚で、無関心で、向上心のない――普通の少年だった。</p>
-                        <p>　ならばなぜそんな普通の少年がその国を救うという大役を仰せつかったのか？</p>
-                        <p>　それは、ごく単純な理由だった。</p>
-                        <p>　その日、エミルふとこう思ったのだ。</p>
-                        <p>　――何でもいいから世界が変わればいいのに、と。</p>
-                        <p>　それはエミルが15年というさほど長くもない人生を生きてきた中で自然と心の中に浮かんだ感情だったし、それ自体が特別な考えだったとも言えない。なにより、彼の中に変革の明確なヴィジョンというものがなかった。</p>
-                        <p>　だから――エミルは単に思っただけなのだ。</p>
-                        <p>　なんとなく。それとなく。深い意味などなく。</p>
-                        <p>　ただ『どうにかなればいいのに』という無責任な願いを世界に捧げただけ。</p>
-                        <p>　しかし、幸か不幸か世界はその願いを聞き入れた。</p>
-                        <p>　――『お前がこの世界を救え』という無責任な指示と共に。</p>
-                        <p>　世界という秩序が、彼のような茫漠さを受け入れたのは決して偶然などではない。</p>
-                        <p>　他の何よりも、それが世界にとって最も重要なことだったからだ。</p>
-                        <p>　その方向性や願いに差はあれど、エミルと時を同じくして『この世界を変えたい』と願った人間たちが6人いた。彼らは地位も、思想も、性別も、願いも、まったく異なった6人だった。しかし、今の世界を壊してでも明日という灰色に手を伸ばしたい――そういう人間たちだった。</p>
-                        <p>　世界にとって、重要なのはそれだけだった。</p>
-                        <p>　世界は硬直を、停滞を、均質化を嫌う。常に変化を希求し、その存在を揺蕩わせている。</p>
-                        <p>　だから、世界にとって彼らの人間としての側面などどうでもいいことだったのだ。</p>
-                        <p>　ただ一点、世界の変革を望んでさえいれば、それで。</p>
-                        <p>　だが、どうしようもなく複雑で、どうしようもなく<ruby><rb>歪</rb><rp>(</rp><rt>いびつ</rt><rp>)</rp></ruby>なこの世界を前にして、途方に暮れない人間がいるだろうか？　――否。大抵の人間はそこで考えることを止めてしまうだろう。何故なら、それはほとんど無意味な行為だからだ。世界という巨大な枠組みに対して個人ができることなど皆無に等しいし、誰もがその矛盾を胸に抱えながら今日を生きている。そして、何よりそんなことを続けるのは辛すぎる。</p>
-                        <p>　だが、エミルはその矛盾の糸をほどき、二本の白糸と黒糸を分かつことを強いられた。</p>
-                        <p>　〝世界を変える〟ということはつまり――権利などではなく義務なのである。</p>
-                        <p>　……だからといって、彼が仕方なくこの世界の救世主になったというわけではない。</p>
-                        <p>　なぜなら、エミルはその時たしかに世界の変革を望んだからだ。</p>
-                        <p>　今という幻想を否定し、未来という灰色を選びとろうという意思が間違いなく彼の中にあったからだ。黒でもなく、白でもなく、確かな約束など何一つない１ｍ先の暗闇に手を伸ばそうとする――そういう意志が。</p>
-                        <p>　たとえそこに意思がなく、願いもなく、<ruby><rb>自我</rb><rp>(</rp><rt>エゴ</rt><rp>)</rp></ruby>すらなくとも、エミルは骨接ぎを繰り返すこの廃墟のような世界に、炎を放つことを決めた。そこに、光があると信じていたから。</p>
-                        <p>　――エミル・シェーファーは、こうしてこの世界の<ruby><rb>救世主</rb><rp>(</rp><rt>メシア</rt><rp>)</rp></ruby>になった。</p>
+                        <p> 　エミル・シェーファーは、ある日突然この世界の救世主になった。</p>
+                        <p> 　だが、彼が何か特別な力を持っていたかといえば、そんなことはなかった。</p>
+                        <p> 　彼は他の子供達と同じように無自覚で、無関心で、向上心のない――普通の少年だった。</p>
+                        <p> 　ならばなぜそんな普通の少年がその国を救うという大役を仰せつかったのか？</p>
+                        <p> 　それは、ごく単純な理由だった。</p>
+                        <p> 　その日、エミルふとこう思ったのだ。</p>
+                        <p> 　――何でもいいから世界が変わればいいのに、と。</p>
+                        <p> 　それはエミルが15年というさほど長くもない人生を生きてきた中で自然と心の中に浮かんだ感情だったし、それ自体が特別な考えだったとも言えない。なにより、彼の中に変革の明確なヴィジョンというものがなかった。</p>
+                        <p> 　だから――エミルは単に思っただけなのだ。</p>
+                        <p> 　なんとなく。それとなく。深い意味などなく。</p>
+                        <p> 　ただ『どうにかなればいいのに』という無責任な願いを世界に捧げただけ。</p>
+                        <p> 　しかし、幸か不幸か世界はその願いを聞き入れた。</p>
+                        <p> 　――『お前がこの世界を救え』という無責任な指示と共に。</p>
+                        <p> 　世界という秩序が、彼のような茫漠さを受け入れたのは決して偶然などではない。</p>
+                        <p> 　他の何よりも、それが世界にとって最も重要なことだったからだ。</p>
+                        <p> 　その方向性や願いに差はあれど、エミルと時を同じくして『この世界を変えたい』と願った人間たちが6人いた。彼らは地位も、思想も、性別も、願いも、まったく異なった6人だった。しかし、今の世界を壊してでも明日という灰色に手を伸ばしたい――そういう人間たちだった。</p>
+                        <p> 　世界にとって、重要なのはそれだけだった。</p>
+                        <p> 　世界は硬直を、停滞を、均質化を嫌う。常に変化を希求し、その存在を揺蕩わせている。</p>
+                        <p> 　だから、世界にとって彼らの人間としての側面などどうでもいいことだったのだ。</p>
+                        <p> 　ただ一点、世界の変革を望んでさえいれば、それで。</p>
+                        <p> 　だが、どうしようもなく複雑で、どうしようもなく
+                            <ruby>
+                                <rb>
+                                    歪
+                                </rb>
+                                <rp>
+                                    (
+                                </rp>
+                                <rt>
+                                    いびつ
+                                </rt>
+                                <rp>
+                                    )
+                                </rp>
+                            </ruby>なこの世界を前にして、途方に暮れない人間がいるだろうか？　――否。大抵の人間はそこで考えることを止めてしまうだろう。何故なら、それはほとんど無意味な行為だからだ。世界という巨大な枠組みに対して個人ができることなど皆無に等しいし、誰もがその矛盾を胸に抱えながら今日を生きている。そして、何よりそんなことを続けるのは辛すぎる。</p>
+                        <p> 　だが、エミルはその矛盾の糸をほどき、二本の白糸と黒糸を分かつことを強いられた。</p>
+                        <p> 　〝世界を変える〟ということはつまり――権利などではなく義務なのである。</p>
+                        <p> 　……だからといって、彼が仕方なくこの世界の救世主になったというわけではない。</p>
+                        <p> 　なぜなら、エミルはその時たしかに世界の変革を望んだからだ。</p>
+                        <p> 　今という幻想を否定し、未来という灰色を選びとろうという意思が間違いなく彼の中にあったからだ。黒でもなく、白でもなく、確かな約束など何一つない１ｍ先の暗闇に手を伸ばそうとする――そういう意志が。</p>
+                        <p> 　たとえそこに意思がなく、願いもなく、
+                            <ruby>
+                                <rb>
+                                    自我
+                                </rb>
+                                <rp>
+                                    (
+                                </rp>
+                                <rt>
+                                    エゴ
+                                </rt>
+                                <rp>
+                                    )
+                                </rp>
+                            </ruby>すらなくとも、エミルは骨接ぎを繰り返すこの廃墟のような世界に、炎を放つことを決めた。そこに、光があると信じていたから。</p>
+                        <p> 　――エミル・シェーファーは、こうしてこの世界の
+                            <ruby>
+                                <rb>
+                                    救世主
+                                </rb>
+                                <rp>
+                                    (
+                                </rp>
+                                <rt>
+                                    メシア
+                                </rt>
+                                <rp>
+                                    )
+                                </rp>
+                            </ruby>になった。</p>
                     </article>
                 </div>
                 <div id="book-footer"></div>

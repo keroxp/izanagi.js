@@ -34,8 +34,7 @@ html, body {
     -webkit-font-smoothing: antialiased;
 }
 body {
-    /*background: white url("images/bg/backw.png");*/
-    background: #222222 url("images/bg/cardboard.png");
+    background: white;
 }
 .pat1 {
     background: #E4E4E4 !important;
@@ -81,6 +80,7 @@ button {
     bottom: 0;
     left: 275px;
     overflow-y: auto;
+    background-color: white;
     -webkit-overflow-scrolling: touch;
     z-index: 100;
     -webkit-box-shadow: 0 0 8px rgba(0,0,0,0.7);
@@ -90,10 +90,25 @@ button {
 }
 #main #article {
     padding: 24px 44px 49px 49px;
-    background: white url("images/bg/kami.png");
     border-right: 1px solid #ccc;
     border-left: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
+}
+/* article bg */
+.novel {
+    background-color: #F4EED9;
+}
+.kami1 {
+    background-image: url("images/bg/kami1.png");
+}
+.kami2 {
+    background-image: url("images/bg/kami2.png");
+}
+.kami3 {
+    background-image: url("images/bg/kami3.png");
+}
+.kami4 {
+    background-image: url("images/bg/kami4.png");
 }
 #manga-main #manga {
     padding: 0 44px 49px 49px;

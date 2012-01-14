@@ -1,252 +1,270 @@
 #slidepanel {
-	width: 560px;
-	height: 100%;
-	overflow: hidden;
+    width: 560px;
+    height: 100%;
+    overflow: hidden;
+    background: #222222 url("../images/bg/cardboard.png");
 }
 #taskbar, #infobar {
-	height: 100%;
-	float: left;
-	position: relative;
-	overflow-y: auto;
-	overflow-x: hidden;
-	-webkit-overflow-scrolling: touch;
-	
+    height: 100%;
+    float: left;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 #taskhead, #infohead {
-	width: 240px;
-	padding: 15px 20px;
-	z-index: 100;
-	overflow: hidden;
+    width: 240px;
+    padding: 15px 20px;
+    z-index: 100;
+    overflow: hidden;
 }
 #tasklist, #infolist {
 }
 #drawer #slidepanel h2 {
-	font-size: 14px;
-	font-weight: bold;
-	margin: 0;
-	padding: 11px 25px 11px 0;
-	color: white;
-	text-shadow: 0 2px rgba(0,0,0,0.4);
-	text-align: right;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    padding: 5px 25px 5px 0;
+    color: white;
+    text-shadow: 0 2px rgba(0,0,0,0.4);
+    text-align: right;
 }
 #drawer #slidepanel h2:active {
-	background: -moz-linear-gradient(top,  rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.3)), color-stop(100%,rgba(0,0,0,0.15))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.15) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.15) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.15) 100%); /* IE10+ */
-	background: linear-gradient(top,  rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.15) 100%); /* W3C */
-	filter: progid :DXImageTransform.Microsoft.gradient( startColorstr='#4d000000', endColorstr='#26000000',GradientType=0 ); /* IE6-9 */
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.3)), color-stop(100%,rgba(0,0,0,0.15))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.15) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.15) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.15) 100%); /* IE10+ */
+    background: linear-gradient(top,  rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.15) 100%); /* W3C */
+    filter: progid :DXImageTransform.Microsoft.gradient( startColorstr='#4d000000', endColorstr='#26000000',GradientType=0 ); /* IE6-9 */
 }
 #drawer #slidepanel h2:active {
 
 }
 .holc {
-	border-right: none !important;
+    border-right: none !important;
 }
 .velc {
-	border-bottom: none !important;
+    border-bottom: none !important;
 }
 .boxradio {
-	float: left;
-	border: none;
-	width: 60px;
-	border-right: 1px solid #ccc;
-	margin: 0;
-	padding: 5px 0px;
-	text-align: center;
-	font-size: 12px;
-	color: #777;
-	background: transparent;
+    float: left;
+    border: none;
+    width: 60px;
+    border-right: 1px solid #ccc;
+    margin: 0;
+    padding: 5px 0px;
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+    background: transparent;
 }
-.radioSelected , .tocSelected{
-	background: #4787ED;
-	color: white;
+.radioSelected, .tocSelected {
+    background: #4787ED;
+    color: white;
 }
-.radioSelected span , .tocSelected span{
-	color: white !important;
-	text-shadow: none !important;
+.bgSelected{
+    
+}
+.radioSelected span, .tocSelected span {
+    color: white !important;
+    text-shadow: none !important;
 }
 .taskgroup, .infogroup {
-	width: 240px;
-	margin: 0;
-	padding: 0 20px;
-	overflow: hidden;
+    width: 240px;
+    margin: 0;
+    padding: 0 20px;
+    overflow: hidden;
 }
 input {
-	cursor: pointer;
+    cursor: pointer;
 }
 /*
  * taskgroup
  */
 
 label {
-	display: table;
-	table-layout: fixed;
+    display: table;
+    table-layout: fixed;
 }
 .slider-box, .field-box {
-	padding: 10px 0;
-	margin: 0;
-	font-size: 11px;
+    padding: 10px 0;
+    margin: 0;
+    font-size: 11px;
 }
 .field-list {
-	width: 240px;
-	margin: 10px 0;
-	border-radius: 3px;
-	background: white;
-	overflow: hidden;
+    width: 240px;
+    margin: 5px 0 10px 0;
+    border-radius: 3px;
+    background: white;
+    overflow: hidden;
 }
 .slider-label-box, .field-label-box {
-	display: table;
-	padding: 0 0 15px 0;
+    display: table;
+    padding: 0 0 15px 0;
 }
 .slider-name, .field-box-name {
-	font-size: 14px;
-	font-weight: bold;
-	color: white;
-	text-shadow: 0 2px rgba(0,0,0,0.4);
-	display: table-cell;
-	vertical-align: middle;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 2px rgba(0,0,0,0.4);
+    display: table-cell;
+    vertical-align: middle;
 }
 .slider-value, .field-box-value {
-	max-width: 150px;
-	background: transparent;
-	border: none;
-	text-align: left;
-	margin-left: 15px;
-	color: #4787ED;
-	font-size: 14px;
-	display: table-cell;
-	vertical-align: middle;
+    max-width: 150px;
+    background: transparent;
+    border: none;
+    text-align: left;
+    margin-left: 15px;
+    color: #4787ED;
+    font-size: 14px;
+    display: table-cell;
+    vertical-align: middle;
 }
-.field-list label , .feild-list a{
-	width: 210px;
-	overflow-x: hidden;
-	border-bottom: 1px solid #ccc;
-	padding: 10px 15px;
-	display:block;
+.field-list label, .feild-list a {
+    width: 210px;
+    overflow-x: hidden;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 15px;
+    display: block;
 }
 .field-list img {
-	border: none;
-	max-width: 220px;
-	padding: 10px;
+    border: none;
+    max-width: 220px;
+    padding: 10px;
 }
-span.label{
-	color: #777;
-	font-size: 12px;
-	line-height: 15px;
-	font-weight: bold;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-	margin-right: 5px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: table-cell;
-	vertical-align: middle;
+span.label {
+    color: #777;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    margin-right: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: table-cell;
+    vertical-align: middle;
 }
 span.text_f_control {
-	max-width: 150px;
+    max-width: 150px;
 }
 span.checkbox_f_control, span.radio_f_control {
-	width: 190px;
+    width: 190px;
 }
 span.field {
-	text-align: right;
-	display: table-cell;
-	vertical-align: middle;
-	padding-right: 6px;
+    text-align: right;
+    display: table-cell;
+    vertical-align: middle;
 }
 span.text_f, span.select_f {
-	max-width: 60px;
-	font-size:12px;
-	background-color: transparent;
-	vertical-align: middle;
-	border-width: 0;
-	text-align: right;
-	color: #555;
+    max-width: 60px;
+    font-size: 12px;
+    background-color: transparent;
+    vertical-align: middle;
+    border-width: 0;
+    text-align: right;
+    color: #555;
 }
-
 span.radio_f, span.checkbox_f {
-	width: 100%;
+    width: 100%;
+}
+/* share */
+
+.share , .bgb{
+    width: 24px;
+    height: 24px;
+    margin:2px 0;
+    display: block;
+    float: right;
+}
+#share_facebook {
+    background: url("../images/util/facebook.png") no-repeat;
+}
+#share_google_plus {
+    background: url("../images/util/google-plus.png") no-repeat;
+}
+#share_twitter {
+    background: url("../images/util/twitter.png") no-repeat;
 }
 #toclist ol {
-	list-style-type: decimal;
-	margin: 0;
-	padding-left: 15px;
+    list-style-type: decimal;
+    margin: 0;
+    padding-left: 15px;
 }
 #toclist li {
-	vertical-align: baseline;
+    vertical-align: baseline;
 }
-#toclist a{
-	font-size:14px;	
-	color: #777;
-	line-height: 15px;
-	font-weight: bold;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-	white-space: nowrap;
-	vertical-align: middle;
-	text-decoration:none;
+#toclist a {
+    font-size: 14px;
+    color: #777;
+    line-height: 15px;
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    white-space: nowrap;
+    vertical-align: middle;
+    text-decoration: none;
 }
-#toclist a:hover{
-	background:#4787ED;
+#toclist a:hover {
+    background: #4787ED;
 }
-
 #taskbar hr, #infobar hr {
-	height: 0;
-	margin: 0;
-	clear: both;
-	border-width: 0;
-	border-top: 1px solid #282B2F;
-	border-bottom: 1px solid #575C62;
+    height: 0;
+    margin: 0;
+    clear: both;
+    border-width: 0;
+    border-top: 1px solid #282B2F;
+    border-bottom: 1px solid #575C62;
 }
 .button {
-	border-radius: 3px;
-	-webkit-borer-radius: 3px;
-	-moz-border-radius: 3px;
-	padding: 5px 15px;
-	margin: 0;
-	text-align: center;
-	/*text-shadow: 0 1px rgba(0, 0, 0, 0.1);*/
-	font-size: 12px;
-	font-weight: bold;
+    border-radius: 3px;
+    -webkit-borer-radius: 3px;
+    -moz-border-radius: 3px;
+    padding: 5px 15px;
+    margin: 0;
+    text-align: center;
+    /*text-shadow: 0 1px rgba(0, 0, 0, 0.1);*/
+    font-size: 12px;
+    font-weight: bold;
 }
 .button:hover {
-	-moz-box-shadow: 0 0 2px rgba(255,255,255,0.7);
-	-webkit-box-shadow: 0 0 2px rgba(255,255,255,0.7);
+    -moz-box-shadow: 0 0 2px rgba(255,255,255,0.7);
+    -webkit-box-shadow: 0 0 2px rgba(255,255,255,0.7);
 }
 .toggler {
-	cursor: pointer;
+    cursor: pointer;
 }
 .fullscreenRemover {
-	position: fixed;
-	top: 10px;
-	right: 20px;
-	z-index: 100;
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    z-index: 100;
 }
 /* -webkit-scrollbar */
 
 #main::-webkit-scrollbar, #infobar::-webkit-scrollbar, #taskbar::-webkit-scrollbar {
-	width: 5px;
-	background: #666;
+    width: 5px;
+    background: #666;
 }
 #main::-webkit-scrollbar:horizontal, #infobar::-webkit-scrollbar:horizontal #taskbar::-webkit-scrollbar:horizontal {
-	height: 5px;
+    height: 5px;
 }
 #main::-webkit-scrollbar-button, #infobar::-webkit-scrollbar-button, #taskbar::-webkit-scrollbar-button {
-	width: 5px;
-	height: 5px;
-	background: #eee;
+    width: 5px;
+    height: 5px;
+    background: #eee;
 }
 #main::-webkit-scrollbar-piece, #infobar::-webkit-scrollbar-piece, #taskbar::-webkit-scrollbar-piece {
-	background: #666;
+    background: #666;
 }
 #main::-webkit-scrollbar-piece:start, #taskbar::-webkit-scrollbar-piece:start, #infobar::-webkit-scrollbar-piece:start {
-	background: #666;
+    background: #666;
 }
 #main::-webkit-scrollbar-thumb, #infobar::-webkit-scrollbar-thumb, #taskbar::-webkit-scrollbar-thumb {
-	background: #eee;
+    background: #eee;
 }
 #main::-webkit-scrollbar-corner, #infobar::-webkit-scrollbar-corner, #taskbar::-webkit-scrollbar-corner {
-	background: #eee;
+    background: #eee;
 }
 
