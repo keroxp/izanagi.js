@@ -47,3 +47,17 @@ article a {
 article a:hover{
     text-decoration:underline;
 }
+article span.dd{
+    font-size:1.3em;
+    line-height:inherit;
+    letter-spacing:-2px!important;
+    padding:0 2px;
+    vertical-align:baseline;
+}
+article span.tpr{
+   font-family:"ＭＳ Ｐゴシック"!important;
+}
+
+article ruby rt{
+    font-size:35%;
+}

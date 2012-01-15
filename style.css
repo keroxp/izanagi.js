@@ -78,13 +78,13 @@ button {
     height: 100%;
     top: 0;
     bottom: 0;
-    left: 275px;
+    left: 280px;
     overflow-y: auto;
     background-color: white;
     -webkit-overflow-scrolling: touch;
     z-index: 100;
-    -webkit-box-shadow: 0 0 8px rgba(0,0,0,0.7);
-    -moz-box-shadow: 0 0 8px rgba(0,0,0,0.7);
+    -webkit-box-shadow: -3px 0 8px rgba(0,0,0,0.7);
+    -moz-box-shadow: -5px 0 8px rgba(0,0,0,0.7);
 }
 #book-body {
 }

@@ -298,7 +298,7 @@ var Taskbar = {
 		var fonts = ["mincho","gothic","bold","normal"];
 		var fc = target.split("-");
 		target = "#" + target;
-		for(var i = 0 ; i < 0 ; i++){
+		for(var i = 0 ; i < fonts.length ; i++){
 			jQuery("#article").removeClass(fonts[i]);	
 		}
 		jQuery("#fontface").children().removeClass("radioSelected");
