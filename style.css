@@ -34,7 +34,7 @@ html, body {
     -webkit-font-smoothing: antialiased;
 }
 body {
-    background: white;
+    background: white url("images/bg/backw.png");
 }
 .pat1 {
     background: #E4E4E4 !important;
@@ -73,25 +73,25 @@ button {
     font-weight: bold;
 }
 #main {
-    position: fixed;
-    width: 744px;
-    height: 100%;
-    top: 0;
-    bottom: 0;
-    left: 280px;
-    overflow-y: auto;
-    background-color: white;
-    -webkit-overflow-scrolling: touch;
+    position:fixed;
+    width:100%;
+    top:0;
+    left:280px;
+    bottom:0;
+    background-color: transparent;
     z-index: 100;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;   
+    overflow-y: scroll;
 }
 .shadow {
     -webkit-box-shadow: 0px 0 8px rgba(0,0,0,0.7);
     -moz-box-shadow: 0px 0 8px rgba(0,0,0,0.7);
 }
-#book-body {
-}
+
 #main #article {
-    padding: 24px 44px 49px 49px;
+    background-color:white;
+    padding: 24px 49px;
     border-right: 1px solid #ccc;
     border-left: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
@@ -112,13 +112,15 @@ button {
 .kami4 {
     background-image: url("images/bg/kami4.png");
 }
-#book-footer {
+/*
+#article footer {
     height: 100px;
     background: whiteSmoke;
     border-right: 1px solid #ccc;
     border-left: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 }
+*/
 #drawer {
     position: fixed;
     top: 0;

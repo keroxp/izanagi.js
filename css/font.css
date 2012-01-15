@@ -55,9 +55,9 @@ article span.dd{
     vertical-align:baseline;
 }
 article span.tpr{
-   font-family:"ＭＳ Ｐゴシック"!important;
+   font-family:"ＭＳ Ｐゴシック","ヒラギノ角ゴ Pro W3"!important;
 }
 
 article ruby rt{
-    font-size:35%;
+    font-size:65%;
 }

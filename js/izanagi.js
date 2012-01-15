@@ -28,6 +28,7 @@ Izng.Debuger = {
 	{
 		BrowserDetect.dispStatus();
 		Env.window.dispAllInfo();
+		jQuery("body").append("<div id='notice'></div>")
 	}
 }
 var DEFAULT_COLOR = {
@@ -47,11 +48,12 @@ var DEFAULT_FONT = {
 	"fotDisp" : "ゴシック（細）"
 };
 var DEFAULT_WIDTH = {
-	"forSet" : 0,
+	"forSet" : 0,	
 	"visible" : 744,
 	"full" : 1024,
 	"taskbar" : 280,
-	"canchange" : 200
+	"canchange" : 200,
+	"padOffset" : 100
 };
 
 var FONT_LIST = {
@@ -371,17 +373,17 @@ var Taskbar = {
 	},
 	width : function()
 	{
-		jQuery("#main").removeAttr("style");
+		jQuery("#article").removeAttr("style");
 		var dw = [];
 		if(arguments.length > 0) {
 			dw["forDisp"] = arguments[0];
-			dw["forSet"] = arguments[0] - DEFAULT_WIDTH["visible"];
+			dw["forSet"] = arguments[0] - DEFAULT_WIDTH["visible"] ;
 		} else {
 			dw["forSet"] = (Env.window.innerWidth() < DEFAULT_WIDTH["full"]) ? Env.window.innerWidth() - DEFAULT_WIDTH["full"] : DEFAULT_WIDTH["forSet"];
 			dw["forDisp"] = dw["forSet"] + DEFAULT_WIDTH["visible"];
 		}
 
-		if(dw < -DEFAULT_WIDTH["canchange"])
+		if(dw < -DEFAULT_WIDTH["canchange"]) 
 			dw = -DEFAULT_WIDTH["canchange"];
 		jQuery("#width").slider({
 			orientation : "horizontal",
@@ -393,12 +395,12 @@ var Taskbar = {
 			{
 				var w = DEFAULT_WIDTH["visible"] + ui.value;
 				jQuery("#width-value").val(w + "px");
-				jQuery("#main").css("width", w + "px");
+				jQuery("#article").css("width", w - DEFAULT_WIDTH["padOffset"] + "px");
 				//jQuery.cookie("user_font_size", lh);
 			}
 		});
 		jQuery("#width-value").val(dw["forDisp"] + "px");
-		jQuery("#main").css("width", dw["forDisp"] + "px");
+		jQuery("#article").css("width", dw["forDisp"]  - DEFAULT_WIDTH["padOffset"] + "px");
 	},
 	screen : function(type)
 	{
