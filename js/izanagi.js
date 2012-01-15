@@ -295,14 +295,14 @@ var Taskbar = {
 	fontface : function(target)
 	{
 		var disp = FONT_LIST[target];
-		var fonts = ["mincho","gothic","bold","normal"];
+		var fonts = ["mincho", "gothic", "bold", "normal"];
 		var fc = target.split("-");
 		target = "#" + target;
-		for(var i = 0 ; i < fonts.length ; i++){
-			jQuery("#article").removeClass(fonts[i]);	
+		for(var i = 0; i < fonts.length; i++) {
+			jQuery("#article").removeClass(fonts[i]);
 		}
 		jQuery("#fontface").children().removeClass("radioSelected");
-		jQuery(target).addClass("radioSelected");		
+		jQuery(target).addClass("radioSelected");
 		jQuery("#article").addClass(fc[0]);
 		if(fc.length > 1)
 			jQuery("#article").addClass(fc[1]);
@@ -437,7 +437,7 @@ var Taskbar = {
 	},
 	bg : function(im)
 	{
-		var bgs = ["novel","kami1", "kami2", "kami3", "kami4"];
+		var bgs = ["novel", "kami1", "kami2", "kami3", "kami4"];
 		for(var i = 0; i < bgs.length; i++) {
 			$("#article").removeClass(bgs[i]);
 		}
@@ -567,22 +567,24 @@ var Util = {
 var Ajax = {
 	init : function()
 	{
-		jQuery(window).hashchange(function()
-		{
-			//URLに変化があれば、変化後のハッシュを含むURLから#!を削除 => 普通のアドレスへ
-			var setHash = location.hash.replace('#!/', '');
-			if(!setHash) {
-				setHash = "#!/";
-			}
-			//デバッガ => setHashの値をecho
-			setHash = setHash.replace(/\/r.*?html/, "");
-			setHash = "file://localhost/Users/keroxp/github/izanagi.js/data/1.html";
-			$("#notice").append("hash : " + setHash + "<br>");
-			//対象のアドレスからhtmlをajaxロード
-			Ajax.loadText(setHash);
-		});
-		Ajax.setAnchor("#toclist a");
-		location.hash = "#!/data/1.html";
+		/*
+		 jQuery(window).hashchange(function()
+		 {
+		 //URLに変化があれば、変化後のハッシュを含むURLから#!を削除 => 普通のアドレスへ
+		 var setHash = location.hash.replace('#!/', '');
+		 if(!setHash) {
+		 setHash = "#!/";
+		 }
+		 //デバッガ => setHashの値をecho
+		 setHash = setHash.replace(/\/r.*?html/, "");
+		 setHash = "file://localhost/Users/keroxp/github/izanagi.js/data/1.html";
+		 $("#notice").append("hash : " + setHash + "<br>");
+		 //対象のアドレスからhtmlをajaxロード
+		 Ajax.loadText(setHash);
+		 });
+		 Ajax.setAnchor("#toclist a");
+		 location.hash = "#!/data/1.html";
+		 */
 	},
 	setAnchor : function(a)
 	{
@@ -595,27 +597,8 @@ var Ajax = {
 			});
 		});
 	},
-	loadText : function(hash)
+	loadText : function(url, src)
 	{
-		//コンテナーをクリーニング
-		/*
-		 jQuery("#article").fadeOut();
-		 jQuery("#article").empty()
-		 Util.loadIn("#load-layer");
-		 jQuery("#book-body").load("."+hash+" #article",function(text,status){
-		 if(status == 'error') {
-		 Util.loadOut("#load-layer");
-		 jQuery("#article").append('<div id="p404" style="display:none;">error</div>');
-		 jQuery("#article").fadeIn();
-		 } else {
-		 jQuery("#article").hide();
-		 setTimeout(function() {
-		 jQuery("#article").fadeIn();
-		 Util.loadOut("#load-layer");
-		 }, 700);
-		 }
-		 })
-		 */
 		jQuery("#article").fadeOut();
 		jQuery("#article").empty()
 		setTimeout(function()
@@ -623,20 +606,20 @@ var Ajax = {
 			jQuery.ajax({
 				beforeSend : function()
 				{
-
 					Util.loadIn("#load-layer");
 				},
 				type : "GET",
 				datatype : "html",
-				url : hash,
+				url : url,
+				success : function(data, datatype)
+				{					
+					jQuery("#article").append(parseArticle(data, datatype, src));
+					jQuery("#article").fadeIn();
+				},
 				complete : function()
 				{
+					parseArticlesrc, )
 					Util.loadOut("#load-layer");
-				},
-				success : function(data, datatype)
-				{
-					jQuery("#article").append(data);
-					jQuery("#article").fadeIn();
 				},
 				error : function()
 				{
@@ -647,6 +630,31 @@ var Ajax = {
 				}
 			});
 		}, 300);
+	},
+	parseArticle : function(data, datatype, src)
+	{
+		var _src = ["narou"];
+		var f;
+		
+		for(var i = 0; i < _src.length; i++) {
+			if(src == _src[i])
+				f = true;
+		}
+		
+		if(f) {
+			if(src == "narou") {
+				//book["info"] = $(data).find(".novel_bar").html();				
+				var header = "<h2>" + $(date).find(".novel_subtitle").html() + "</h2>";
+				var contents = $(data).find("#novel_view").html().split("<br>");
+				var append += header;
+				//remoeve <br> tags and instead wrap lines with <p> tags.
+				for(var i = 0 ; i < content.length ; i++){					
+					content[i] = "<p>" + book["body"][i] + "</p>";
+					append += book["body"][i];  
+				}				
+			}
+			return append;
+		}
 	},
 	hashChange : function(hash)
 	{
