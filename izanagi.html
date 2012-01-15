@@ -33,6 +33,13 @@
 				Izng.init();
 				Izng.Debuger.init();
 				Izng.Util.loadOut("#load-layer");
+				jQuery("#drawer").hover(function(){
+				    jQuery("#slidepanel").fadeIn("slow");
+				    jQuery("#main").addClass("shadow");                 
+				},function(){
+				    jQuery("#slidepanel").fadeOut("slow");
+				    jQuery("#main").removeClass("shadow");               
+				});				
 			})
         </script>
     </head>
@@ -40,6 +47,7 @@
         <div id="wrapper">
             <div id="load-layer"></div>
             <div id="notice"></div>
+            <div id="fader"></div>
             <div id="drawer">
                 <div id="slidepanel">
                     <div id="taskbar">
@@ -192,6 +200,15 @@
                                         <a href=""><img src="images/material/ub.png" alt="宇宙日和" /></a>
                                     </div>
                                 </div>
+                            </div>
+                            <hr />
+                            <h2  rel="basicinfo" onclick="Izng.Drawer.toggle('loadtask')" class="toggler">ロード</h2>
+                            <div id="loadtask" class="infogroup hidden">   
+                                <div class="field-box">                                    
+                                    <div class="field-list">
+                                        <label for="title"> <span class="label text_f_control">テストロード</span><span class="field text_f"><button onclick="Izng.Ajax.loadText('http://ncode.syosetu.com/n0026ba/1/','narou')">go!</button></span> </label>                                        
+                                    </div>
+                                </div>                                
                             </div>
                             <hr />
                             <h2  rel="toc" onclick="Izng.Drawer.toggle('toc')" class="toggler">目次</h2>

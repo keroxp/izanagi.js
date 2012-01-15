@@ -83,8 +83,10 @@ button {
     background-color: white;
     -webkit-overflow-scrolling: touch;
     z-index: 100;
-    -webkit-box-shadow: -3px 0 8px rgba(0,0,0,0.7);
-    -moz-box-shadow: -5px 0 8px rgba(0,0,0,0.7);
+}
+.shadow {
+    -webkit-box-shadow: 0px 0 8px rgba(0,0,0,0.7);
+    -moz-box-shadow: 0px 0 8px rgba(0,0,0,0.7);
 }
 #book-body {
 }
@@ -110,14 +112,6 @@ button {
 .kami4 {
     background-image: url("images/bg/kami4.png");
 }
-#manga-main #manga {
-    padding: 0 44px 49px 49px;
-    background: white;
-    border-right: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    overflow-y: auto;
-}
 #book-footer {
     height: 100px;
     background: whiteSmoke;
@@ -133,4 +127,14 @@ button {
     width: 280px;
     /*overflow: hidden;*/
 }
-/* -webkit-scrollbar extend*/
+/* hover area */
+
+#fader {
+    position: fixed;
+    width: 280px;
+    height: 100%;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}

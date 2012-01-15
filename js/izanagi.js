@@ -599,26 +599,25 @@ var Ajax = {
 	},
 	loadText : function(url, src)
 	{
-		jQuery("#article").fadeOut();
-		jQuery("#article").empty()
+		Util.loadIn("#load-layer");
+		jQuery("#article").fadeOut().empty();
 		setTimeout(function()
 		{
 			jQuery.ajax({
 				beforeSend : function()
 				{
-					Util.loadIn("#load-layer");
+
 				},
 				type : "GET",
-				datatype : "html",
+				datatype : "text/html",
 				url : url,
 				success : function(data, datatype)
-				{					
+				{
 					jQuery("#article").append(parseArticle(data, datatype, src));
 					jQuery("#article").fadeIn();
 				},
 				complete : function()
 				{
-					parseArticlesrc, )
 					Util.loadOut("#load-layer");
 				},
 				error : function()
@@ -634,24 +633,24 @@ var Ajax = {
 	parseArticle : function(data, datatype, src)
 	{
 		var _src = ["narou"];
-		var f;
-		
+		var f = true;
+/*
 		for(var i = 0; i < _src.length; i++) {
 			if(src == _src[i])
 				f = true;
 		}
-		
+*/
 		if(f) {
 			if(src == "narou") {
-				//book["info"] = $(data).find(".novel_bar").html();				
+				//book["info"] = $(data).find(".novel_bar").html();
 				var header = "<h2>" + $(date).find(".novel_subtitle").html() + "</h2>";
 				var contents = $(data).find("#novel_view").html().split("<br>");
-				var append += header;
+				var append = header;
 				//remoeve <br> tags and instead wrap lines with <p> tags.
-				for(var i = 0 ; i < content.length ; i++){					
+				for(var i = 0; i < content.length; i++) {
 					content[i] = "<p>" + book["body"][i] + "</p>";
-					append += book["body"][i];  
-				}				
+					append += book["body"][i];
+				}
 			}
 			return append;
 		}

@@ -3,6 +3,7 @@
     height: 100%;
     overflow: hidden;
     background: #222222 url("../images/bg/cardboard.png");
+    display: none;
 }
 #taskbar, #infobar {
     height: 100%;
@@ -63,8 +64,8 @@
     background: #4787ED;
     color: white;
 }
-.bgSelected{
-    
+.bgSelected {
+
 }
 .radioSelected span, .tocSelected span {
     color: white !important;
@@ -172,10 +173,10 @@ span.radio_f, span.checkbox_f {
 }
 /* share */
 
-.share , .bgb{
+.share, .bgb {
     width: 24px;
     height: 24px;
-    margin:2px 0;
+    margin: 2px 0;
     display: block;
     float: right;
 }
@@ -241,7 +242,9 @@ span.radio_f, span.checkbox_f {
     right: 20px;
     z-index: 100;
 }
-/* -webkit-scrollbar */
+
+
+/*
 
 #main::-webkit-scrollbar, #infobar::-webkit-scrollbar, #taskbar::-webkit-scrollbar {
     width: 5px;
@@ -268,3 +271,4 @@ span.radio_f, span.checkbox_f {
     background: #eee;
 }
 
+*/
