@@ -19,16 +19,80 @@ Izng.init = function()
 	this.Env.init();
 	this.Drawer.init();
 	this.Taskbar.init();
-	//this.Manga.init();
-	//this.Ajax.init();
+	this.Ajax.init();
 }
-
-Izng.Debuger = {
+var Debugger = {
 	init : function()
 	{
-		BrowserDetect.dispStatus();
-		Env.window.dispAllInfo();
-		jQuery("body").append("<div id='notice'></div>")
+		//windwo 情報をトレースするinput
+
+		var tr = document.createElement("div");
+		tr.id = "tracer";
+		var i = Env.window.allInfo();
+		var table = document.createElement("table");
+		for(var key in i) {
+			var label = document.createElement("label");			
+			label.for = key;
+			var control = document.createElement("span");
+			control.className = "text_f_control";
+			control.innerHTML = key; 
+			var input = document.createElement("input");
+			input.type = "text";
+			input.id = key;
+			input.name = key;
+			input.value = i[key];		
+			var field = document.createElement("span");
+			field.className = "field text_f";
+			field.appendChild(input);
+			
+			label.appendChild(control);
+			label.appendChild(field);
+			
+			tr.appendChild(label);
+		}
+		var log = document.getElementById("log");
+		log.appendChild(tr);
+
+		//windowオブジェクトにscroll,resize eventをバインド
+
+		jQuery("#main").scroll(function()
+		{	
+			//Debugger.log("scrolling!");
+			jQuery("#pageXOffset").val(Env.window.pageXOffset);
+			jQuery("#pageYOffset").val(Env.window.pageYOffset);
+		})
+		jQuery(window).bind("resize", function()
+		{
+			jQuery("#innerWidth").val(Env.window.innerWidth());
+			jQuery("#innerHeight").val(Env.window.innerHeight());
+		})
+		//随時追加するtextlog area を作成
+
+		var textlog = document.createElement("textarea");
+		textlog.id = "textlog";
+		var log = document.getElementById("log");
+		log.appendChild(textlog);
+
+		//ブラウザ情報をプリント
+
+		this.log("Browser Info", BrowserDetect.allStatus());
+
+	},
+	log : function(title, obj)
+	{
+		var log = document.getElementById("textlog");
+		log.value += title + "\n";
+		var add = "";
+		if( typeof (obj) == "object") {
+			for(var key in obj) {
+				add += "- " + key + " : " + obj[key] + "\n";
+			}
+		}
+		log.value += add;
+	},
+	traceor : function()
+	{
+
 	}
 }
 var DEFAULT_COLOR = {
@@ -48,7 +112,7 @@ var DEFAULT_FONT = {
 	"fotDisp" : "ゴシック（細）"
 };
 var DEFAULT_WIDTH = {
-	"forSet" : 0,	
+	"forSet" : 0,
 	"visible" : 744,
 	"full" : 1024,
 	"taskbar" : 280,
@@ -94,16 +158,14 @@ var BrowserDetect = {
 			return;
 		return parseFloat(dataString.substring(index + this.versionSearchString.length + 1));
 	},
-	dispStatus : function()
+	allStatus : function()
 	{
-		var to = "#notice";
-		if(arguments.length > 0)
-			to = arguments[0];
-		var contents = ["Browser : " + this.browser, "Version : " + this.version, "OS : " + this.OS];
-		jQuery.each(contents, function()
-		{
-			jQuery(to).append(this + "<br>");
-		})
+		var contents = {
+			"OS" : this.OS,
+			"Browser" : this.browser,
+			"Version" : this.version
+		};
+		return contents;
 	},
 	dataBrowser : [{
 		string : navigator.userAgent,
@@ -212,18 +274,20 @@ var Env = {
 		}
 	},
 	window : {
-		dispAllInfo : function()
+		allInfo : function()
 		{
-			var to = "#notice";
-			if(arguments.length > 0)
-				to = arguments[0];
 			var _innerWidth = this.innerWidth();
 			var _innerHeight = this.innerHeight();
-			var contents = ["name : " + this.name, "innerWidth : " + _innerWidth, "innerHeigth : " + _innerHeight, "outerHeight : " + this.outerHeight, "outerHeight : " + this.outerHeight, "pageXOffset : " + this.pageXOffset, "pageYOffset" + this.pageYOffset]
-			jQuery.each(contents, function()
-			{
-				jQuery(to).append(this + "<br>");
-			})
+			var contents = {
+				"name" : this.name,
+				"innerWidth" : _innerWidth,
+				"innerHeigth" : _innerHeight,
+				"outerWidth" : this.outerWidth,
+				"outerHeight" : this.outerHeight,
+				"pageXOffset" : this.pageXOffset,
+				"pageYOffset" : this.pageYOffset
+			}
+			return contents;
 		},
 		name : window.name,
 		innerWidth : function()
@@ -288,7 +352,7 @@ var Taskbar = {
 		this.fontcolor();
 		this.lineheight();
 		this.width();
-		this.bg("kami1");
+		this.bg("default");
 	},
 	setDefaultValue : function()
 	{
@@ -377,13 +441,13 @@ var Taskbar = {
 		var dw = [];
 		if(arguments.length > 0) {
 			dw["forDisp"] = arguments[0];
-			dw["forSet"] = arguments[0] - DEFAULT_WIDTH["visible"] ;
+			dw["forSet"] = arguments[0] - DEFAULT_WIDTH["visible"];
 		} else {
 			dw["forSet"] = (Env.window.innerWidth() < DEFAULT_WIDTH["full"]) ? Env.window.innerWidth() - DEFAULT_WIDTH["full"] : DEFAULT_WIDTH["forSet"];
 			dw["forDisp"] = dw["forSet"] + DEFAULT_WIDTH["visible"];
 		}
 
-		if(dw < -DEFAULT_WIDTH["canchange"]) 
+		if(dw < -DEFAULT_WIDTH["canchange"])
 			dw = -DEFAULT_WIDTH["canchange"];
 		jQuery("#width").slider({
 			orientation : "horizontal",
@@ -400,7 +464,7 @@ var Taskbar = {
 			}
 		});
 		jQuery("#width-value").val(dw["forDisp"] + "px");
-		jQuery("#article").css("width", dw["forDisp"]  - DEFAULT_WIDTH["padOffset"] + "px");
+		jQuery("#article").css("width", dw["forDisp"] - DEFAULT_WIDTH["padOffset"] + "px");
 	},
 	screen : function(type)
 	{
@@ -499,14 +563,6 @@ var Util = {
 		b = hexToDec(b);
 		return (r, g, b);
 	},
-	notice : function()
-	{
-		var target = arguments[0];
-		var to = "#notice";
-		if(arguments.length > 1)
-			to = arguments[1];
-		jQuery(to).append(target);
-	},
 	loadIn : function(hash)
 	{
 		var _hash = hash
@@ -569,79 +625,82 @@ var Util = {
 var Ajax = {
 	init : function()
 	{
-		/*
-		 jQuery(window).hashchange(function()
-		 {
-		 //URLに変化があれば、変化後のハッシュを含むURLから#!を削除 => 普通のアドレスへ
-		 var setHash = location.hash.replace('#!/', '');
-		 if(!setHash) {
-		 setHash = "#!/";
-		 }
-		 //デバッガ => setHashの値をecho
-		 setHash = setHash.replace(/\/r.*?html/, "");
-		 setHash = "file://localhost/Users/keroxp/github/izanagi.js/data/1.html";
-		 $("#notice").append("hash : " + setHash + "<br>");
-		 //対象のアドレスからhtmlをajaxロード
-		 Ajax.loadText(setHash);
-		 });
-		 Ajax.setAnchor("#toclist a");
-		 location.hash = "#!/data/1.html";
-		 */
+		jQuery(window).hashchange(function()
+		{
+			//URLに変化があれば、変化後のハッシュを含むURLから#!を削除 => 普通のアドレスへ
+			var setHash = location.href;
+			setHash = setHash.replace('#!/', '');
+			if(!setHash) {
+				setHash = "#!/";
+			}
+			//デバッガ => setHashの値をecho
+			setHash = setHash.replace(/izanagi\.html/, "");
+			Debugger.log("Hash val => " + setHash);
+			//対象のアドレスからhtmlをajaxロード
+			Ajax.loadText(setHash);
+		});
+		//Ajax.setAnchor("#toclist a");
+		//location.hash = "#!/data/1.html";
 	},
 	setAnchor : function(a)
 	{
 		jQuery(a).each(function()
 		{
-			$("#notice").append("setAnchor<br>")
 			var setHref = jQuery(this).attr("href").replace("./", "#!/");
 			jQuery(this).attr({
 				href : setHref
 			});
 		});
 	},
-	loadText : function(url, src)
+	loadText : function(url)
 	{
+		Debugger.log("Request", {
+			"url" : url,
+		});
 		Util.loadIn("#load-layer");
-		jQuery("#article").fadeOut().empty();
-		setTimeout(function()
+		jQuery("#article").empty().load(url, function(data)
 		{
-			jQuery.ajax({
-				beforeSend : function()
-				{
-
-				},
-				type : "GET",
-				datatype : "text/html",
-				url : url,
-				success : function(data, datatype)
-				{
-					jQuery("#article").append(parseArticle(data, datatype, src));
-					jQuery("#article").fadeIn();
-				},
-				complete : function()
-				{
-					Util.loadOut("#load-layer");
-				},
-				error : function()
-				{
-					jQuery("#article").hide();
-					jQuery("#article").html("error");
-					jQuery("#article").fadeIn();
-					Util.loadOut("#load-layer");
-				}
-			});
-		}, 300);
+			Util.loadOut("#load-layer");
+		});
+		/*
+		 jQuery.ajax({
+		 beforeSend : function()
+		 {
+		 Util.loadIn("#load-layer");
+		 jQuery("#article").empty();
+		 },
+		 type : "GET",
+		 datatype : "text",
+		 url : url,
+		 success : function(data, datatype)
+		 {
+		 jQuery("#article").append(data).fadeIn();
+		 },
+		 complete : function()
+		 {
+		 Util.loadOut("#load-layer");
+		 },
+		 error : function(XMLHttpRequest, textStatus, errorThrown)
+		 {
+		 jQuery("#article").hide().html("error").fadeIn();
+		 Util.loadOut("#load-layer");
+		 Debugger.log("Status", {
+		 "textStatus" : textStatus
+		 });
+		 }
+		 });
+		 */
 	},
 	parseArticle : function(data, datatype, src)
 	{
 		var _src = ["narou"];
 		var f = true;
-/*
+
 		for(var i = 0; i < _src.length; i++) {
 			if(src == _src[i])
 				f = true;
 		}
-*/
+
 		if(f) {
 			if(src == "narou") {
 				//book["info"] = $(data).find(".novel_bar").html();
@@ -670,6 +729,7 @@ var Ajax = {
 /*
  * namespaces
  */
+Izng.Debugger = Debugger;
 Izng.BrowserDetect = BrowserDetect;
 Izng.Env = Env;
 Izng.Drawer = Drawer;

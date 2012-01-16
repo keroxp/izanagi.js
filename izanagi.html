@@ -31,7 +31,7 @@
 			$(document).ready(function()
 			{
 				Izng.init();
-				//Izng.Debuger.init();
+				Izng.Debugger.init();
 				//Izng.Util.loadOut("#load-layer");
 
 				$(window).bind("resize", function()
@@ -42,11 +42,27 @@
 				jQuery("#article").resizable({
 					constraint : "#wrapper",
 					ghost : true,
+					start : function(event, ui)
+					{
+						var s = jQuery("#article").attr("style");
+						jQuery("#article").attr("rel", s);
+					},
 					stop : function(event, ui)
 					{
+						setTimeout(function()
+						{
+							var add = jQuery("#article").attr("rel");
+							add = add.split(":");
+							for(var i = 0; i < add.length / 2; i++) {
+								add[2 * i + 1].replace(";", "");
+								if(add[2 * i] != "width")
+									jQuery("#article").css(add[2 * i], add[2 * i + 1]);
+							}
+						}, 500);
+
 						Izng.Taskbar.width(ui.size.width);
 					}
-				});				
+				});
 				jQuery("#drawer").hover(function()
 				{
 					jQuery("#slidepanel").fadeIn("slow");
@@ -61,6 +77,8 @@
     </head>
     <body onload="Izng.Util.loadOut()">
         <div id="wrapper">
+            <aside id="log">
+            </aside>
             <div id="load-layer"></div>
             <div id="fader"></div>
             <aside id="drawer">
@@ -119,14 +137,16 @@
                                     <div id="width" class="slider"></div>
                                 </div>
                                 <div id="screen" class="field-list">
-                                    <label id="fit" for="fit"> <span class="label radio_f_control">フィット</span><span class="radio_f field">
-                                            <input type="radio" name="screen" onclick="Izng.Taskbar.screen('fit');" />
-                                        </span> </label>
                                     <label id="defaultFit" for="defaultFit" class="radioSelected"> <span class="label radio_f_control">初期化</span><span class="radio_f field">
                                             <input type="radio" name="screen" checked onclick="Izng.Taskbar.screen('defaultFit');" />
                                         </span> </label>
+                                    <!--
                                     <label id="full" for="full" > <span class="label radio_f_control">フルスクリーン</span><span class="radio_f field">
-                                            <input type="radio" name="screen" onclick="Izng.Taskbar.screen('full');" />
+                                    <input type="radio" name="screen" onclick="Izng.Taskbar.screen('full');" />
+                                    </span> </label>
+                                    -->
+                                    <label id="fit" for="fit"> <span class="label radio_f_control">最大化</span><span class="radio_f field">
+                                            <input type="radio" name="screen" onclick="Izng.Taskbar.screen('fit');" />
                                         </span> </label>
                                     <label id="narrow" for="narrow" class="velc" > <span class="label radio_f_control">最小化</span><span class="radio_f field">
                                             <input type="radio" name="screen" onclick="Izng.Taskbar.screen('narrow');"/>
@@ -140,7 +160,7 @@
                                     <div class="field-list">
                                         <label for="sel2" > <span class="label checkbox_f_control">Twitter</span><span class="checkbox_f field"> <a href="" id="share_twitter" class="share" title="Twitterで共有"></a> </span> </label>
                                         <label for="sel2" > <span class="label checkbox_f_control">Facebook</span><span class="checkbox_f field"> <a href="" id="share_facebook" class="share" title="Facebookで共有"> </a> </span> </label>
-                                        <label for="sel2" > <span class="label checkbox_f_control">Google Plus</span><span class="checkbox_f field"> <a href="" id="share_google_plus" class="share" title="Google Plustで共有"> </a> </span> </label>
+                                        <label for="sel2" > <span class="label checkbox_f_control">Google+</span><span class="checkbox_f field"> <a href="" id="share_google_plus" class="share" title="Google Plustで共有"> </a> </span> </label>
                                     </div>
                                 </div>
                             </div>
@@ -153,23 +173,17 @@
                                         <input type="text" id="fontface-value" class="field-box-value"/>
                                     </div>
                                     <div  id="bg" class="field-list">
-                                        <label id="bg-default" for="fit"> <span class="label radio_f_control">なし</span><span class="radio_f field">
-                                                <input type="radio" name="bg" onclick="Izng.Taskbar.bg('default');" />
+                                        <label id="bg-default" for="bg-default"> <span class="label radio_f_control">なし</span><span class="radio_f field">
+                                                <input type="radio" name="bg" checked onclick="Izng.Taskbar.bg('default');" />
                                             </span> </label>
-                                        <label id="bg-novel" class="novel" for="fit"> <span class="label radio_f_control">薄茶</span><span class="radio_f field">
+                                        <label id="bg-novel" class="novel" for="bg-novel"> <span class="label radio_f_control">薄茶</span><span class="radio_f field">
                                                 <input type="radio" name="bg" onclick="Izng.Taskbar.bg('novel');" />
                                             </span> </label>
-                                        <label id="bg-kami1" class="kami1" for="defaultFit"> <span class="label radio_f_control">紙１</span><span class="radio_f field">
-                                                <input type="radio" name="bg" checked onclick="Izng.Taskbar.bg('kami1');" />
+                                        <label id="bg-kami1" class="kami1" for="bg-kami1"> <span class="label radio_f_control">紙１</span><span class="radio_f field">
+                                                <input type="radio" name="bg" onclick="Izng.Taskbar.bg('kami1');" />
                                             </span> </label>
-                                        <label id="bg-kami2" class="kami2" for="full" > <span class="label radio_f_control">紙２</span><span class="radio_f field">
+                                        <label id="bg-kami2" class="kami2" for="bg-kami2" > <span class="label radio_f_control">紙２</span><span class="radio_f field">
                                                 <input type="radio" name="bg" onclick="Izng.Taskbar.bg('kami2');" />
-                                            </span> </label>
-                                        <label id="bg-kami3" class="kami3" for="narrow" class="velc" > <span class="label radio_f_control">紙３</span><span class="radio_f field">
-                                                <input type="radio" name="bg" onclick="Izng.Taskbar.bg('kami3');"/>
-                                            </span> </label>
-                                        <label id="bg-kami4" class="kami4" for="narrow" class="velc" > <span class="label radio_f_control">紙４</span><span class="radio_f field">
-                                                <input type="radio" name="bg" onclick="Izng.Taskbar.bg('kami4');"/>
                                             </span> </label>
                                     </div>
                                 </div>
@@ -221,7 +235,7 @@
                             <div id="loadtask" class="infogroup hidden">
                                 <div class="field-box">
                                     <div class="field-list">
-                                        <label for="title"> <span class="label text_f_control">テストロード</span><span class="field text_f"><button onclick="Izng.Ajax.loadText('http://ncode.syosetu.com/n0026ba/1/','narou')">go!</button></span> </label>
+                                        <label for="title"> <span class="label text_f_control">テストロード</span><span class="field text_f"><button onclick="Izng.Ajax.loadText('http://ncode.syosetu.com/n5164ba/1/','narou')">go!</button></span> </label>
                                     </div>
                                 </div>
                             </div>
@@ -257,7 +271,7 @@
                 <article id="article">
                     <header>
                         <h2 class="alignCenter">Prologue／エミル・シェーファーについて</h2>
-                    </header>                    
+                    </header>
                     <p> 　エミル・シェーファーは、ある日突然この世界の救世主になった。</p>
                     <p> 　だが、彼が何か特別な力を持っていたかといえば、そんなことはなかった。</p>
                     <p> 　彼は他の子供達と同じように無自覚で、無関心で、向上心のない<span class="dd">――</span>普通の少年だった。</p>
@@ -328,7 +342,7 @@
                                 )
                             </rp>
                         </ruby>になった。</p>
-                        <footer></footer>
+                    <footer></footer>
                 </article>
             </div>
         </div>
