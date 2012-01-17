@@ -15,13 +15,48 @@ if(!Izng) {
 
 Izng.init = function()
 {
+	this.Util.loadIn();
+
 	this.BrowserDetect.init();
 	this.Env.init();
 	this.Drawer.init();
 	this.Binder.init();
 	this.Ajax.init();
 
+	this.Util.loadOut();
 }
+var DEFAULT_COLOR = {
+	"forSet" : 37,
+	"forDisp" : "#555555"
+}
+var DEFAULT_SIZE = {
+	"forSet" : 40,
+	"forDisp" : "14px"
+};
+var DEFAULT_LINEHEIGHT = {
+	"forSet" : 40,
+	"forDisp" : "2em"
+};
+var DEFAULT_FONT = {
+	"forSet" : "gothic",
+	"fotDisp" : "ゴシック（細）"
+};
+var DEFAULT_WIDTH = {
+	"forSet" : 0,
+	"visible" : 744,
+	"full" : 1024,
+	"taskbar" : 280,
+	"canchange" : 200,
+	"padOffset" : 100
+};
+
+var FONT_LIST = {
+	"mincho" : "明朝（細）",
+	"bold-mincho" : "明朝（太）",
+	"gothic" : "ゴシック（細）",
+	"bold-gothic" : "ゴシック（太）"
+};
+
 var Debugger = {
 	init : function()
 	{
@@ -102,37 +137,6 @@ var Debugger = {
 
 	}
 }
-var DEFAULT_COLOR = {
-	"forSet" : 37,
-	"forDisp" : "#555555"
-}
-var DEFAULT_SIZE = {
-	"forSet" : 40,
-	"forDisp" : "14px"
-};
-var DEFAULT_LINEHEIGHT = {
-	"forSet" : 40,
-	"forDisp" : "2em"
-};
-var DEFAULT_FONT = {
-	"forSet" : "gothic",
-	"fotDisp" : "ゴシック（細）"
-};
-var DEFAULT_WIDTH = {
-	"forSet" : 0,
-	"visible" : 744,
-	"full" : 1024,
-	"taskbar" : 280,
-	"canchange" : 200,
-	"padOffset" : 100
-};
-
-var FONT_LIST = {
-	"mincho" : "明朝（細）",
-	"bold-mincho" : "明朝（太）",
-	"gothic" : "ゴシック（細）",
-	"bold-gothic" : "ゴシック（太）"
-};
 
 /*
  * browser detect
@@ -319,7 +323,7 @@ var Env = {
 var Drawer = {
 	init : function()
 	{
-		jQuery("#izng-article").removeAttr("style");		
+		jQuery("#izng-article").removeAttr("style");
 		this.fontface(DEFAULT_FONT["forSet"]);
 		this.fontsize();
 		this.fontcolor();
@@ -449,12 +453,12 @@ var Drawer = {
 			{
 				var w = DEFAULT_WIDTH["visible"] + ui.value;
 				jQuery("#izng-width-value").val(w + "px");
-				jQuery("#izng-article").css("width", w - DEFAULT_WIDTH["padOffset"] + "px");
+				jQuery("#izng-content").css("width", w + "px");
 				//jQuery.cookie("user_font_size", lh);
 			}
 		});
 		jQuery("#izng-width-value").val(dw["forDisp"] + "px");
-		jQuery("#izng-article").css("width", dw["forDisp"] - DEFAULT_WIDTH["padOffset"] + "px").css("height","auto");		
+		jQuery("#izng-content").css("width", dw["forDisp"] + "px").css("height", "auto");
 	},
 	screen : function(type)
 	{
@@ -505,15 +509,16 @@ var Binder = {
 	init : function()
 	{
 		/* bind event */
+		jQuery("#izng-main").css("width", window.innerWidth - 280 + "px");
 		$(window).bind("resize", function()
 		{
 			var h = window.innerWidth - 280;
 			jQuery("#izng-main").css("width", h + "px");
 		})
-		jQuery("#izng-article").resizable({
+		jQuery("#izng-content").resizable({
 			constraint : "#izng-wrapper",
 			ghost : true,
-			minWidth : 544,			
+			minWidth : 544,
 			stop : function(event, ui)
 			{
 				Izng.Drawer.width(ui.size.width);
@@ -583,21 +588,13 @@ var Util = {
 		b = hexToDec(b);
 		return (r, g, b);
 	},
-	loadIn : function(hash)
+	loadIn : function()
 	{
-		var _hash = hash
-		if(arguments.length > 0)
-			_hash = arguments[0];
-		if(jQuery(_hash).css("display") == "none")
-			jQuery("#izng-load-layer").show();
+		jQuery("#izng-load-layer").show();
 	},
-	loadOut : function(hash)
+	loadOut : function()
 	{
-		var _hash = hash
-		if(arguments.length > 0)
-			_hash = arguments[0];
-		if(jQuery(_hash).css("display") != "none")
-			jQuery("#izng-load-layer").hide();
+		jQuery("#izng-load-layer").hide();
 	},
 	imageSize : function(image)
 	{
@@ -669,7 +666,7 @@ var Ajax = {
 			Ajax.loadText(setHash);
 		});
 		//Ajax.setAnchor("#izng-toclist a");
-		//location.hash = "#izng-!/data/1.html";
+		location.hash = "#!/data/1.html";
 	},
 	setAnchor : function(a)
 	{
@@ -686,39 +683,48 @@ var Ajax = {
 		Debugger.log("Request", {
 			"url" : url,
 		});
-		Util.loadIn("#izng-load-layer");
-		jQuery("#izng-article").empty().load(url, function(data)
-		{
-			Util.loadOut("#izng-load-layer");
-		});
-		/*
-		 jQuery.ajax({
-		 beforeSend : function()
-		 {
-		 Util.loadIn("#izng-load-layer");
-		 jQuery("#izng-article").empty();
-		 },
-		 type : "GET",
-		 datatype : "text",
-		 url : url,
-		 success : function(data, datatype)
-		 {
-		 jQuery("#izng-article").append(data).fadeIn();
-		 },
-		 complete : function()
-		 {
-		 Util.loadOut("#izng-load-layer");
-		 },
-		 error : function(XMLHttpRequest, textStatus, errorThrown)
-		 {
-		 jQuery("#izng-article").hide().html("error").fadeIn();
-		 Util.loadOut("#izng-load-layer");
-		 Debugger.log("Status", {
-		 "textStatus" : textStatus
-		 });
-		 }
-		 });
-		 */
+		Util.loadIn();
+		var w = jQuery("#izng-article").css("width");
+		jQuery("#izng-article").animate({
+			display : "none"
+		}, {
+			duration : "slow",
+			easing : "easeInQuint",
+			complete : function()
+			{
+				jQuery.ajax({
+					beforeSend : function()
+					{
+						jQuery("#izng-article").empty();
+					},
+					type : "GET",
+					datatype : "html",
+					url : url,
+					success : function(data, datatype)
+					{
+						jQuery("#izng-article").append(data);
+					},
+					complete : function()
+					{
+						jQuery("#izng-article").animate({
+							display : "block"
+						}, {
+							duration : "slow",
+							easing : "easeInQuint"
+						});
+						Util.loadOut();
+					},
+					error : function(XMLHttpRequest, textStatus, errorThrown)
+					{
+						jQuery("#izng-article").html("error").slideDown();
+						Util.loadOut();
+						Debugger.log("Status", {
+							"textStatus" : textStatus
+						});
+					}
+				});				
+			}
+		})
 	},
 	parseArticle : function(data, datatype, src)
 	{
@@ -747,9 +753,9 @@ var Ajax = {
 	},
 	hashChange : function(hash)
 	{
-		$("#izng-toclist label").removeClass("tocSelected");
+		$("#izng-toc-list label").removeClass("tocSelected");
 		var _dec = hash.match(/[0-9]/);
-		$("#izng-toc-task" + _dec).addClass("tocSelected");
+		$("#izng-toc-" + _dec).addClass("tocSelected");
 		var _hash = "#!" + hash;
 		location.hash = _hash;
 	}
