@@ -12,7 +12,7 @@
         <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="style2.css" />
         <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"</script>
         <style type="text/css">
@@ -26,52 +26,13 @@
         <script type="text/javascript" src="js/jquery.easing.js"></script>
         <script type="text/javascript" src="js/jquery.hashChangeEvent.js"></script>
         <script type="text/javascript" src="js/jquery.ui.touch-punch.js"></script>
-        <script type="text/javascript" src="js/izanagi.js"></script>
+        <script type="text/javascript" src="js/izanagi2.js"></script>
         <script type="text/javascript">
 			$(document).ready(function()
 			{
 				Izng.init();
 				Izng.Debugger.init();
 				//Izng.Util.loadOut("#load-layer");
-
-				$(window).bind("resize", function()
-				{
-					var h = window.innerWidth - 280;
-					jQuery("#main").css("width", h + "px");
-				})
-				jQuery("#article").resizable({
-					constraint : "#wrapper",
-					ghost : true,
-					start : function(event, ui)
-					{
-						var s = jQuery("#article").attr("style");
-						jQuery("#article").attr("rel", s);
-					},
-					stop : function(event, ui)
-					{
-						setTimeout(function()
-						{
-							var add = jQuery("#article").attr("rel");
-							add = add.split(":");
-							for(var i = 0; i < add.length / 2; i++) {
-								add[2 * i + 1].replace(";", "");
-								if(add[2 * i] != "width")
-									jQuery("#article").css(add[2 * i], add[2 * i + 1]);
-							}
-						}, 500);
-
-						Izng.Drawer.width(ui.size.width);
-					}
-				});
-				jQuery("#drawer").hover(function()
-				{
-					jQuery("#slidepanel").fadeIn("slow");
-					jQuery("#article").addClass("shadow");
-				}, function()
-				{
-					jQuery("#slidepanel").fadeOut("slow");
-					jQuery("#article").removeClass("shadow");
-				});
 			})
         </script>
     </head>
@@ -80,16 +41,16 @@
             <div id="izng-load-layer"></div>
             <div id="izng-fader"></div>
             <aside id="izng-drawer">
-                <div id="izng-slidepanel">
-                    <div id="izng-taskbar">
-                        <div id="izng-taskhead">
+                <div id="izng-slider">
+                    <div id="izng-taskbar" class="izng-bar">
+                        <div id="izng-taskhead" class="izng-barhead">
                             <button onclick="Izng.Drawer.init();" class="button floatLeft gGlay">設定の初期化</button>
                             <button onclick="Izng.Drawer.slide('R');" class="button floatRight gBlue">作品情報</button>
                         </div>
-                        <div id="izng-tasklist">
+                        <div id="izng-taskbody" class="izng-barbody">
                             <hr />
-                            <h2 rel="fonttask" onclick="Izng.Drawer.toggle('fonttask')" class="toggler">文字設定</h2>
-                            <div id="izng-fonttask" class="taskgroup hidden">
+                            <h2 rel="izng-font-task" onclick="Izng.Drawer.toggle('font-task')" class="toggler">文字設定</h2>
+                            <div id="izng-font-task" class="taskgroup hidden">
                                 <div class="slider-box">
                                     <div class="slider-label-box">
                                         <label for="fontsize-value" class="slider-name">サイズ</label>
@@ -125,8 +86,8 @@
                                 </div>
                             </div>
                             <hr/>
-                            <h2 rel="layouttask" onclick="Izng.Drawer.toggle('layouttask')" class="toggler">レイアウト設定</h2>
-                            <div id="izng-layouttask" class="taskgroup hidden">
+                            <h2 rel="izng-layout-task" onclick="Izng.Drawer.toggle('layout-task')" class="toggler">レイアウト設定</h2>
+                            <div id="izng-layout-task" class="taskgroup hidden">
                                 <div class="slider-box">
                                     <div class="slider-label-box">
                                         <label for="width-value" class="slider-name">ページ幅</label>
@@ -152,8 +113,8 @@
                                 </div>
                             </div>
                             <hr/>
-                            <h2 rel="sharetask" onclick="Izng.Drawer.toggle('sharetask')" class="toggler">共有</h2>
-                            <div id="izng-sharetask" class="taskgroup hidden">
+                            <h2 rel="izng-share-task" onclick="Izng.Drawer.toggle('share-task')" class="toggler">共有</h2>
+                            <div id="izng-share-task" class="taskgroup hidden">
                                 <div class="field-box">
                                     <div class="field-list">
                                         <label for="sel2" > <span class="label checkbox_f_control">Twitter</span><span class="checkbox_f field"> <a href="" id="izng-share_twitter" class="share" title="Twitterで共有"></a> </span> </label>
@@ -163,8 +124,8 @@
                                 </div>
                             </div>
                             <hr/>
-                            <h2 rel="optiontask" onclick="Izng.Drawer.toggle('optiontask')" class="toggler">オプション</h2>
-                            <div id="izng-optiontask" class="taskgroup hidden">
+                            <h2 rel="izng-option-task" onclick="Izng.Drawer.toggle('option-task')" class="toggler">オプション</h2>
+                            <div id="izng-option-task" class="taskgroup hidden">
                                 <div class="field-box">
                                     <div class="field-label-box">
                                         <label for="fontface" class="field-box-name">背景</label>
@@ -202,13 +163,13 @@
                             <hr>
                         </div>
                     </div>
-                    <div id="izng-infobar">
-                        <div id="izng-infohead">
+                    <div id="izng-infobar" class="izng-bar">
+                        <div id="izng-infohead" class="izng-barhead">
                             <button onclick="Izng.Drawer.slide('L');" class="button gBlue">タスクバー</button>
                         </div>
-                        <div id="izng-infolist">
+                        <div id="izng-infobody" class="izng-barbody">
                             <hr />
-                            <h2  rel="basicinfo" onclick="Izng.Drawer.toggle('basicinfo')" class="toggler">作品情報</h2>
+                            <h2  rel="izng-basicinfo" onclick="Izng.Drawer.toggle('basicinfo')" class="toggler">作品情報</h2>
                             <div id="izng-basicinfo" class="infogroup hidden">
                                 <div class="field-box">
                                     <div class="field-label-box">
@@ -229,8 +190,8 @@
                                 </div>
                             </div>
                             <hr />
-                            <h2  rel="basicinfo" onclick="Izng.Drawer.toggle('loadtask')" class="toggler">ロード</h2>
-                            <div id="izng-loadtask" class="infogroup hidden">
+                            <h2  rel="izng-load-task" onclick="Izng.Drawer.toggle('load-task')" class="toggler">ロード</h2>
+                            <div id="izng-load-task" class="infogroup hidden">
                                 <div class="field-box">
                                     <div class="field-list">
                                         <label for="title"> <span class="label text_f_control">テストロード</span><span class="field text_f"><button onclick="Izng.Ajax.loadText('http://ncode.syosetu.com/n5164ba/1/','narou')">go!</button></span> </label>
@@ -238,13 +199,13 @@
                                 </div>
                             </div>
                             <hr />
-                            <h2  rel="toc" onclick="Izng.Drawer.toggle('toc')" class="toggler">目次</h2>
+                            <h2  rel="izng-toc" onclick="Izng.Drawer.toggle('toc')" class="toggler">目次</h2>
                             <div id="izng-toc" class="infogroup hidden">
                                 <div class="field-box">
                                     <div class="field-label-box">
                                         <label class="field-box-name"></label>
                                     </div>
-                                    <div id="izng-toclist" class="field-list">
+                                    <div id="izng-toc-list" class="field-list">
                                         <label id="izng-toc1" for="toc1" class="tocSelected"> <span class="label radio_f_control">『第一夜』</span><span class="radio_f field">
                                                 <input type="radio" name="toc" checked onclick="Izng.Ajax.hashChange('/data/1.html');" />
                                             </span> </label>
@@ -266,7 +227,7 @@
                 </div>
             </aside>
             <div id="izng-main">
-                <article id="izng-article">
+                <article id="izng-article">                    
                     <header>
                         <h2 class="alignCenter">Prologue／エミル・シェーファーについて</h2>
                     </header>

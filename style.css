@@ -5,7 +5,7 @@
  Theme URI: http://books.scrivel.org/
  Description: This is a wordpress theme for "scrivel", dojin circle.
  Author: keroxp
- Author URI: http://twitter.com/#!/keroxp
+ Author URI: http://twitter.com/#izng-!/keroxp
  Version: 0.9(α)
 
  This theme is developed for our private use.
@@ -33,87 +33,83 @@ html, body {
     color: white;
     -webkit-font-smoothing: antialiased;
 }
-body {
-    background: white url("images/bg/backw.png");
-}
-.pat1 {
-    background: #E4E4E4 !important;
-    color: #68667b !important;
-}
-.pat2 {
-    background: #EFEACC !important;
-}
-#load-layer {
+#izng-load-layer {
     width: 100%;
     height: 100%;
     position: fixed;
     z-index: 999;
     background: rgba(255,255,255,0.7) url("images/util/loader.gif") no-repeat center center !important;
 }
-button {
+input {
     cursor: pointer;
 }
-/* taskbar */
-
-#wrapper {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-#log {
-    position: fixed;
-    height:100%;
-    width:200px;
-    padding: 15px 0 15px 15px;
-    font-size:11px;
-    overflow:hidden;
-    top: 0;
-    right: 0;
-    background: rgba(0,0,0,0.75);    
-    color: white;
-    z-index:9999;
-}
-#log textarea{
-    min-height:500px;
-    width:170px;
-    overflow-x:hidden;
-    overflow-y:inherit;
-    background:transparent;
-    border:none;
-    font-size:inherit;
-    color:inherit;
-    margin:0;
-    padding:0;    
-}
-#log input{
-    max-width:120px;
-    display:table-cell;
-    background:transparent;
-    border:none;
-    color:#4D90FE;
-    margin:0;
-    padding:0;
-}
-#main {
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0;
-    left:280px;
-    bottom:0;
-    background-color: transparent;
-    z-index: 100;
-    -webkit-overflow-scrolling: touch;
-    overflow-x: hidden;   
-    overflow-y: scroll;
+button {
+    cursor: pointer;
 }
 .shadow {
     -webkit-box-shadow: 0px 0 8px rgba(0,0,0,0.7);
     -moz-box-shadow: 0px 0 8px rgba(0,0,0,0.7);
 }
+/* taskbar */
 
-#main #article {
-    background-color:white;
+#izng-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: white url("images/bg/backw.png");
+}
+#izng-log {
+    position: fixed;
+    height: 100%;
+    width: 200px;
+    padding: 15px 0 15px 15px;
+    font-size: 11px;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    background: rgba(0,0,0,0.75);
+    color: white;
+    z-index: 9999;
+}
+#izng-log textarea {
+    min-height: 500px;
+    width: 170px;
+    overflow-x: hidden;
+    overflow-y: inherit;
+    background: transparent;
+    border: none;
+    font-size: inherit;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+}
+#izng-log input {
+    max-width: 120px;
+    display: table-cell;
+    background: transparent;
+    border: none;
+    color: #4D90FE;
+    margin: 0;
+    padding: 0;
+}
+#izng-main {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 280px;
+    bottom: 0;
+    background-color: transparent;
+    z-index: 100;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+#izng-content{
+    
+}
+#izng-article {
+    background-color: white;
     padding: 24px 49px;
     border-right: 1px solid #ccc;
     border-left: 1px solid #ccc;
@@ -121,7 +117,7 @@ button {
 }
 /* article bg */
 .novel {
-    background-color: #F4EED9;
+    background-color: #F4EED9!important;
 }
 .kami1 {
     background-image: url("images/bg/kami1.png");
@@ -136,25 +132,15 @@ button {
     background-image: url("images/bg/kami4.png");
 }
 /*
-#article footer {
-    height: 100px;
-    background: whiteSmoke;
-    border-right: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-}
-*/
-#drawer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 280px;
-    /*overflow: hidden;*/
-}
-/* hover area */
-
-#fader {
+ #izng-article footer {
+ height: 100px;
+ background: whiteSmoke;
+ border-right: 1px solid #izng-ccc;
+ border-left: 1px solid #izng-ccc;
+ border-bottom: 1px solid #izng-ccc;
+ }
+ */
+#izng-fader {
     position: fixed;
     width: 280px;
     height: 100%;
@@ -162,4 +148,12 @@ button {
     top: 0;
     bottom: 0;
     left: 0;
+}
+#izng-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    /*overflow: hidden;*/
 }

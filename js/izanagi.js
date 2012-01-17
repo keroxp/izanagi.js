@@ -18,65 +18,66 @@ Izng.init = function()
 	this.BrowserDetect.init();
 	this.Env.init();
 	this.Drawer.init();
+	this.Binder.init();
 	this.Ajax.init();
+
 }
 var Debugger = {
 	init : function()
 	{
 		//windwo 情報をトレースするinput
-			
+
 		var i = Env.window.allInfo();
-		var tr = Util.create("div",{
-			id : "trasor"
+		var tr = Util.create("div", {
+			id : "izng-log-trasor"
 		})
 		for(var key in i) {
-			var label = Util.create("label",{
+			var label = Util.create("label", {
 				"for" : key
-			});		
-			var control = Util.create("span",{
-				className : "text_f_control",			
- 			},key) 
-			var input = Util.create("input",{
+			});
+			var control = Util.create("span", {
+				className : "text_f_control",
+			}, key)
+			var input = Util.create("input", {
 				type : "text",
-				id : key,
+				id : "izng-log-" + key,
 				name : key,
 				value : i[key]
 			})
-			var field = Util.create("span",{
+			var field = Util.create("span", {
 				className : "field text_f"
-			})						
-			field.appendChild(input);			
+			})
+			field.appendChild(input);
 			label.appendChild(control);
-			label.appendChild(field);			
+			label.appendChild(field);
 			tr.appendChild(label);
 		}
-		var log = Util.create("aside",
-		{
-			id : "log"
-		})		
+		var log = Util.create("aside", {
+			id : "izng-log"
+		})
 		log.appendChild(tr);
 		document.body.appendChild(log);
 
 		//windowオブジェクトにscroll,resize eventをバインド
 
-		jQuery("#main").scroll(function()
-		{	
+		jQuery("#izng-main").scroll(function()
+		{
 			//Debugger.log("scrolling!");
 			/*
-			jQuery("#pageXOffset").val(Env.window.pageXOffset);
-			jQuery("#pageYOffset").val(Env.window.pageYOffset);
-			*/
+			 jQuery("#izng-pageXOffset").val(Env.window.pageXOffset);
+			 jQuery("#izng-pageYOffset").val(Env.window.pageYOffset);
+			 */
 		})
 		jQuery(window).bind("resize", function()
 		{
-			jQuery("#innerWidth").val(Env.window.innerWidth());
-			jQuery("#innerHeight").val(Env.window.innerHeight());
+			jQuery("#izng-log-innerWidth").val(Env.window.innerWidth());
+			jQuery("#izng-log-innerHeight").val(Env.window.innerHeight());
 		})
 		//随時追加するtextlog area を作成
 
 		var textlog = document.createElement("textarea");
-		textlog.id = "textlog";
-		var log = document.getElementById("log");
+		textlog.id = "izng-log-text";
+		var log = document.getElementById("izng-log");
 		log.appendChild(textlog);
 
 		//ブラウザ情報をプリント
@@ -86,7 +87,7 @@ var Debugger = {
 	},
 	log : function(title, obj)
 	{
-		var log = document.getElementById("textlog");
+		var log = document.getElementById("izng-log-text");
 		log.value += title + "\n";
 		var add = "";
 		if( typeof (obj) == "object") {
@@ -318,9 +319,7 @@ var Env = {
 var Drawer = {
 	init : function()
 	{
-		jQuery("#article").removeAttr("style");
-		jQuery("#article").removeAttr("style").removeClass();
-		jQuery(".slider").removeClass();
+		jQuery("#izng-article").removeAttr("style");		
 		this.fontface(DEFAULT_FONT["forSet"]);
 		this.fontsize();
 		this.fontcolor();
@@ -330,7 +329,7 @@ var Drawer = {
 	},
 	toggle : function(rel)
 	{
-		var _rel = "#" + rel;
+		var _rel = "#izng-" + rel;
 		if(jQuery(_rel).hasClass("hidden")) {
 			jQuery(_rel).slideDown().removeClass("hidden");
 		} else {
@@ -346,7 +345,7 @@ var Drawer = {
 		} else if(dir == "R") {
 			distance = "-=280px";
 		}
-		jQuery("#slidepanel").animate({
+		jQuery("#izng-slider").animate({
 			marginLeft : distance
 		}, speed);
 	},
@@ -355,21 +354,21 @@ var Drawer = {
 		var disp = FONT_LIST[target];
 		var fonts = ["mincho", "gothic", "bold", "normal"];
 		var fc = target.split("-");
-		target = "#" + target;
+		target = "#izng-" + target;
 		for(var i = 0; i < fonts.length; i++) {
-			jQuery("#article").removeClass(fonts[i]);
+			jQuery("#izng-article").removeClass(fonts[i]);
 		}
-		jQuery("#fontface").children().removeClass("radioSelected");
+		jQuery("#izng-fontface").children().removeClass("radioSelected");
 		jQuery(target).addClass("radioSelected");
-		jQuery("#article").addClass(fc[0]);
+		jQuery("#izng-article").addClass(fc[0]);
 		if(fc.length > 1)
-			jQuery("#article").addClass(fc[1]);
-		jQuery("#fontface-value").val(disp);
+			jQuery("#izng-article").addClass(fc[1]);
+		jQuery("#izng-fontface-value").val(disp);
 
 	},
 	fontcolor : function()
 	{
-		jQuery("#fontcolor").slider({
+		jQuery("#izng-fontcolor").slider({
 			orientation : "horizontal",
 			range : "min",
 			min : 0,
@@ -380,17 +379,17 @@ var Drawer = {
 				var a = ui.value;
 				var hexColor = Util.rgbToHex(a, a, a);
 				var rgbColor = "r : " + a + "g : " + a + "b : " + a;
-				jQuery("#fontcolor-value").val(hexColor);
-				jQuery("#article").css("color", hexColor);
+				jQuery("#izng-fontcolor-value").val(hexColor);
+				jQuery("#izng-article").css("color", hexColor);
 				//jQuery.cookie("user_color", color);
 			}
 		});
-		jQuery("#article").css("color", DEFAULT_COLOR["forDisp"]);
-		jQuery("#fontcolor-value").val(DEFAULT_COLOR["forDisp"]);
+		jQuery("#izng-article").css("color", DEFAULT_COLOR["forDisp"]);
+		jQuery("#izng-fontcolor-value").val(DEFAULT_COLOR["forDisp"]);
 	},
 	fontsize : function()
 	{
-		jQuery("#fontsize").slider({
+		jQuery("#izng-fontsize").slider({
 			orientation : "horizontal",
 			range : "min",
 			min : 00,
@@ -399,17 +398,17 @@ var Drawer = {
 			slide : function(event, ui)
 			{
 				var size = 10 + Math.ceil(ui.value / 10);
-				jQuery("#fontsize-value").val(size + "px");
-				jQuery("#article").css("font-size", size + "px");
+				jQuery("#izng-fontsize-value").val(size + "px");
+				jQuery("#izng-article").css("font-size", size + "px");
 				//jQuery.cookie("user_font_size", size);
 			}
 		});
-		jQuery("#article").css("font-size", DEFAULT_SIZE["forDisp"]);
-		jQuery("#fontsize-value").val(DEFAULT_SIZE["forDisp"]);
+		jQuery("#izng-article").css("font-size", DEFAULT_SIZE["forDisp"]);
+		jQuery("#izng-fontsize-value").val(DEFAULT_SIZE["forDisp"]);
 	},
 	lineheight : function()
 	{
-		jQuery("#lineheight").slider({
+		jQuery("#izng-lineheight").slider({
 			orientation : "horizontal",
 			range : "min",
 			min : 0,
@@ -419,17 +418,16 @@ var Drawer = {
 			{
 				var lh = Math.ceil(ui.value / 10);
 				var lh = 1 + lh / 4;
-				jQuery("#lineheight-value").val(lh + "em");
-				jQuery("#article").css("line-height", lh + "em");
+				jQuery("#izng-lineheight-value").val(lh + "em");
+				jQuery("#izng-article").css("line-height", lh + "em");
 				//jQuery.cookie("user_font_size", lh);
 			}
 		});
-		jQuery("#article").css("line-height", DEFAULT_LINEHEIGHT["forDisp"]);
-		jQuery("#lineheight-value").val(DEFAULT_LINEHEIGHT["forDisp"]);
+		jQuery("#izng-article").css("line-height", DEFAULT_LINEHEIGHT["forDisp"]);
+		jQuery("#izng-lineheight-value").val(DEFAULT_LINEHEIGHT["forDisp"]);
 	},
 	width : function()
 	{
-		jQuery("#article").removeAttr("style");
 		var dw = [];
 		if(arguments.length > 0) {
 			dw["forDisp"] = arguments[0];
@@ -441,7 +439,7 @@ var Drawer = {
 
 		if(dw < -DEFAULT_WIDTH["canchange"])
 			dw = -DEFAULT_WIDTH["canchange"];
-		jQuery("#width").slider({
+		jQuery("#izng-width").slider({
 			orientation : "horizontal",
 			range : "min",
 			min : -DEFAULT_WIDTH["canchange"],
@@ -450,18 +448,18 @@ var Drawer = {
 			slide : function(event, ui)
 			{
 				var w = DEFAULT_WIDTH["visible"] + ui.value;
-				jQuery("#width-value").val(w + "px");
-				jQuery("#article").css("width", w - DEFAULT_WIDTH["padOffset"] + "px");
+				jQuery("#izng-width-value").val(w + "px");
+				jQuery("#izng-article").css("width", w - DEFAULT_WIDTH["padOffset"] + "px");
 				//jQuery.cookie("user_font_size", lh);
 			}
 		});
-		jQuery("#width-value").val(dw["forDisp"] + "px");
-		jQuery("#article").css("width", dw["forDisp"] - DEFAULT_WIDTH["padOffset"] + "px");
+		jQuery("#izng-width-value").val(dw["forDisp"] + "px");
+		jQuery("#izng-article").css("width", dw["forDisp"] - DEFAULT_WIDTH["padOffset"] + "px").css("height","auto");		
 	},
 	screen : function(type)
 	{
-		jQuery("#screen > label").removeClass("radioSelected");
-		jQuery("#" + type).addClass("radioSelected");
+		jQuery("#izng-screen > label").removeClass("radioSelected");
+		jQuery("#izng-" + type).addClass("radioSelected");
 		var transitTypes = ["full", "fit", "narrow", "defaultFit"];
 		var _type;
 		jQuery.each(transitTypes, function()
@@ -486,7 +484,7 @@ var Drawer = {
 			if(type == "full") {
 				window.scroll(DEFAULT_WIDTH["taskbar"], 0);
 				//var remover =　"<button class='button fullscreenRemover gBlue' onclick='Izng.Drawer.width();jQuery(this).remove()'>フルスクリーンモードを終了</button>"
-				//$("#wrapper").append(remover);
+				//$("#izng-wrapper").append(remover);
 			}
 		} else {
 			return false;
@@ -497,11 +495,41 @@ var Drawer = {
 	{
 		var bgs = ["novel", "kami1", "kami2", "kami3", "kami4"];
 		for(var i = 0; i < bgs.length; i++) {
-			$("#article").removeClass(bgs[i]);
+			$("#izng-article").removeClass(bgs[i]);
 		}
-		$("#article").addClass(im)
+		$("#izng-article").addClass(im)
 	}
 };
+
+var Binder = {
+	init : function()
+	{
+		/* bind event */
+		$(window).bind("resize", function()
+		{
+			var h = window.innerWidth - 280;
+			jQuery("#izng-main").css("width", h + "px");
+		})
+		jQuery("#izng-article").resizable({
+			constraint : "#izng-wrapper",
+			ghost : true,
+			minWidth : 544,			
+			stop : function(event, ui)
+			{
+				Izng.Drawer.width(ui.size.width);
+			}
+		});
+		jQuery("#izng-drawer").hover(function()
+		{
+			jQuery("#izng-slider").fadeIn("slow");
+			jQuery("#izng-article").addClass("shadow");
+		}, function()
+		{
+			jQuery("#izng-slider").fadeOut("slow");
+			jQuery("#izng-article").removeClass("shadow");
+		});
+	}
+}
 
 var Util = {
 	hexArray : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "a", "b", "c", "d", "e", "f"],
@@ -561,7 +589,7 @@ var Util = {
 		if(arguments.length > 0)
 			_hash = arguments[0];
 		if(jQuery(_hash).css("display") == "none")
-			jQuery("#load-layer").show();
+			jQuery("#izng-load-layer").show();
 	},
 	loadOut : function(hash)
 	{
@@ -569,7 +597,7 @@ var Util = {
 		if(arguments.length > 0)
 			_hash = arguments[0];
 		if(jQuery(_hash).css("display") != "none")
-			jQuery("#load-layer").hide();
+			jQuery("#izng-load-layer").hide();
 	},
 	imageSize : function(image)
 	{
@@ -612,10 +640,11 @@ var Util = {
 			height : h
 		};
 	},
-	create : function(element,options,innerHTML){		
+	create : function(element, options, innerHTML)
+	{
 		var _element = document.createElement(element);
-		for(key in options){
-			jQuery(_element).attr(key,options[key]);
+		for(key in options) {
+			jQuery(_element).attr(key, options[key]);
 		}
 		_element.innerHTML = innerHTML || "";
 		return _element;
@@ -639,8 +668,8 @@ var Ajax = {
 			//対象のアドレスからhtmlをajaxロード
 			Ajax.loadText(setHash);
 		});
-		//Ajax.setAnchor("#toclist a");
-		//location.hash = "#!/data/1.html";
+		//Ajax.setAnchor("#izng-toclist a");
+		//location.hash = "#izng-!/data/1.html";
 	},
 	setAnchor : function(a)
 	{
@@ -657,33 +686,33 @@ var Ajax = {
 		Debugger.log("Request", {
 			"url" : url,
 		});
-		Util.loadIn("#load-layer");
-		jQuery("#article").empty().load(url, function(data)
+		Util.loadIn("#izng-load-layer");
+		jQuery("#izng-article").empty().load(url, function(data)
 		{
-			Util.loadOut("#load-layer");
+			Util.loadOut("#izng-load-layer");
 		});
 		/*
 		 jQuery.ajax({
 		 beforeSend : function()
 		 {
-		 Util.loadIn("#load-layer");
-		 jQuery("#article").empty();
+		 Util.loadIn("#izng-load-layer");
+		 jQuery("#izng-article").empty();
 		 },
 		 type : "GET",
 		 datatype : "text",
 		 url : url,
 		 success : function(data, datatype)
 		 {
-		 jQuery("#article").append(data).fadeIn();
+		 jQuery("#izng-article").append(data).fadeIn();
 		 },
 		 complete : function()
 		 {
-		 Util.loadOut("#load-layer");
+		 Util.loadOut("#izng-load-layer");
 		 },
 		 error : function(XMLHttpRequest, textStatus, errorThrown)
 		 {
-		 jQuery("#article").hide().html("error").fadeIn();
-		 Util.loadOut("#load-layer");
+		 jQuery("#izng-article").hide().html("error").fadeIn();
+		 Util.loadOut("#izng-load-layer");
 		 Debugger.log("Status", {
 		 "textStatus" : textStatus
 		 });
@@ -718,9 +747,9 @@ var Ajax = {
 	},
 	hashChange : function(hash)
 	{
-		$("#toclist label").removeClass("tocSelected");
+		$("#izng-toclist label").removeClass("tocSelected");
 		var _dec = hash.match(/[0-9]/);
-		$("#toc" + _dec).addClass("tocSelected");
+		$("#izng-toc-task" + _dec).addClass("tocSelected");
 		var _hash = "#!" + hash;
 		location.hash = _hash;
 	}
@@ -733,5 +762,6 @@ Izng.Debugger = Debugger;
 Izng.BrowserDetect = BrowserDetect;
 Izng.Env = Env;
 Izng.Drawer = Drawer;
+Izng.Binder = Binder;
 Izng.Util = Util;
 Izng.Ajax = Ajax;
