@@ -18,48 +18,54 @@ Izng.init = function()
 	this.BrowserDetect.init();
 	this.Env.init();
 	this.Drawer.init();
-	this.Taskbar.init();
 	this.Ajax.init();
 }
 var Debugger = {
 	init : function()
 	{
 		//windwo 情報をトレースするinput
-
-		var tr = document.createElement("div");
-		tr.id = "tracer";
+			
 		var i = Env.window.allInfo();
-		var table = document.createElement("table");
+		var tr = Util.create("div",{
+			id : "trasor"
+		})
 		for(var key in i) {
-			var label = document.createElement("label");			
-			label.for = key;
-			var control = document.createElement("span");
-			control.className = "text_f_control";
-			control.innerHTML = key; 
-			var input = document.createElement("input");
-			input.type = "text";
-			input.id = key;
-			input.name = key;
-			input.value = i[key];		
-			var field = document.createElement("span");
-			field.className = "field text_f";
-			field.appendChild(input);
-			
+			var label = Util.create("label",{
+				"for" : key
+			});		
+			var control = Util.create("span",{
+				className : "text_f_control",			
+ 			},key) 
+			var input = Util.create("input",{
+				type : "text",
+				id : key,
+				name : key,
+				value : i[key]
+			})
+			var field = Util.create("span",{
+				className : "field text_f"
+			})						
+			field.appendChild(input);			
 			label.appendChild(control);
-			label.appendChild(field);
-			
+			label.appendChild(field);			
 			tr.appendChild(label);
 		}
-		var log = document.getElementById("log");
+		var log = Util.create("aside",
+		{
+			id : "log"
+		})		
 		log.appendChild(tr);
+		document.body.appendChild(log);
 
 		//windowオブジェクトにscroll,resize eventをバインド
 
 		jQuery("#main").scroll(function()
 		{	
 			//Debugger.log("scrolling!");
+			/*
 			jQuery("#pageXOffset").val(Env.window.pageXOffset);
 			jQuery("#pageYOffset").val(Env.window.pageYOffset);
+			*/
 		})
 		jQuery(window).bind("resize", function()
 		{
@@ -306,13 +312,21 @@ var Env = {
 };
 
 /*
- * Drawer
+ * Task bar
  */
 
 var Drawer = {
 	init : function()
 	{
-
+		jQuery("#article").removeAttr("style");
+		jQuery("#article").removeAttr("style").removeClass();
+		jQuery(".slider").removeClass();
+		this.fontface(DEFAULT_FONT["forSet"]);
+		this.fontsize();
+		this.fontcolor();
+		this.lineheight();
+		this.width();
+		this.bg("default");
 	},
 	toggle : function(rel)
 	{
@@ -335,28 +349,6 @@ var Drawer = {
 		jQuery("#slidepanel").animate({
 			marginLeft : distance
 		}, speed);
-	}
-}
-/*
- * Task bar
- */
-
-var Taskbar = {
-	init : function()
-	{
-		jQuery("#article").removeAttr("style");
-		jQuery("#article").removeAttr("style").removeClass();
-		jQuery(".slider").removeClass();
-		this.fontface(DEFAULT_FONT["forSet"]);
-		this.fontsize();
-		this.fontcolor();
-		this.lineheight();
-		this.width();
-		this.bg("default");
-	},
-	setDefaultValue : function()
-	{
-
 	},
 	fontface : function(target)
 	{
@@ -493,7 +485,7 @@ var Taskbar = {
 			this.width(w);
 			if(type == "full") {
 				window.scroll(DEFAULT_WIDTH["taskbar"], 0);
-				//var remover =　"<button class='button fullscreenRemover gBlue' onclick='Izng.Taskbar.width();jQuery(this).remove()'>フルスクリーンモードを終了</button>"
+				//var remover =　"<button class='button fullscreenRemover gBlue' onclick='Izng.Drawer.width();jQuery(this).remove()'>フルスクリーンモードを終了</button>"
 				//$("#wrapper").append(remover);
 			}
 		} else {
@@ -619,6 +611,14 @@ var Util = {
 			width : w,
 			height : h
 		};
+	},
+	create : function(element,options,innerHTML){		
+		var _element = document.createElement(element);
+		for(key in options){
+			jQuery(_element).attr(key,options[key]);
+		}
+		_element.innerHTML = innerHTML || "";
+		return _element;
 	}
 }
 
@@ -733,6 +733,5 @@ Izng.Debugger = Debugger;
 Izng.BrowserDetect = BrowserDetect;
 Izng.Env = Env;
 Izng.Drawer = Drawer;
-Izng.Taskbar = Taskbar;
 Izng.Util = Util;
 Izng.Ajax = Ajax;
