@@ -1,6 +1,8 @@
-/*
- * Html document reader for "scrivel"
- * developed by @keroxp / Kaeru Yana / Yusuke Sakurai
+/* IZANAGI
+ * - Html document reader 
+ * - developed by @keroxp / Yusuke Sakurai
+ * - http://keroxp.me/
+ * - http://github.com/keroxp/izanagi.js/
  */
 
 var Izng;
@@ -666,7 +668,7 @@ var Ajax = {
 			Ajax.loadText(setHash);
 		});
 		//Ajax.setAnchor("#izng-toclist a");
-		location.hash = "#!/data/1.html";
+		//location.hash = "#!/data/1.html";
 	},
 	setAnchor : function(a)
 	{

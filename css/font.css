@@ -1,63 +1,98 @@
 @charset "utf-8";
 
-
 body {
-    font: normal normal normal 14px/2em "Lucida Grande", "Lucida Sans Unicode", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", Helvetica, Arial, Verdana, sans-serif;
-    font-family: "Lucida Grande", "ＭＳ Ｐゴシック", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
-    background-color: transparent;
-    color: #555;
-    -webkit-font-smoothing: antialiased;
+	font: normal normal normal 14px /2em "Lucida Grande", "Lucida Sans Unicode", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", Helvetica, Arial, Verdana, sans-serif;
+	font-family: "Lucida Grande", "ＭＳ Ｐゴシック", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+	background-color: transparent;
+	color: #555;
+	-webkit-font-smoothing: antialiased;
 }
-article{
-    color: #555;
-    font-size: 14px;
-    font-family:inherit;
-    line-height:2em;
+article {
+	color: #555;
+	font-size: 14px;
+	font-family: inherit;
+	line-height: 2em;
 }
-article h1{
-    font-size:2em;
-    margin: 1em 0;
+.title {
+	text-align: center;
 }
-article h2{
-    font-size:1.75em;
-    margin: 0.75em 0;
+.alert {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	background-color: #ff6666;
+	border: 1px solid #FF0000;
+	color: white !important;
+	padding: 3px 5px;
+	font-weight: bold;
+	margin:5px 0;
 }
-article h3{
-    font-size:1.5em;
-    margin:0.5em 0;
+article h1 {
+	font-size: 2.5em;
+	margin: 1em 0;
 }
-article h4{
-    font-size:1.3em;
-    margin:0.3em 0;
+article h2 {
+	font-size: 1.8em;
+	margin: 0.75em 0;
 }
-article h5{
-    font-size:1.2em;
-    margin:0.2em 0;
+article h3 {
+	font-size: 1.4em;
+	margin: 0.5em 0;
+}
+article h4 {
+	font-size: 1.2em;
+	margin: 0.3em 0;
+}
+article h5 {
+	font-size: 1.1em;
+	margin: 0.2em 0;
 }
 article p {
-    font-size: inherit;
-    color: inherit;
-    font-family: inherit;
-    line-height: inherit;
+	font-size: inherit;
+	color: inherit;
+	font-family: inherit;
+	line-height: inherit;
 }
 article a {
-    color: #006BFF;
-    text-decoration:none;
+	color: #006BFF;
+	text-decoration: none;
 }
-article a:hover{
-    text-decoration:underline;
+article a:hover {
+	text-decoration: underline;
 }
-article span.dd{
-    font-size:1.3em;
-    line-height:inherit;
-    letter-spacing:-2px!important;
-    padding:0 2px;
-    vertical-align:baseline;
+article span.dd {
+	font-size: 1.3em;
+	line-height: inherit;
+	letter-spacing: -2px !important;
+	padding: 0 2px;
+	vertical-align: baseline;
 }
-article span.tpr{
-   font-family:"ＭＳ Ｐゴシック","ヒラギノ角ゴ Pro W3"!important;
+article span.tpr {
+	font-family: "ＭＳ Ｐゴシック", "ヒラギノ角ゴ Pro W3" !important;
 }
-
-article ruby rt{
-    font-size:65%;
+article ruby rt {
+	font-size: 65%;
+}
+article ul {
+	margin-left: 20px;
+	margin-bottom: 20px;
+}
+article li {
+	list-style: disc;
+}
+article pre {
+	background-color: whiteSmoke;
+	display: block;
+	padding: 8.5px;
+	margin: 0 0 18px;
+	line-height: 18px;
+	font-size: 12px;
+	border: 1px solid #CCC;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	white-space: pre;
+	white-space: pre-wrap;
+	word-wrap: break-word;
 }

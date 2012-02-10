@@ -1,225 +1,380 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="utf-8" />
-        <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
-        Remove this if you use the .htaccess -->
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>IZANAGI</title>
-        <meta name="description" content="" />
-        <meta name="author" content="桜井雄介" />
-        <meta name="viewport" content="width=device-width; initial-scale=1.0" />
-        <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="stylesheet" href="style.css" />
-        <!--[if lt IE 9]>
-        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"</script>
-        <style type="text/css">
-        article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
-        display: block;
-        }
-        </style>
-        <![endif]-->
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        <script type="text/javascript" src="js/jquery-ui.custom.min.js"></script>
-        <script type="text/javascript" src="js/jquery.easing.js"></script>
-        <script type="text/javascript" src="js/jquery.hashChangeEvent.js"></script>
-        <script type="text/javascript" src="js/jquery.ui.touch-punch.js"></script>
-        <script type="text/javascript" src="js/izanagi.js"></script>
-        <script type="text/javascript">
-			$(document).ready(function()
-			{
+	<head>
+		<meta charset="utf-8" />
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>IZANAGI</title>
+		<meta name="description" content="" />
+		<meta name="author" content="桜井雄介" />
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="stylesheet" href="style.css" />
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"</script>
+		<style type="text/css">
+		article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+		display: block;
+		}
+		</style>
+		<![endif]-->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui.custom.min.js"></script>
+		<script type="text/javascript" src="js/jquery.easing.js"></script>
+		<script type="text/javascript" src="js/jquery.hashChangeEvent.js"></script>
+		<script type="text/javascript" src="js/jquery.ui.touch-punch.js"></script>
+		<script type="text/javascript" src="js/izanagi.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
 				Izng.init();
 				Izng.Debugger.init();
 				//Izng.Util.loadOut("#load-layer");
 			})
-        </script>
-    </head>
-    <body>
-        <div id="izng-wrapper">
-            <div id="izng-fader"></div>
-            <div id="izng-load-layer"></div>
-            <aside id="izng-drawer">
-                <div id="izng-slider">
-                    <div id="izng-taskbar" class="izng-bar">
-                        <div id="izng-taskhead" class="izng-barhead">
-                            <button onclick="Izng.Drawer.init();" class="button floatLeft gGlay">設定の初期化</button>
-                            <button onclick="Izng.Drawer.slide('R');" class="button floatRight gBlue">作品情報</button>
-                        </div>
-                        <div id="izng-taskbody" class="izng-barbody">
-                            <hr />
-                            <h2 rel="izng-font-task" onclick="Izng.Drawer.toggle('font-task')" class="toggler">文字設定</h2>
-                            <div id="izng-font-task" class="taskgroup hidden">
-                                <div class="slider-box">
-                                    <div class="slider-label-box">
-                                        <label for="fontsize-value" class="slider-name">サイズ</label>
-                                        <input type="text" id="izng-fontsize-value" class="slider-value"/>
-                                    </div>
-                                    <div id="izng-fontsize" class="slider"></div>
-                                </div>
-                                <div class="slider-box">
-                                    <div class="slider-label-box">
-                                        <label for="fontcolor-value" class="slider-name">カラー</label>
-                                        <input type="text" id="izng-fontcolor-value" class="slider-value" />
-                                    </div>
-                                    <div id="izng-fontcolor" class="slider"></div>
-                                </div>
-                                <div class="field-box">
-                                    <div class="field-label-box">
-                                        <label for="fontface" class="field-box-name">フォント</label>
-                                        <input type="text" id="izng-fontface-value" class="field-box-value"/>
-                                    </div>
-                                    <div  id="izng-fontface" class="field-list">
-                                        <button id="izng-bold-mincho" onclick="Izng.Drawer.fontface('bold-mincho')" class="boxradio mincho bold">あA</button>
-                                        <button id="izng-mincho" onclick="Izng.Drawer.fontface('mincho')" class="boxradio mincho">あA</button>
-                                        <button id="izng-bold-gothic" onclick="Izng.Drawer.fontface('bold-gothic')" class="boxradio gothic bold">あA</button>
-                                        <button id="izng-gothic" onclick="Izng.Drawer.fontface('gothic')" class="boxradio gothic holc">あA</button>
-                                    </div>
-                                </div>
-                                <div class="slider-box">
-                                    <div class="slider-label-box">
-                                        <label for="lineheight-value" class="slider-name">行間</label>
-                                        <input type="text" id="izng-lineheight-value" class="slider-value" />
-                                    </div>
-                                    <div id="izng-lineheight" class="slider"></div>
-                                </div>
-                            </div>
-                            <hr/>
-                            <h2 rel="izng-layout-task" onclick="Izng.Drawer.toggle('layout-task')" class="toggler">レイアウト設定</h2>
-                            <div id="izng-layout-task" class="taskgroup hidden">
-                                <div class="slider-box">
-                                    <div class="slider-label-box">
-                                        <label for="width-value" class="slider-name">ページ幅</label>
-                                        <input type="text" id="izng-width-value" class="slider-value" />
-                                    </div>
-                                    <div id="izng-width" class="slider"></div>
-                                </div>
-                                <div id="izng-screen" class="field-list">
-                                    <label id="izng-defaultFit" for="defaultFit" class="radioSelected"> <span class="label radio_f_control">初期化</span><span class="radio_f field">
-                                            <input type="radio" name="screen" checked onclick="Izng.Drawer.screen('defaultFit');" />
-                                        </span> </label>
-                                    <!--
-                                    <label id="izng-full" for="full" > <span class="label radio_f_control">フルスクリーン</span><span class="radio_f field">
-                                    <input type="radio" name="screen" onclick="Izng.Drawer.screen('full');" />
-                                    </span> </label>
-                                    -->
-                                    <label id="izng-fit" for="fit"> <span class="label radio_f_control">最大化</span><span class="radio_f field">
-                                            <input type="radio" name="screen" onclick="Izng.Drawer.screen('fit');" />
-                                        </span> </label>
-                                    <label id="izng-narrow" for="narrow" class="velc" > <span class="label radio_f_control">最小化</span><span class="radio_f field">
-                                            <input type="radio" name="screen" onclick="Izng.Drawer.screen('narrow');"/>
-                                        </span> </label>
-                                </div>
-                            </div>
-                            <hr/>
-                            <h2 rel="izng-share-task" onclick="Izng.Drawer.toggle('share-task')" class="toggler">共有</h2>
-                            <div id="izng-share-task" class="taskgroup hidden">
-                                <div class="field-box">
-                                    <div class="field-list">
-                                        <label for="sel2" > <span class="label checkbox_f_control">Twitter</span><span class="checkbox_f field"> <a href="" id="izng-share_twitter" class="share" title="Twitterで共有"></a> </span> </label>
-                                        <label for="sel2" > <span class="label checkbox_f_control">Facebook</span><span class="checkbox_f field"> <a href="" id="izng-share_facebook" class="share" title="Facebookで共有"> </a> </span> </label>
-                                        <label for="sel2" > <span class="label checkbox_f_control">Google+</span><span class="checkbox_f field"> <a href="" id="izng-share_google_plus" class="share" title="Google Plustで共有"> </a> </span> </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr/>
-                            <h2 rel="izng-option-task" onclick="Izng.Drawer.toggle('option-task')" class="toggler">オプション</h2>
-                            <div id="izng-option-task" class="taskgroup hidden">
-                                <div class="field-box">
-                                    <div class="field-label-box">
-                                        <label for="fontface" class="field-box-name">背景</label>
-                                        <input type="text" id="izng-fontface-value" class="field-box-value"/>
-                                    </div>
-                                    <div  id="izng-bg" class="field-list">
-                                        <label id="izng-bg-default" for="bg-default"> <span class="label radio_f_control">なし</span><span class="radio_f field">
-                                                <input type="radio" name="bg" checked onclick="Izng.Drawer.bg('default');" />
-                                            </span> </label>
-                                        <label id="izng-bg-novel" class="novel" for="bg-novel"> <span class="label radio_f_control">薄茶</span><span class="radio_f field">
-                                                <input type="radio" name="bg" onclick="Izng.Drawer.bg('novel');" />
-                                            </span> </label>
-                                        <label id="izng-bg-kami1" class="kami1" for="bg-kami1"> <span class="label radio_f_control">紙１</span><span class="radio_f field">
-                                                <input type="radio" name="bg" onclick="Izng.Drawer.bg('kami1');" />
-                                            </span> </label>
-                                        <label id="izng-bg-kami2" class="kami2" for="bg-kami2" > <span class="label radio_f_control">紙２</span><span class="radio_f field">
-                                                <input type="radio" name="bg" onclick="Izng.Drawer.bg('kami2');" />
-                                            </span> </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
-                    <div id="izng-infobar" class="izng-bar">
-                        <div id="izng-infohead" class="izng-barhead">
-                            <button onclick="Izng.Drawer.slide('L');" class="button gBlue">タスクバー</button>
-                        </div>
-                        <div id="izng-infobody" class="izng-barbody">
-                            <hr />
-                            <h2  rel="izng-basicinfo" onclick="Izng.Drawer.toggle('basicinfo')" class="toggler">作品情報</h2>
-                            <div id="izng-basicinfo" class="infogroup hidden">
-                                <div class="field-box">
-                                    <div class="field-label-box">
-                                        <label class="field-box-name">基本情報</label>
-                                    </div>
-                                    <div class="field-list">
-                                        <label for="title"> <span class="label text_f_control">タイトル</span><span class="field text_f"> 夢十夜 </span> </label>
-                                        <label for="author"> <span class="label text_f_control">著者</span><span class="field text_f"> 夏目漱石 </span> </label>
-                                    </div>
-                                </div>
-                                <div class="field-box">
-                                    <div class="field-label-box">
-                                        <label class="field-box-name">アイキャッチ</label>
-                                    </div>
-                                    <div class="field-list">
-                                        <a href=""><img src="images/material/ub.png" alt="宇宙日和" /></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr />
-                            <h2  rel="izng-load-task" onclick="Izng.Drawer.toggle('load-task')" class="toggler">ロード</h2>
-                            <div id="izng-load-task" class="infogroup hidden">
-                                <div class="field-box">
-                                    <div class="field-list">
-                                        <label for="title"> <span class="label text_f_control">テストロード</span><span class="field text_f"><button onclick="Izng.Ajax.loadText('http://ncode.syosetu.com/n5164ba/1/','narou')">go!</button></span> </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr />
-                            <h2  rel="izng-toc" onclick="Izng.Drawer.toggle('toc')" class="toggler">目次</h2>
-                            <div id="izng-toc" class="infogroup hidden">
-                                <div class="field-box">
-                                    <div class="field-label-box">
-                                        <label class="field-box-name"></label>
-                                    </div>
-                                    <div id="izng-toc-list" class="field-list">
-                                        <label id="izng-toc-1" for="toc1" class="tocSelected"> <span class="label radio_f_control">『第一夜』</span><span class="radio_f field">
-                                                <input type="radio" name="toc" checked onclick="Izng.Ajax.hashChange('/data/1.html');" />
-                                            </span> </label>
-                                        <label id="izng-toc-2" for="toc2" > <span class="label radio_f_control">『第二夜』</span><span class="radio_f field">
-                                                <input type="radio" name="toc"  onclick="Izng.Ajax.hashChange('/data/2.html');" />
-                                            </span> </label>
-                                        <label id="izng-toc-3" for="toc3" > <span class="label radio_f_control">『第三夜』</span><span class="radio_f field">
-                                                <input type="radio" name="toc" onclick="Izng.Ajax.hashChange('/data/3.html');" />
-                                            </span> </label>
-                                        <label id="izng-toc-4" for="toc4" class="velc" > <span class="label radio_f_control">『第四夜』</span><span class="radio_f field">
-                                                <input type="radio" name="toc" onclick="Izng.Ajax.hashChange('/data/4.html');"/>
-                                            </span> </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr />
-                        </div>
-                    </div>
-                </div>
-            </aside>
-            <div id="izng-main">
-                <div id="izng-content">
-                    <article id="izng-article">
-                        
-                    </article>
-                </div>
-            </div>
-        </div>
-    </body>
+		</script>
+	</head>
+	<body>
+		<div id="izng-wrapper">
+			<div id="izng-fader"></div>
+			<div id="izng-load-layer"></div>
+			<aside id="izng-drawer">
+				<div id="izng-slider">
+					<div id="izng-taskbar" class="izng-bar">
+						<div id="izng-taskhead" class="izng-barhead">
+							<button onclick="Izng.Drawer.init();" class="button floatLeft gGlay">
+								設定の初期化
+							</button>
+							<button onclick="Izng.Drawer.slide('R');" class="button floatRight gBlue">
+								作品情報
+							</button>
+						</div>
+						<div id="izng-taskbody" class="izng-barbody">
+							<hr />
+							<h2 rel="izng-font-task" onclick="Izng.Drawer.toggle('font-task')" class="toggler">文字設定</h2>
+							<div id="izng-font-task" class="taskgroup hidden">
+								<div class="slider-box">
+									<div class="slider-label-box">
+										<label for="fontsize-value" class="slider-name">サイズ</label>
+										<input type="text" id="izng-fontsize-value" class="slider-value"/>
+									</div>
+									<div id="izng-fontsize" class="slider"></div>
+								</div>
+								<div class="slider-box">
+									<div class="slider-label-box">
+										<label for="fontcolor-value" class="slider-name">カラー</label>
+										<input type="text" id="izng-fontcolor-value" class="slider-value" />
+									</div>
+									<div id="izng-fontcolor" class="slider"></div>
+								</div>
+								<div class="field-box">
+									<div class="field-label-box">
+										<label for="fontface" class="field-box-name">フォント</label>
+										<input type="text" id="izng-fontface-value" class="field-box-value"/>
+									</div>
+									<div  id="izng-fontface" class="field-list">
+										<button id="izng-bold-mincho" onclick="Izng.Drawer.fontface('bold-mincho')" class="boxradio mincho bold">
+											あA
+										</button>
+										<button id="izng-mincho" onclick="Izng.Drawer.fontface('mincho')" class="boxradio mincho">
+											あA
+										</button>
+										<button id="izng-bold-gothic" onclick="Izng.Drawer.fontface('bold-gothic')" class="boxradio gothic bold">
+											あA
+										</button>
+										<button id="izng-gothic" onclick="Izng.Drawer.fontface('gothic')" class="boxradio gothic holc">
+											あA
+										</button>
+									</div>
+								</div>
+								<div class="slider-box">
+									<div class="slider-label-box">
+										<label for="lineheight-value" class="slider-name">行間</label>
+										<input type="text" id="izng-lineheight-value" class="slider-value" />
+									</div>
+									<div id="izng-lineheight" class="slider"></div>
+								</div>
+							</div>
+							<hr/>
+							<h2 rel="izng-layout-task" onclick="Izng.Drawer.toggle('layout-task')" class="toggler">レイアウト設定</h2>
+							<div id="izng-layout-task" class="taskgroup hidden">
+								<div class="slider-box">
+									<div class="slider-label-box">
+										<label for="width-value" class="slider-name">ページ幅</label>
+										<input type="text" id="izng-width-value" class="slider-value" />
+									</div>
+									<div id="izng-width" class="slider"></div>
+								</div>
+								<div id="izng-screen" class="field-list">
+									<label id="izng-defaultFit" for="defaultFit" class="radioSelected"> <span class="label radio_f_control">初期化</span><span class="radio_f field">
+											<input type="radio" name="screen" checked onclick="Izng.Drawer.screen('defaultFit');" />
+										</span> </label>
+									<!--
+									<label id="izng-full" for="full" > <span class="label radio_f_control">フルスクリーン</span><span class="radio_f field">
+									<input type="radio" name="screen" onclick="Izng.Drawer.screen('full');" />
+									</span> </label>
+									-->
+									<label id="izng-fit" for="fit"> <span class="label radio_f_control">最大化</span><span class="radio_f field">
+											<input type="radio" name="screen" onclick="Izng.Drawer.screen('fit');" />
+										</span> </label>
+									<label id="izng-narrow" for="narrow" class="velc" > <span class="label radio_f_control">最小化</span><span class="radio_f field">
+											<input type="radio" name="screen" onclick="Izng.Drawer.screen('narrow');"/>
+										</span> </label>
+								</div>
+							</div>
+							<hr/>
+							<h2 rel="izng-share-task" onclick="Izng.Drawer.toggle('share-task')" class="toggler">共有</h2>
+							<div id="izng-share-task" class="taskgroup hidden">
+								<div class="field-box">
+									<div class="field-list">
+										<label for="sel2" > <span class="label checkbox_f_control">Twitter</span><span class="checkbox_f field"> <a href="" id="izng-share_twitter" class="share" title="Twitterで共有"></a> </span> </label>
+										<label for="sel2" > <span class="label checkbox_f_control">Facebook</span><span class="checkbox_f field"> <a href="" id="izng-share_facebook" class="share" title="Facebookで共有"> </a> </span> </label>
+										<label for="sel2" > <span class="label checkbox_f_control">Google+</span><span class="checkbox_f field"> <a href="" id="izng-share_google_plus" class="share" title="Google Plustで共有"> </a> </span> </label>
+									</div>
+								</div>
+							</div>
+							<hr/>
+							<h2 rel="izng-option-task" onclick="Izng.Drawer.toggle('option-task')" class="toggler">オプション</h2>
+							<div id="izng-option-task" class="taskgroup hidden">
+								<div class="field-box">
+									<div class="field-label-box">
+										<label for="fontface" class="field-box-name">背景</label>
+										<input type="text" id="izng-fontface-value" class="field-box-value"/>
+									</div>
+									<div  id="izng-bg" class="field-list">
+										<label id="izng-bg-default" for="bg-default"> <span class="label radio_f_control">なし</span><span class="radio_f field">
+												<input type="radio" name="bg" checked onclick="Izng.Drawer.bg('default');" />
+											</span> </label>
+										<label id="izng-bg-novel" class="novel" for="bg-novel"> <span class="label radio_f_control">薄茶</span><span class="radio_f field">
+												<input type="radio" name="bg" onclick="Izng.Drawer.bg('novel');" />
+											</span> </label>
+										<label id="izng-bg-kami1" class="kami1" for="bg-kami1"> <span class="label radio_f_control">紙１</span><span class="radio_f field">
+												<input type="radio" name="bg" onclick="Izng.Drawer.bg('kami1');" />
+											</span> </label>
+										<label id="izng-bg-kami2" class="kami2" for="bg-kami2" > <span class="label radio_f_control">紙２</span><span class="radio_f field">
+												<input type="radio" name="bg" onclick="Izng.Drawer.bg('kami2');" />
+											</span> </label>
+									</div>
+								</div>
+							</div>
+							<hr>
+						</div>
+					</div>
+					<div id="izng-infobar" class="izng-bar">
+						<div id="izng-infohead" class="izng-barhead">
+							<button onclick="Izng.Drawer.slide('L');" class="button gBlue">
+								タスクバー
+							</button>
+						</div>
+						<div id="izng-infobody" class="izng-barbody">
+							<hr />
+							<h2  rel="izng-basicinfo" onclick="Izng.Drawer.toggle('basicinfo')" class="toggler">作品情報</h2>
+							<div id="izng-basicinfo" class="infogroup hidden">
+								<div class="field-box">
+									<div class="field-label-box">
+										<label class="field-box-name">基本情報</label>
+									</div>
+									<div class="field-list">
+										<label for="title"> <span class="label text_f_control">タイトル</span><span class="field text_f"> 夢十夜 </span> </label>
+										<label for="author"> <span class="label text_f_control">著者</span><span class="field text_f"> 夏目漱石 </span> </label>
+									</div>
+								</div>
+								<div class="field-box">
+									<div class="field-label-box">
+										<label class="field-box-name">アイキャッチ</label>
+									</div>
+									<div class="field-list">
+										<a href=""><img src="images/material/ub.png" alt="宇宙日和" /></a>
+									</div>
+								</div>
+							</div>
+							<hr />
+							<h2  rel="izng-load-task" onclick="Izng.Drawer.toggle('load-task')" class="toggler">ロード</h2>
+							<div id="izng-load-task" class="infogroup hidden">
+								<div class="field-box">
+									<div class="field-list">
+										<label for="title"> <span class="label text_f_control">テストロード</span><span class="field text_f">
+												<button onclick="Izng.Ajax.loadText('http://ncode.syosetu.com/n5164ba/1/','narou')">
+													go!
+												</button></span> </label>
+									</div>
+								</div>
+							</div>
+							<hr />
+							<h2  rel="izng-toc" onclick="Izng.Drawer.toggle('toc')" class="toggler">目次</h2>
+							<div id="izng-toc" class="infogroup hidden">
+								<div class="field-box">
+									<div class="field-label-box">
+										<label class="field-box-name"></label>
+									</div>
+									<div id="izng-toc-list" class="field-list">
+										<label id="izng-toc-1" for="toc1" class="tocSelected"> <span class="label radio_f_control">『第一夜』</span><span class="radio_f field">
+												<input type="radio" name="toc" checked onclick="Izng.Ajax.hashChange('/data/1.html');" />
+											</span> </label>
+										<label id="izng-toc-2" for="toc2" > <span class="label radio_f_control">『第二夜』</span><span class="radio_f field">
+												<input type="radio" name="toc"  onclick="Izng.Ajax.hashChange('/data/2.html');" />
+											</span> </label>
+										<label id="izng-toc-3" for="toc3" > <span class="label radio_f_control">『第三夜』</span><span class="radio_f field">
+												<input type="radio" name="toc" onclick="Izng.Ajax.hashChange('/data/3.html');" />
+											</span> </label>
+										<label id="izng-toc-4" for="toc4" class="velc" > <span class="label radio_f_control">『第四夜』</span><span class="radio_f field">
+												<input type="radio" name="toc" onclick="Izng.Ajax.hashChange('/data/4.html');"/>
+											</span> </label>
+									</div>
+								</div>
+							</div>
+							<hr />
+						</div>
+					</div>
+				</div>
+			</aside>
+			<div id="izng-main">
+				<div id="izng-content">
+					<article id="izng-article">
+						<hgroup>
+							<h1 class="title">IZANAGI</h1>
+						</hgroup>
+						<section id="toc">
+							<h2>目次</h2>
+							<ul>
+								<li>
+									<a href="#sec-1">概要</a>
+								</li>
+								<li>
+									<a href="#sec-2">機能</a>
+								</li>
+								<li>
+									<a href="#sec-3">お知らせ</a>
+								</li>
+							</ul>
+						</section>
+						<section id="sec-1">
+							<h2>概要</h2>
+							<p>
+								〝IZANAGI〟はhtml5+jsで実装されたwebリーダーです。リーダビリティが低いウェブ上の文章をレイアウトデザインに基づいた設計で読みやすい文章にします。
+							</p>
+						</section>
+						<section id="sec-2">
+							<h2>実装環境</h2>
+							<ul>
+								<li>
+									html5
+								</li>
+								<li>
+									jQuery(1.7.1)
+								</li>
+								<li>
+									jQuery-UI(1.8.16)
+								</li>
+								<li>
+									jQuery-easing
+								</li>
+								<li>
+									jQuery-ui.touch-punch
+								</li>
+							</ul>
+						</section>
+						<section id="sec-3">
+							<h2>対応ブラウザ</h2>
+							<ul>
+								<li>
+									Google Chrome
+								</li>
+								<li>
+									Mozila Firefox
+								</li>
+								<li>
+									Safari
+								</li>
+							</ul>
+							<p class="alert">
+								※ Internet Explorerは現状非対応です。
+							</p>
+						</section>
+						<section id="sec-4">
+							<h2>機能</h2>
+							<p>
+								IZANAGIにはブラウザ上で文章を快適に読むために様々な機能が実装されています。左のタスクバーから操作いただけます。
+							</p>
+							<ul>
+								<li>
+							<h3>文字の大きさ（font-size）</h3>
+							<p>
+								Webデザインにおけるデフォルトのフォントサイズは12pxだと言われます。しかしながら、解像度の高いディスプレイではこれはやや小さく表示されてしまい、文章の可読性を損ないます。
+							</p>
+							<p>
+								IZANAGIではシークバーによって文章のフォントサイズを操作いただけます。デフォルトのサイズは14pxです。最小サイズは10px、最大サイズは20pxです。
+							</p>
+							</li>
+							<li>
+							<h3>文字色（color）</h3>
+							<p>
+								ディスプレイのカラー環境によって黒（#000）や白（#fff）といったwebセーフカラーも発色が微妙に異なります。それらの異なる色環境に左右されることなく、ご自身が一番読みやすい文字濃度をお選びいただけます。
+							</p>
+							<p>
+								デフォルトのカラーはRGB(75,75,75) #555です。最高濃度はRGB(0,0,0) #000 最低濃度は RGB(150,150,150) #969696です。
+							</p>
+							</li>
+							<li>
+							<h3>フォント（font-face）</h3>
+							<p>
+								IZANAGIでは文章中で使用するフォントに明朝体かゴシック体の二種類が用意されています。それぞれ太字（bold）と細字（light）が対応しており、計４種類のフォントフェイスからお選びいただけます。
+							</p>
+							<p>
+								デフォルトではゴシック体（細）が使用されています。cssのfont-family設定は以下のようになっています。
+							</p>
+							<ul>
+								<li>
+									ゴシック体
+								</li>
+							</ul>
+							<pre>"Lucida Grande", "ＭＳ Ｐゴシック","ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Arial, Verdana, sans-serif</pre>
+							<ul>
+								<li>
+									明朝体
+								</li>
+							</ul>
+							<pre>"IPA明朝",Times, 'Times New Roman',"ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "ＭＳ 明朝",serif</pre>
+							</li>
+							<li>
+							<h3>行間（line-height）</h3>
+							<p>
+								シークバーを操作することによって文章中の行間を任意の値に設定することができます。行間の値はすべてem（フォントサイズに対する相対値）で設定されているので、フォントサイズを変更しても同じ比率で行間が変化します。　　
+							</p>
+							<p>
+								デフォルトの行間は2em（フォントサイズの２倍）、最小は1em、最大は3.5emです。
+							</p>
+							</li>
+							<li>
+							<h3>ページ幅（width）</h3>
+							<p>
+								文章の横幅はリーダビリティを考える上でとても重要な要素です。書籍の場合、◯文字×△文字というフォーマットに合わせて文字組がなされますが、ブラウザのウィンドウサイズによって横幅が任意に変化するweb文章には１行あたりの文字数という概念がありません。そのため、cssで適切なレイアウトを設定しなかった場合、パラグラフ要素はウィンドウの端から端まで描画されてしまい、可読性を損ないます。
+							</p>
+							<p>
+								IZANAGIでは画面中央に位置する文章エリアの横幅をシークバーおよびマウスのドラッグ操作で自由に設定することができます。デフォルトでは740pxに設定されていますが、文章エリアは両端に50pxの余白を挟んでいるので、実際の横幅は640pxです。最小幅は540px、最大幅はブラウザのウィンドウからタスクバーの幅を除いた数値になります。その下のボタンではそれぞれの幅へショートカットができます。
+							</p>
+							</li>
+							<li>
+							<h3>共有</h3>
+							<p>
+								IZANAGIでは現在の文章を簡単にSNSに共有することができます。
+							</p>
+							<p class="alert">現在非対応です。</p>
+							</li>
+							<li>
+							<h3>オプション</h3>
+							<p>
+								オプションは文字やレイアウトに関係のない設定ができます。
+							</p>
+							<p>
+								背景の設定ではボタン操作によって文章の背景を任意の色もしくは画像に変更することができます。デフォルトでは白色が設定されています。
+							</p>
+							</li>
+						</section>
+					</article>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
