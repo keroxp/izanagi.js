@@ -48,166 +48,164 @@
                         <button class="btn pull-right" onclick="$('#izng-infobar').toggle()"><i class="icon-info-sign"></i></button>
                     </div>
                 </div>
-                <div id="izng-sidebar">
-                    <aside id="izng-taskbar" class="shadow izng-bar">
-                        <hr />
-                        <label rel="izng-font-task" onclick="Izng.Drawer.toggle('font-task')" class="list-label toggler">文字設定</label>
-                        <div id="izng-font-task" class="taskgroup hidden">
-                            <div class="slider-box">
-                                <div class="slider-label-box">
-                                    <label for="fontsize-value" class="slider-name">サイズ</label>
-                                    <input type="text" id="izng-fontsize-value" class="slider-value"/>
-                                </div>
-                                <div id="izng-fontsize" class="slider"></div>
+                <aside id="izng-taskbar" class="shadow izng-bar">
+                    <hr />
+                    <label rel="izng-font-task" onclick="Izng.Drawer.toggle('font-task')" class="list-label toggler">文字設定</label>
+                    <div id="izng-font-task" class="taskgroup hidden">
+                        <div class="slider-box">
+                            <div class="slider-label-box">
+                                <label for="fontsize-value" class="slider-name">サイズ</label>
+                                <input type="text" id="izng-fontsize-value" class="slider-value"/>
                             </div>
-                            <div class="slider-box">
-                                <div class="slider-label-box">
-                                    <label for="fontcolor-value" class="slider-name">カラー</label>
-                                    <input type="text" id="izng-fontcolor-value" class="slider-value" />
-                                </div>
-                                <div id="izng-fontcolor" class="slider"></div>
+                            <div id="izng-fontsize" class="slider"></div>
+                        </div>
+                        <div class="slider-box">
+                            <div class="slider-label-box">
+                                <label for="fontcolor-value" class="slider-name">カラー</label>
+                                <input type="text" id="izng-fontcolor-value" class="slider-value" />
                             </div>
-                            <div class="field-box">
-                                <div class="field-label-box">
-                                    <label for="fontface" class="field-box-name">フォント</label>
-                                    <input type="text" id="izng-fontface-value" class="field-box-value"/>
-                                </div>
-                                <div  id="izng-fontface" class="field-list">
-                                    <button id="izng-bold-mincho" onclick="Izng.Drawer.fontface('bold-mincho')" class="boxradio mincho bold"> あA </button>
-                                    <button id="izng-mincho" onclick="Izng.Drawer.fontface('mincho')" class="boxradio mincho"> あA </button>
-                                    <button id="izng-bold-gothic" onclick="Izng.Drawer.fontface('bold-gothic')" class="boxradio gothic bold"> あA </button>
-                                    <button id="izng-gothic" onclick="Izng.Drawer.fontface('gothic')" class="boxradio gothic holc"> あA </button>
-                                </div>
+                            <div id="izng-fontcolor" class="slider"></div>
+                        </div>
+                        <div class="field-box">
+                            <div class="field-label-box">
+                                <label for="fontface" class="field-box-name">フォント</label>
+                                <input type="text" id="izng-fontface-value" class="field-box-value"/>
                             </div>
-                            <div class="slider-box">
-                                <div class="slider-label-box">
-                                    <label for="lineheight-value" class="slider-name">行間</label>
-                                    <input type="text" id="izng-lineheight-value" class="slider-value" />
-                                </div>
-                                <div id="izng-lineheight" class="slider"></div>
+                            <div  id="izng-fontface" class="field-list">
+                                <button id="izng-bold-mincho" onclick="Izng.Drawer.fontface('bold-mincho')" class="boxradio mincho bold"> あA </button>
+                                <button id="izng-mincho" onclick="Izng.Drawer.fontface('mincho')" class="boxradio mincho"> あA </button>
+                                <button id="izng-bold-gothic" onclick="Izng.Drawer.fontface('bold-gothic')" class="boxradio gothic bold"> あA </button>
+                                <button id="izng-gothic" onclick="Izng.Drawer.fontface('gothic')" class="boxradio gothic holc"> あA </button>
                             </div>
                         </div>
-                        <hr/>
-                        <label rel="izng-layout-task" onclick="Izng.Drawer.toggle('layout-task')" class="list-label toggler">レイアウト設定</label>
-                        <div id="izng-layout-task" class="taskgroup hidden">
-                            <div class="slider-box">
-                                <div class="slider-label-box">
-                                    <label for="width-value" class="slider-name">ページ幅</label>
-                                    <input type="text" id="izng-width-value" class="slider-value" />
-                                </div>
-                                <div id="izng-width" class="slider"></div>
+                        <div class="slider-box">
+                            <div class="slider-label-box">
+                                <label for="lineheight-value" class="slider-name">行間</label>
+                                <input type="text" id="izng-lineheight-value" class="slider-value" />
                             </div>
-                            <div id="izng-screen" class="field-list">
-                                <label id="izng-defaultFit" for="defaultFit" class="radioSelected"> <span class="label radio_f_control">初期化</span><span class="radio_f field">
-                                        <input type="radio" name="screen" checked onclick="Izng.Drawer.screen('defaultFit');" />
-                                    </span> </label>
-                                <!--
-                                <label id="izng-full" for="full" > <span class="label radio_f_control">フルスクリーン</span><span class="radio_f field">
-                                <input type="radio" name="screen" onclick="Izng.Drawer.screen('full');" />
+                            <div id="izng-lineheight" class="slider"></div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <label rel="izng-layout-task" onclick="Izng.Drawer.toggle('layout-task')" class="list-label toggler">レイアウト設定</label>
+                    <div id="izng-layout-task" class="taskgroup hidden">
+                        <div class="slider-box">
+                            <div class="slider-label-box">
+                                <label for="width-value" class="slider-name">ページ幅</label>
+                                <input type="text" id="izng-width-value" class="slider-value" />
+                            </div>
+                            <div id="izng-width" class="slider"></div>
+                        </div>
+                        <div id="izng-screen" class="field-list">
+                            <label id="izng-defaultFit" for="defaultFit" class="radioSelected"> <span class="label radio_f_control">初期化</span><span class="radio_f field">
+                                    <input type="radio" name="screen" checked onclick="Izng.Drawer.screen('defaultFit');" />
                                 </span> </label>
-                                -->
-                                <label id="izng-fit" for="fit"> <span class="label radio_f_control">最大化</span><span class="radio_f field">
-                                        <input type="radio" name="screen" onclick="Izng.Drawer.screen('fit');" />
+                            <!--
+                            <label id="izng-full" for="full" > <span class="label radio_f_control">フルスクリーン</span><span class="radio_f field">
+                            <input type="radio" name="screen" onclick="Izng.Drawer.screen('full');" />
+                            </span> </label>
+                            -->
+                            <label id="izng-fit" for="fit"> <span class="label radio_f_control">最大化</span><span class="radio_f field">
+                                    <input type="radio" name="screen" onclick="Izng.Drawer.screen('fit');" />
+                                </span> </label>
+                            <label id="izng-narrow" for="narrow" class="velc" > <span class="label radio_f_control">最小化</span><span class="radio_f field">
+                                    <input type="radio" name="screen" onclick="Izng.Drawer.screen('narrow');"/>
+                                </span> </label>
+                        </div>
+                    </div>
+                    <hr/>
+                    <label rel="izng-share-task" onclick="Izng.Drawer.toggle('share-task')" class="list-label toggler">共有</label>
+                    <div id="izng-share-task" class="taskgroup hidden">
+                        <div class="field-box">
+                            <div class="field-list">
+                                <label for="sel2" > <span class="label checkbox_f_control">Twitter</span><span class="checkbox_f field"> <a href="" id="izng-share_twitter" class="share" title="Twitterで共有"></a> </span> </label>
+                                <label for="sel2" > <span class="label checkbox_f_control">Facebook</span><span class="checkbox_f field"> <a href="" id="izng-share_facebook" class="share" title="Facebookで共有"> </a> </span> </label>
+                                <label for="sel2" > <span class="label checkbox_f_control">Google+</span><span class="checkbox_f field"> <a href="" id="izng-share_google_plus" class="share" title="Google Plustで共有"> </a> </span> </label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <label rel="izng-option-task" onclick="Izng.Drawer.toggle('option-task')" class="list-label toggler">オプション</label>
+                    <div id="izng-option-task" class="taskgroup hidden">
+                        <div class="field-box">
+                            <div class="field-label-box">
+                                <label for="fontface" class="field-box-name">背景</label>
+                                <input type="text" id="izng-fontface-value" class="field-box-value"/>
+                            </div>
+                            <div  id="izng-bg" class="field-list">
+                                <label id="izng-bg-default" for="bg-default"> <span class="label radio_f_control">なし</span><span class="radio_f field">
+                                        <input type="radio" name="bg" checked onclick="Izng.Drawer.bg('default');" />
                                     </span> </label>
-                                <label id="izng-narrow" for="narrow" class="velc" > <span class="label radio_f_control">最小化</span><span class="radio_f field">
-                                        <input type="radio" name="screen" onclick="Izng.Drawer.screen('narrow');"/>
+                                <label id="izng-bg-novel" class="novel" for="bg-novel"> <span class="label radio_f_control">薄茶</span><span class="radio_f field">
+                                        <input type="radio" name="bg" onclick="Izng.Drawer.bg('novel');" />
+                                    </span> </label>
+                                <label id="izng-bg-kami1" class="kami1" for="bg-kami1"> <span class="label radio_f_control">紙１</span><span class="radio_f field">
+                                        <input type="radio" name="bg" onclick="Izng.Drawer.bg('kami1');" />
+                                    </span> </label>
+                                <label id="izng-bg-kami2" class="kami2" for="bg-kami2" > <span class="label radio_f_control">紙２</span><span class="radio_f field">
+                                        <input type="radio" name="bg" onclick="Izng.Drawer.bg('kami2');" />
                                     </span> </label>
                             </div>
                         </div>
-                        <hr/>
-                        <label rel="izng-share-task" onclick="Izng.Drawer.toggle('share-task')" class="list-label toggler">共有</label>
-                        <div id="izng-share-task" class="taskgroup hidden">
-                            <div class="field-box">
-                                <div class="field-list">
-                                    <label for="sel2" > <span class="label checkbox_f_control">Twitter</span><span class="checkbox_f field"> <a href="" id="izng-share_twitter" class="share" title="Twitterで共有"></a> </span> </label>
-                                    <label for="sel2" > <span class="label checkbox_f_control">Facebook</span><span class="checkbox_f field"> <a href="" id="izng-share_facebook" class="share" title="Facebookで共有"> </a> </span> </label>
-                                    <label for="sel2" > <span class="label checkbox_f_control">Google+</span><span class="checkbox_f field"> <a href="" id="izng-share_google_plus" class="share" title="Google Plustで共有"> </a> </span> </label>
-                                </div>
+                    </div>
+                    <hr>
+                </aside>
+                <aside id="izng-infobar" class="shadow izng-bar">
+                    <hr />
+                    <label  rel="izng-basicinfo" onclick="Izng.Drawer.toggle('basicinfo')" class="list-label toggler">作品情報</label>
+                    <div id="izng-basicinfo" class="infogroup hidden">
+                        <div class="field-box">
+                            <div class="field-label-box">
+                                <label class="field-box-name">基本情報</label>
+                            </div>
+                            <div class="field-list">
+                                <label for="title"> <span class="label text_f_control">タイトル</span><span class="field text_f"> 夢十夜 </span> </label>
+                                <label for="author"> <span class="label text_f_control">著者</span><span class="field text_f"> 夏目漱石 </span> </label>
                             </div>
                         </div>
-                        <hr/>
-                        <label rel="izng-option-task" onclick="Izng.Drawer.toggle('option-task')" class="list-label toggler">オプション</label>
-                        <div id="izng-option-task" class="taskgroup hidden">
-                            <div class="field-box">
-                                <div class="field-label-box">
-                                    <label for="fontface" class="field-box-name">背景</label>
-                                    <input type="text" id="izng-fontface-value" class="field-box-value"/>
-                                </div>
-                                <div  id="izng-bg" class="field-list">
-                                    <label id="izng-bg-default" for="bg-default"> <span class="label radio_f_control">なし</span><span class="radio_f field">
-                                            <input type="radio" name="bg" checked onclick="Izng.Drawer.bg('default');" />
-                                        </span> </label>
-                                    <label id="izng-bg-novel" class="novel" for="bg-novel"> <span class="label radio_f_control">薄茶</span><span class="radio_f field">
-                                            <input type="radio" name="bg" onclick="Izng.Drawer.bg('novel');" />
-                                        </span> </label>
-                                    <label id="izng-bg-kami1" class="kami1" for="bg-kami1"> <span class="label radio_f_control">紙１</span><span class="radio_f field">
-                                            <input type="radio" name="bg" onclick="Izng.Drawer.bg('kami1');" />
-                                        </span> </label>
-                                    <label id="izng-bg-kami2" class="kami2" for="bg-kami2" > <span class="label radio_f_control">紙２</span><span class="radio_f field">
-                                            <input type="radio" name="bg" onclick="Izng.Drawer.bg('kami2');" />
-                                        </span> </label>
-                                </div>
+                        <div class="field-box">
+                            <div class="field-label-box">
+                                <label class="field-box-name">アイキャッチ</label>
+                            </div>
+                            <div class="field-list">
+                                <a href=""><img src="images/material/ub.png" alt="宇宙日和" /></a>
                             </div>
                         </div>
-                        <hr>
-                    </aside>
-                    <aside id="izng-infobar" class="shadow izng-bar">
-                        <hr />
-                        <label  rel="izng-basicinfo" onclick="Izng.Drawer.toggle('basicinfo')" class="list-label toggler">作品情報</label>
-                        <div id="izng-basicinfo" class="infogroup hidden">
-                            <div class="field-box">
-                                <div class="field-label-box">
-                                    <label class="field-box-name">基本情報</label>
-                                </div>
-                                <div class="field-list">
-                                    <label for="title"> <span class="label text_f_control">タイトル</span><span class="field text_f"> 夢十夜 </span> </label>
-                                    <label for="author"> <span class="label text_f_control">著者</span><span class="field text_f"> 夏目漱石 </span> </label>
-                                </div>
-                            </div>
-                            <div class="field-box">
-                                <div class="field-label-box">
-                                    <label class="field-box-name">アイキャッチ</label>
-                                </div>
-                                <div class="field-list">
-                                    <a href=""><img src="images/material/ub.png" alt="宇宙日和" /></a>
-                                </div>
+                    </div>
+                    <hr />
+                    <label  rel="izng-load-task" onclick="Izng.Drawer.toggle('load-task')" class="list-label toggler">ロード</label>
+                    <div id="izng-load-task" class="infogroup hidden">
+                        <div class="field-box">
+                            <div class="field-list">
+                                <label for="title"> <span class="label text_f_control">テストロード</span><span class="field text_f"> <button onclick="Izng.Ajax.loadText('http://ncode.syosetu.com/n5164ba/1/','narou')"> go! </button></span> </label>
                             </div>
                         </div>
-                        <hr />
-                        <label  rel="izng-load-task" onclick="Izng.Drawer.toggle('load-task')" class="list-label toggler">ロード</label>
-                        <div id="izng-load-task" class="infogroup hidden">
-                            <div class="field-box">
-                                <div class="field-list">
-                                    <label for="title"> <span class="label text_f_control">テストロード</span><span class="field text_f"> <button onclick="Izng.Ajax.loadText('http://ncode.syosetu.com/n5164ba/1/','narou')"> go! </button></span> </label>
-                                </div>
+                    </div>
+                    <hr />
+                    <label  rel="izng-toc" onclick="Izng.Drawer.toggle('toc')" class="list-label toggler">目次</label>
+                    <div id="izng-toc" class="infogroup hidden">
+                        <div class="field-box">
+                            <div class="field-label-box">
+                                <label class="field-box-name"></label>
+                            </div>
+                            <div id="izng-toc-list" class="field-list">
+                                <label id="izng-toc-1" for="toc1" class="tocSelected"> <span class="label radio_f_control">『第一夜』</span><span class="radio_f field">
+                                        <input type="radio" name="toc" checked onclick="Izng.Ajax.hashChange('/data/1.html');" />
+                                    </span> </label>
+                                <label id="izng-toc-2" for="toc2" > <span class="label radio_f_control">『第二夜』</span><span class="radio_f field">
+                                        <input type="radio" name="toc"  onclick="Izng.Ajax.hashChange('/data/2.html');" />
+                                    </span> </label>
+                                <label id="izng-toc-3" for="toc3" > <span class="label radio_f_control">『第三夜』</span><span class="radio_f field">
+                                        <input type="radio" name="toc" onclick="Izng.Ajax.hashChange('/data/3.html');" />
+                                    </span> </label>
+                                <label id="izng-toc-4" for="toc4" class="velc" > <span class="label radio_f_control">『第四夜』</span><span class="radio_f field">
+                                        <input type="radio" name="toc" onclick="Izng.Ajax.hashChange('/data/4.html');"/>
+                                    </span> </label>
                             </div>
                         </div>
-                        <hr />
-                        <label  rel="izng-toc" onclick="Izng.Drawer.toggle('toc')" class="list-label toggler">目次</label>
-                        <div id="izng-toc" class="infogroup hidden">
-                            <div class="field-box">
-                                <div class="field-label-box">
-                                    <label class="field-box-name"></label>
-                                </div>
-                                <div id="izng-toc-list" class="field-list">
-                                    <label id="izng-toc-1" for="toc1" class="tocSelected"> <span class="label radio_f_control">『第一夜』</span><span class="radio_f field">
-                                            <input type="radio" name="toc" checked onclick="Izng.Ajax.hashChange('/data/1.html');" />
-                                        </span> </label>
-                                    <label id="izng-toc-2" for="toc2" > <span class="label radio_f_control">『第二夜』</span><span class="radio_f field">
-                                            <input type="radio" name="toc"  onclick="Izng.Ajax.hashChange('/data/2.html');" />
-                                        </span> </label>
-                                    <label id="izng-toc-3" for="toc3" > <span class="label radio_f_control">『第三夜』</span><span class="radio_f field">
-                                            <input type="radio" name="toc" onclick="Izng.Ajax.hashChange('/data/3.html');" />
-                                        </span> </label>
-                                    <label id="izng-toc-4" for="toc4" class="velc" > <span class="label radio_f_control">『第四夜』</span><span class="radio_f field">
-                                            <input type="radio" name="toc" onclick="Izng.Ajax.hashChange('/data/4.html');"/>
-                                        </span> </label>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                    </aside>
-                </div>
+                    </div>
+                    <hr />
+                </aside>
                 <div id="izng-body">
                     <article id="izng-article">
                         <hgroup>

@@ -54,35 +54,15 @@ button {
 /* taskbar */
 
 #izng {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: white url("images/bg/backw.png");
-}
-#izng-log .list-label {
-    position: fixed;
-    height: 200px;
-    width: 100%;
-    padding: 15px 0 15px 15px;
-    font-size: 11px;
-    overflow: auto;
-    left: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.75);
-    color: white;
-    z-index: 9999;
-}
-#izng-log textarea {
-    min-height: 500px;
-    width: 170px;
-    overflow-x: hidden;
-    overflow-y: inherit;
     background: transparent;
     border: none;
     font-size: inherit;
     color: inherit;
     margin: 0;
     padding: 0;
+    width:100%;
+    height:100%;
+    background:white url(images/bg/backw.png)
 }
 #izng-log input {
     max-width: 120px;
@@ -93,38 +73,26 @@ button {
     margin: 0;
     padding: 0;
 }
-#izng-vmain {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 280px;
-    bottom: 0;
-    background-color: transparent;
-    z-index: 100;
-    -webkit-overflow-scrolling: touch;
-    overflow-x: hidden;
-    overflow-y: scroll;
-}
 #izng-main {
+    height:100%;
     position: relative;
     margin: 0 auto;
     padding: 0;
+    overflow:hidden;
 }
 #izng-header {
-    position: fixed;
-    top: 0;
-    width: inherit;
-    z-index: 150;
+    width:100%;
+    height:46px;
+    margin:0!important;
 }
 #izng-header-inner {
-    border-radius: 4px 4px 0 0;
-    -webkit-border-radius: 4px 4px 0 0;
-    -moz-border-radius: 4px 4px 0 0;
     padding: 8px;
     background-image: url(images/material/brand.png);
     background-position: center center;
     background-repeat: no-repeat;
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
 }
 #izng-header .btn {
     margin-top: 0 !important;
@@ -135,41 +103,38 @@ button {
     height: 30px;
     width: 150px;
 }
-#izng-sidebar {
-    width: inherit;
-    height: inherit;
-    position: fixed;
-}
 #izng-taskbar, #izng-infobar {
     position: absolute;
-    top: 46px;
     background-color: rgba(0,0,0,0.7);
+    top:46px;
     width: 280px;
     height: 100%;
-    z-index: 150;
+    z-index: 125;
     display: none;
+    overflow-x: hidden;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 #izng-taskbar {
-    left:0;
+    left: 0;
 }
 #izng-infobar {
-    right: 0
+    right: 0;
 }
-#izng-body {    
-    height:inherit;
-    position: absolute;
+#izng-body {
+    position:absolute;
     top:46px;
-    z-index: 100;
+    bottom:0;
     overflow-x: visible;
     overflow-y: scroll;
-}
-#izng-article {
-    background-color: white;
-    padding: 24px 49px;
+    -webkit-overflow-scrolling: touch;
+    background-color: white;    
     border-right: 1px solid #ccc;
     border-left: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;    
+    border-bottom: 1px solid #ccc;
+}
+#izng-article {
+    padding: 24px 49px;
 }
 /* article bg */
 .novel {
@@ -186,30 +151,4 @@ button {
 }
 .kami4 {
     background-image: url("images/bg/kami4.png");
-}
-/*
- #izng-article footer {
- height: 100px;
- background: whiteSmoke;
- border-right: 1px solid #izng-ccc;
- border-left: 1px solid #izng-ccc;
- border-bottom: 1px solid #izng-ccc;
- }
- */
-#izng-fader {
-    position: fixed;
-    width: 280px;
-    height: 100%;
-    overflow: hidden;
-    top: 0;
-    bottom: 0;
-    left: 0;
-}
-#izng-drawer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 280px;
-    /*overflow: hidden;*/
 }

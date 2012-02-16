@@ -18,7 +18,7 @@ if(!Izng) {
 Izng.init = function()
 {
 	this.Util.loadIn();
-	this.Debugger.init();
+	//this.Debugger.init();
 	this.Drawer.init();
 	this.Binder.init();
 	this.Ajax.init();
@@ -300,9 +300,6 @@ var Drawer = {
 	{
 		var dw = [];
 		var iw = window.innerWidth || document.body.clientWidth;
-		Debugger.log("innerWidth", {
-			"iw" : iw
-		});
 		if(arguments.length > 0) {
 			dw["forSet"] = arguments[0] - DEFAULT_WIDTH["visible"]
 			dw["forDisp"] = arguments[0];
@@ -310,10 +307,6 @@ var Drawer = {
 			dw["forSet"] = (iw < DEFAULT_WIDTH["full"]) ? iw - DEFAULT_WIDTH["full"] : DEFAULT_WIDTH["forSet"];
 			dw["forDisp"] = dw["forSet"] + DEFAULT_WIDTH["visible"];
 		}
-		Debugger.log("dws", {
-			fd : dw["forDisp"],
-			fs : dw["forSet"]
-		})
 		if(dw < -DEFAULT_WIDTH["canchange"])
 			dw = -DEFAULT_WIDTH["canchange"];
 		jQuery("#izng-width").slider({
@@ -330,9 +323,6 @@ var Drawer = {
 				//jQuery.cookie("user_font_size", lh);
 			}
 		});
-		Debugger.log("hoge", {
-			"forDisp" : dw["forDisp"],
-		})
 		jQuery("#izng-width-value").val(dw["forDisp"] + "px");
 		jQuery("#izng-main").css("width", dw["forDisp"] + "px");//.css("height", "auto");
 	},
@@ -383,13 +373,11 @@ var Binder = {
 	{
 		/* bind event */
 		jQuery("#izng-main").css({			
-			height : window.innerHeight - 46 + "px"
 		})
 		$(window).bind("resize", function()
 		{			
 			var h = window.innerHeight;
 			jQuery("#izng-main").css({
-				height : h-46 + "px"
 			});
 		});
 		//jQuery("#izng-main").resizable({
