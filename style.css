@@ -37,7 +37,7 @@ html, body {
     width: 100%;
     height: 100%;
     position: fixed;
-    display:none;
+    display: none;
     z-index: 999;
     background: url("images/util/loader.gif") no-repeat center center !important;
 }
@@ -53,21 +53,21 @@ button {
 }
 /* taskbar */
 
-#izng-wrapper {
+#izng {
     width: 100%;
     height: 100%;
     overflow: hidden;
     background: white url("images/bg/backw.png");
 }
-#izng-log {
+#izng-log .list-label {
     position: fixed;
-    height: 100%;
-    width: 200px;
+    height: 200px;
+    width: 100%;
     padding: 15px 0 15px 15px;
     font-size: 11px;
-    overflow: hidden;
-    top: 0;
-    right: 0;
+    overflow: auto;
+    left: 0;
+    bottom: 0;
     background: rgba(0,0,0,0.75);
     color: white;
     z-index: 9999;
@@ -93,7 +93,7 @@ button {
     margin: 0;
     padding: 0;
 }
-#izng-main {
+#izng-vmain {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -106,19 +106,74 @@ button {
     overflow-x: hidden;
     overflow-y: scroll;
 }
-#izng-content{
-
+#izng-main {
+    position: relative;
+    margin: 0 auto;
+    padding: 0;
+}
+#izng-header {
+    position: fixed;
+    top: 0;
+    width: inherit;
+    z-index: 150;
+}
+#izng-header-inner {
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    padding: 8px;
+    background-image: url(images/material/brand.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+#izng-header .btn {
+    margin-top: 0 !important;
+}
+#izng-brand {
+    position: absolute;
+    left: 50%;
+    height: 30px;
+    width: 150px;
+}
+#izng-sidebar {
+    width: inherit;
+    height: inherit;
+    position: fixed;
+}
+#izng-taskbar, #izng-infobar {
+    position: absolute;
+    top: 46px;
+    background-color: rgba(0,0,0,0.7);
+    width: 280px;
+    height: 100%;
+    z-index: 150;
+    display: none;
+    overflow-y: auto;
+}
+#izng-taskbar {
+    left:0;
+}
+#izng-infobar {
+    right: 0
+}
+#izng-body {    
+    height:inherit;
+    position: absolute;
+    top:46px;
+    z-index: 100;
+    overflow-x: visible;
+    overflow-y: scroll;
 }
 #izng-article {
     background-color: white;
     padding: 24px 49px;
     border-right: 1px solid #ccc;
     border-left: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;    
 }
 /* article bg */
 .novel {
-    background-color: #F4EED9!important;
+    background-color: #F4EED9 !important;
 }
 .kami1 {
     background-image: url("images/bg/kami1.png");

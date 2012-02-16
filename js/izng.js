@@ -15,13 +15,23 @@ if(!Izng) {
  * loaded initialization
  */
 
-Izng.init = function() {
-	this.Util.loadIn();		
+Izng.init = function()
+{
+	this.Util.loadIn();
+	this.Debugger.init();
 	this.Drawer.init();
 	this.Binder.init();
 	this.Ajax.init();
 	this.Util.loadOut();
 }
+var $main = $("#izng-main");
+var $body = $("#izng-body");
+var $article = $("#izng-article");
+var $sidebar = $("#izng-sidebar");
+var $header = $("#izng-header");
+var $taskbar = $("#izng-taskbar");
+var $infobar = $("#izng-infobar");
+
 var DEFAULT_COLOR = {
 	"forSet" : 37,
 	"forDisp" : "#555555"
@@ -55,9 +65,9 @@ var FONT_LIST = {
 };
 
 var Debugger = {
-	init : function() {
+	init : function()
+	{
 		//windwo 情報をトレースするinput
-
 		var i = this.windowInfo.all();
 		var tr = Util.create("div", {
 			id : "izng-log-trasor"
@@ -91,16 +101,18 @@ var Debugger = {
 
 		//windowオブジェクトにscroll,resize eventをバインド
 
-		jQuery("#izng-main").scroll(function() {
+		jQuery("#izng-main").scroll(function()
+		{
 			//Debugger.log("scrolling!");
 			/*
 			 jQuery("#izng-pageXOffset").val(Env.window.pageXOffset);
 			 jQuery("#izng-pageYOffset").val(Env.window.pageYOffset);
 			 */
 		})
-		jQuery(window).bind("resize", function() {
-			jQuery("#izng-log-innerWidth").val(Env.window.innerWidth());
-			jQuery("#izng-log-innerHeight").val(Env.window.innerHeight());
+		jQuery(window).bind("resize", function()
+		{
+			jQuery("#izng-log-innerWidth").val(window.innerWidth);
+			jQuery("#izng-log-innerHeight").val(window.innerHeight);
 		})
 		//随時追加するtextlog area を作成
 
@@ -114,7 +126,8 @@ var Debugger = {
 		//this.log("Browser Info", BrowserDetect.allStatus());
 
 	},
-	log : function(title, obj) {
+	log : function(title, obj)
+	{
 		var log = document.getElementById("izng-log-text");
 		log.value += title + "\n";
 		var add = "";
@@ -125,7 +138,8 @@ var Debugger = {
 		}
 		log.value += add;
 	},
-	traceor : function() {
+	traceor : function()
+	{
 
 	},
 	windowInfo : {
@@ -165,7 +179,8 @@ var Debugger = {
  */
 
 var Drawer = {
-	init : function() {
+	init : function()
+	{
 		jQuery("#izng-article").removeAttr("style");
 		this.fontface(DEFAULT_FONT["forSet"]);
 		this.fontsize();
@@ -174,7 +189,8 @@ var Drawer = {
 		this.width();
 		this.bg("default");
 	},
-	toggle : function(rel) {
+	toggle : function(rel)
+	{
 		var _rel = "#izng-" + rel;
 		if(jQuery(_rel).hasClass("hidden")) {
 			jQuery(_rel).slideDown().removeClass("hidden");
@@ -182,19 +198,29 @@ var Drawer = {
 			jQuery(_rel).slideUp().addClass("hidden");
 		}
 	},
-	slide : function(dir) {
-		var speed = 500;
-		var distance;
-		if(dir == "L") {
-			distance = "+=280px";
-		} else if(dir == "R") {
-			distance = "-=280px";
+	slide : function(selector)
+	{
+		var speed = 500;	
+		var distance = "280px";	
+		var s = "#izng-" + selector;
+		switch(selector){
+			case "taskbar" :
+				jQuery("#izng-taskbar").animate({
+					zIndex : 200
+				},speed);
+				break;
+			case "infobar" :
+				jQuery("#izng-infobar").animate({
+					zIndex : 200
+				},speed);
+				break;
+			default :
+				return;
+				break;
 		}
-		jQuery("#izng-slider").animate({
-			marginLeft : distance
-		}, speed);
 	},
-	fontface : function(target) {
+	fontface : function(target)
+	{
 		var disp = FONT_LIST[target];
 		var fonts = ["mincho", "gothic", "bold", "normal"];
 		var fc = target.split("-");
@@ -210,14 +236,16 @@ var Drawer = {
 		jQuery("#izng-fontface-value").val(disp);
 
 	},
-	fontcolor : function() {
+	fontcolor : function()
+	{
 		jQuery("#izng-fontcolor").slider({
 			orientation : "horizontal",
 			range : "min",
 			min : 0,
 			max : 150,
 			value : DEFAULT_COLOR["forSet"],
-			slide : function(event, ui) {
+			slide : function(event, ui)
+			{
 				var a = ui.value;
 				var hexColor = Util.rgbToHex(a, a, a);
 				var rgbColor = "r : " + a + "g : " + a + "b : " + a;
@@ -229,14 +257,16 @@ var Drawer = {
 		jQuery("#izng-article").css("color", DEFAULT_COLOR["forDisp"]);
 		jQuery("#izng-fontcolor-value").val(DEFAULT_COLOR["forDisp"]);
 	},
-	fontsize : function() {
+	fontsize : function()
+	{
 		jQuery("#izng-fontsize").slider({
 			orientation : "horizontal",
 			range : "min",
 			min : 00,
 			max : 100,
 			value : DEFAULT_SIZE["forSet"],
-			slide : function(event, ui) {
+			slide : function(event, ui)
+			{
 				var size = 10 + Math.ceil(ui.value / 10);
 				jQuery("#izng-fontsize-value").val(size + "px");
 				jQuery("#izng-article").css("font-size", size + "px");
@@ -246,14 +276,16 @@ var Drawer = {
 		jQuery("#izng-article").css("font-size", DEFAULT_SIZE["forDisp"]);
 		jQuery("#izng-fontsize-value").val(DEFAULT_SIZE["forDisp"]);
 	},
-	lineheight : function() {
+	lineheight : function()
+	{
 		jQuery("#izng-lineheight").slider({
 			orientation : "horizontal",
 			range : "min",
 			min : 0,
 			max : 100,
 			value : DEFAULT_LINEHEIGHT["forSet"],
-			slide : function(event, ui) {
+			slide : function(event, ui)
+			{
 				var lh = Math.ceil(ui.value / 10);
 				var lh = 1 + lh / 4;
 				jQuery("#izng-lineheight-value").val(lh + "em");
@@ -264,17 +296,24 @@ var Drawer = {
 		jQuery("#izng-article").css("line-height", DEFAULT_LINEHEIGHT["forDisp"]);
 		jQuery("#izng-lineheight-value").val(DEFAULT_LINEHEIGHT["forDisp"]);
 	},
-	width : function() {
+	width : function()
+	{
 		var dw = [];
 		var iw = window.innerWidth || document.body.clientWidth;
-
+		Debugger.log("innerWidth", {
+			"iw" : iw
+		});
 		if(arguments.length > 0) {
+			dw["forSet"] = arguments[0] - DEFAULT_WIDTH["visible"]
 			dw["forDisp"] = arguments[0];
-			dw["forSet"] = arguments[0] - DEFAULT_WIDTH["visible"];
+		} else {
 			dw["forSet"] = (iw < DEFAULT_WIDTH["full"]) ? iw - DEFAULT_WIDTH["full"] : DEFAULT_WIDTH["forSet"];
 			dw["forDisp"] = dw["forSet"] + DEFAULT_WIDTH["visible"];
 		}
-
+		Debugger.log("dws", {
+			fd : dw["forDisp"],
+			fs : dw["forSet"]
+		})
 		if(dw < -DEFAULT_WIDTH["canchange"])
 			dw = -DEFAULT_WIDTH["canchange"];
 		jQuery("#izng-width").slider({
@@ -283,24 +322,30 @@ var Drawer = {
 			min : -DEFAULT_WIDTH["canchange"],
 			max : iw - DEFAULT_WIDTH["visible"],
 			value : dw["forSet"],
-			slide : function(event, ui) {
+			slide : function(event, ui)
+			{
 				var w = DEFAULT_WIDTH["visible"] + ui.value;
 				jQuery("#izng-width-value").val(w + "px");
-				jQuery("#izng-content").css("width", w + "px");
+				jQuery("#izng-main").css("width", w + "px");
 				//jQuery.cookie("user_font_size", lh);
 			}
 		});
+		Debugger.log("hoge", {
+			"forDisp" : dw["forDisp"],
+		})
 		jQuery("#izng-width-value").val(dw["forDisp"] + "px");
-		jQuery("#izng-content").css("width", dw["forDisp"] + "px").css("height", "auto");
+		jQuery("#izng-main").css("width", dw["forDisp"] + "px");//.css("height", "auto");
 	},
-	screen : function(type) {
+	screen : function(type)
+	{
 		jQuery("#izng-screen > label").removeClass("radioSelected");
 		jQuery("#izng-" + type).addClass("radioSelected");
 		var transitTypes = ["full", "fit", "narrow", "defaultFit"];
 		var _type;
 		var iw = window.innerWidth || document.body.clientWidth;
 
-		jQuery.each(transitTypes, function() {
+		jQuery.each(transitTypes, function()
+		{
 			if(this == type)
 				_type = this;
 		})
@@ -309,7 +354,7 @@ var Drawer = {
 			if(_type == "full") {
 				w = iw;
 			} else if(_type == "fit") {
-				w = iw - DEFAULT_WIDTH["taskbar"];
+				w = iw;//- DEFAULT_WIDTH["taskbar"];
 			} else if(_type == "narrow") {
 				w = DEFAULT_WIDTH["visible"] - DEFAULT_WIDTH["canchange"];
 			} else if(_type == "defaultFit") {
@@ -317,18 +362,14 @@ var Drawer = {
 			} else {
 				w = 0;
 			}
-			this.width(w);
-			if(type == "full") {
-				window.scroll(DEFAULT_WIDTH["taskbar"], 0);
-				//var remover =　"<button class='button fullscreenRemover gBlue' onclick='Izng.Drawer.width();jQuery(this).remove()'>フルスクリーンモードを終了</button>"
-				//$("#izng-wrapper").append(remover);
-			}
+			this.width(w);			
 		} else {
 			return false;
 		}
 
 	},
-	bg : function(im) {
+	bg : function(im)
+	{
 		var bgs = ["novel", "kami1", "kami2", "kami3", "kami4"];
 		for(var i = 0; i < bgs.length; i++) {
 			$("#izng-article").removeClass(bgs[i]);
@@ -338,40 +379,33 @@ var Drawer = {
 };
 
 var Binder = {
-	init : function() {
+	init : function()
+	{
 		/* bind event */
-		jQuery("#izng-main").css({
-			width : window.innerWidth - 280 + "px",
-			height : window.innerHeight + "px"
+		jQuery("#izng-main").css({			
+			height : window.innerHeight - 46 + "px"
 		})
-		$(window).bind("resize", function() {
-			var w = window.innerWidth - 280;
+		$(window).bind("resize", function()
+		{			
 			var h = window.innerHeight;
 			jQuery("#izng-main").css({
-				width : w + "px",
-				height : h + "px"
+				height : h-46 + "px"
 			});
-		})
-		jQuery("#izng-content").resizable({
-			constraint : "#izng-wrapper",
-			ghost : true,
-			minWidth : 544,
-			stop : function(event, ui) {
-				Izng.Drawer.width(ui.size.width);
-			}
 		});
-		jQuery("#izng-drawer").hover(function() {
-			jQuery("#izng-slider").fadeIn("slow");
-			jQuery("#izng-article").addClass("shadow");
-		}, function() {
-			jQuery("#izng-slider").fadeOut("slow");
-			jQuery("#izng-article").removeClass("shadow");
-		});
+		//jQuery("#izng-main").resizable({
+			//constraint : "#izng-wrapper",
+			//ghost : true,
+			//minWidth : 544,
+			//nstop : function(event, ui)
+			//{
+				//Izng.Drawer.width(ui.size.width);
+			//}
+		//});		
 	}
 }
 
 var Util = {
-	
+
 	hexArray : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "a", "b", "c", "d", "e", "f"],
 	decArray : {
 		1 : 1,
@@ -390,26 +424,30 @@ var Util = {
 		"e" : 14,
 		"f" : 15,
 	},
-	decToHex : function(dec) {
+	decToHex : function(dec)
+	{
 		var a = dec, b = 16;
 		var q = dec % 16, p = (a - q) / b;
 		p = this.hexArray[p].toString();
 		q = this.hexArray[q].toString();
 		return p + q;
 	},
-	rgbToHex : function(r, g, b) {
+	rgbToHex : function(r, g, b)
+	{
 		var _r = this.decToHex(r), _g = this.decToHex(g), _b = this.decToHex(b);
 		var hex = "#" + _r.toString() + _g.toString() + _b.toString();
 		return hex;
 	},
-	hexToDec : function(hex) {
+	hexToDec : function(hex)
+	{
 		if(hex.toString().length > 2)
 			return false;
 		var p = hex.charAt(0);
 		q = hex.charAt(1);
 		return this.decArray[p] * 16 + this.decArray[q];
 	},
-	hexToRgb : function(hex) {
+	hexToRgb : function(hex)
+	{
 		var rgb = hex.replace("#", "");
 		if(rgb.length < 6)
 			rbg = rbg + rgb;
@@ -419,13 +457,16 @@ var Util = {
 		b = hexToDec(b);
 		return (r, g, b);
 	},
-	loadIn : function() {
+	loadIn : function()
+	{
 		jQuery("#izng-load-layer").show();
 	},
-	loadOut : function() {
+	loadOut : function()
+	{
 		jQuery("#izng-load-layer").hide();
 	},
-	imageSize : function(image) {
+	imageSize : function(image)
+	{
 		var w = image.width, h = image.height;
 
 		if( typeof image.naturalWidth !== 'undefined') {// for Firefox, Safari, Chrome
@@ -465,7 +506,8 @@ var Util = {
 			height : h
 		};
 	},
-	create : function(element, options, innerHTML) {
+	create : function(element, options, innerHTML)
+	{
 		var _element = document.createElement(element);
 		for(key in options) {
 			jQuery(_element).attr(key, options[key]);
@@ -476,8 +518,10 @@ var Util = {
 }
 
 var Ajax = {
-	init : function() {
-		jQuery(window).hashchange(function() {
+	init : function()
+	{
+		jQuery(window).hashchange(function()
+		{
 			//URLに変化があれば、変化後のハッシュを含むURLから#!を削除 => 普通のアドレスへ
 			var setHash = location.href;
 			setHash = setHash.replace('#!/', '');
@@ -493,15 +537,18 @@ var Ajax = {
 		//Ajax.setAnchor("#izng-toclist a");
 		//location.hash = "#!/data/1.html";
 	},
-	setAnchor : function(a) {
-		jQuery(a).each(function() {
+	setAnchor : function(a)
+	{
+		jQuery(a).each(function()
+		{
 			var setHref = jQuery(this).attr("href").replace("./", "#!/");
 			jQuery(this).attr({
 				href : setHref
 			});
 		});
 	},
-	loadText : function(url) {
+	loadText : function(url)
+	{
 		//Debugger.log("Request", {
 		//"url" : url,
 		//});
@@ -512,18 +559,22 @@ var Ajax = {
 		}, {
 			duration : "slow",
 			easing : "easeInQuint",
-			complete : function() {
+			complete : function()
+			{
 				jQuery.ajax({
-					beforeSend : function() {
+					beforeSend : function()
+					{
 						jQuery("#izng-article").empty();
 					},
 					type : "GET",
 					datatype : "html",
 					url : url,
-					success : function(data, datatype) {
+					success : function(data, datatype)
+					{
 						jQuery("#izng-article").append(data);
 					},
-					complete : function() {
+					complete : function()
+					{
 						jQuery("#izng-article").animate({
 							display : "block"
 						}, {
@@ -532,7 +583,8 @@ var Ajax = {
 						});
 						Util.loadOut();
 					},
-					error : function(XMLHttpRequest, textStatus, errorThrown) {
+					error : function(XMLHttpRequest, textStatus, errorThrown)
+					{
 						jQuery("#izng-article").html("error").slideDown();
 						Util.loadOut();
 						//Debugger.log("Status", {
@@ -543,7 +595,8 @@ var Ajax = {
 			}
 		})
 	},
-	parseArticle : function(data, datatype, src) {
+	parseArticle : function(data, datatype, src)
+	{
 		var _src = ["narou"];
 		var f = true;
 
@@ -567,13 +620,14 @@ var Ajax = {
 			return append;
 		}
 	},
-	hashChange : function(hash) {
+	hashChange : function(hash)
+	{
 		$("#izng-toc-list label").removeClass("tocSelected");
 		var _dec = hash.match(/[0-9]/);
 		$("#izng-toc-" + _dec).addClass("tocSelected");
 		var _hash = "#!" + hash;
 		location.hash = _hash;
-	}	
+	}
 };
 
 /*
