@@ -57,13 +57,6 @@ var DEFAULT_WIDTH = {
 	"padOffset" : 100
 };
 
-var FONT_LIST = {
-	"mincho" : "明朝（細）",
-	"bold-mincho" : "明朝（太）",
-	"gothic" : "ゴシック（細）",
-	"bold-gothic" : "ゴシック（太）"
-};
-
 var Debugger = {
 	init : function()
 	{
@@ -173,10 +166,198 @@ var Debugger = {
 		pageYOffset : window.pageYOffset
 	}
 }
+/*
+ * Header object
+ */
+var Header = {
+	init : function()
+	{
+
+	},
+}
 
 /*
- * Task bar
+ * Body object
  */
+
+var Body = {
+	self : function()
+	{
+		return $("#izng-body");
+	},
+	article : function()
+	{
+		return $("#izng-article");
+	},
+	init : function()
+	{
+
+	},
+	setCSS : function(propety, value)
+	{
+		$article = this.article();
+		$article.css(propety, value);
+	},
+	setClass : function(className)
+	{
+		$article = this.article();
+		$article.addClass(className);
+	}
+}
+/*
+ * Taskbar object
+ */
+
+var Taskbar = {
+	self : function()
+	{
+		return $("#izng-taskbar");
+	},
+	init : function()
+	{
+		$("#izng-fontface > button").click(function()
+		{
+			$this = $(this);
+			this.fontface($this.attr("data-fontface"));
+		})
+	},
+	slide : function()
+	{
+		var SPEED = 500;
+		var DISTANCE = "280px";
+		var $this = this.self();
+		if($this.hasClass("slided")) {
+			$this.animate({
+				left : "+=" + DISTANCE
+			}, SPEED, function()
+			{
+				$this.removeClass();
+			})
+		} else {
+			$this.addClass("shadow");
+			$this.animate({
+				left : "-=" + DISTANCE
+			}, SPEED, function()
+			{
+				$this.addClass("slided");
+			})
+		}
+	},
+	fontface : function(target)
+	{
+		var FONT_LIST = {
+			"mincho" : "明朝（細）",
+			"mincho-bold" : "明朝（太）",
+			"gothic" : "ゴシック（細）",
+			"gothic-bold" : "ゴシック（太）"
+		};
+		Body.setCSS(target)
+		$("#izng-fontface-value").val(FONT_LIST[target]);
+	},
+	slider : function(element,option){
+		$slider = element;
+		$slider.min = option.min || 0;
+		$slider.max = option.max || 100;
+		$slider.value = option.value || 50;
+		$slider.bind("onchange",option.slide )
+	},
+	fontcolor : function()
+	{
+		$slider = $("#izng-fontcolor-range");
+		
+		jQuery("#izng-fontcolor").slider({
+			orientation : "horizontal",
+			range : "min",
+			min : 0,
+			max : 150,
+			value : DEFAULT_COLOR["forSet"],
+			slide : function(event, ui)
+			{
+				var a = ui.value;
+				var hexColor = Util.rgbToHex(a, a, a);
+				var rgbColor = "r : " + a + "g : " + a + "b : " + a;
+				jQuery("#izng-fontcolor-value").val(hexColor);
+				jQuery("#izng-article").css("color", hexColor);
+				//jQuery.cookie("user_color", color);
+			}
+		});
+		Body.setCSS("color", DEFAULT_COLOR["forDisp"]);
+		jQuery("#izng-fontcolor-value").val(DEFAULT_COLOR["forDisp"]);
+	},
+	fontsize : function()
+	{
+		jQuery("#izng-fontsize").slider({
+			orientation : "horizontal",
+			range : "min",
+			min : 00,
+			max : 100,
+			value : DEFAULT_SIZE["forSet"],
+			slide : function(event, ui)
+			{
+				var size = 10 + Math.ceil(ui.value / 10);
+				jQuery("#izng-fontsize-value").val(size + "px");
+				jQuery("#izng-article").css("font-size", size + "px");
+				//jQuery.cookie("user_font_size", size);
+			}
+		});
+		Body.setCSS("font-size", DEFAULT_SIZE["forDisp"]);
+		jQuery("#izng-fontsize-value").val(DEFAULT_SIZE["forDisp"]);
+	},
+	lineheight : function()
+	{
+		jQuery("#izng-lineheight").slider({
+			orientation : "horizontal",
+			range : "min",
+			min : 0,
+			max : 100,
+			value : DEFAULT_LINEHEIGHT["forSet"],
+			slide : function(event, ui)
+			{
+				var lh = Math.ceil(ui.value / 10);
+				var lh = 1 + lh / 4;
+				jQuery("#izng-lineheight-value").val(lh + "em");
+				jQuery("#izng-article").css("line-height", lh + "em");
+				//jQuery.cookie("user_font_size", lh);
+			}
+		});
+		Body.setCSS("line-height", DEFAULT_LINEHEIGHT["forDisp"]);
+		jQuery("#izng-lineheight-value").val(DEFAULT_LINEHEIGHT["forDisp"]);
+	},
+	width : function()
+	{
+		var dw = [];
+		var iw = window.innerWidth || document.body.clientWidth;
+		if(arguments.length > 0) {
+			dw["forSet"] = arguments[0] - DEFAULT_WIDTH["visible"]
+			dw["forDisp"] = arguments[0];
+		} else {
+			dw["forSet"] = (iw < DEFAULT_WIDTH["full"]) ? iw - DEFAULT_WIDTH["full"] : DEFAULT_WIDTH["forSet"];
+			dw["forDisp"] = dw["forSet"] + DEFAULT_WIDTH["visible"];
+		}
+		if(dw < -DEFAULT_WIDTH["canchange"])
+			dw = -DEFAULT_WIDTH["canchange"];
+		jQuery("#izng-width").slider({
+			orientation : "horizontal",
+			range : "min",
+			min : -DEFAULT_WIDTH["canchange"],
+			max : iw - DEFAULT_WIDTH["visible"],
+			value : dw["forSet"],
+			slide : function(event, ui)
+			{
+				var w = DEFAULT_WIDTH["visible"] + ui.value;
+				jQuery("#izng-width-value").val(w + "px");
+				jQuery("#izng-main").css("width", w + "px");
+				//jQuery.cookie("user_font_size", lh);
+			}
+		});
+		jQuery("#izng-width-value").val(dw["forDisp"] + "px");
+		jQuery("#izng-main").css("width", dw["forDisp"] + "px");
+	},
+	bg : function()
+	{
+
+	}
+}
 
 var Drawer = {
 	init : function()
@@ -200,19 +381,19 @@ var Drawer = {
 	},
 	slide : function(selector)
 	{
-		var speed = 500;	
-		var distance = "280px";	
+		var speed = 500;
+		var distance = "-=280px";
 		var s = "#izng-" + selector;
-		switch(selector){
+		switch(selector) {
 			case "taskbar" :
-				jQuery("#izng-taskbar").animate({
-					zIndex : 200
-				},speed);
+				jQuery("#izng-taskbar").addClass("shadow").animate({
+					left : distance
+				}, speed);
 				break;
 			case "infobar" :
-				jQuery("#izng-infobar").animate({
-					zIndex : 200
-				},speed);
+				jQuery("#izng-infobar").addClass("shadow").animate({
+					right : distance
+				}, speed);
 				break;
 			default :
 				return;
@@ -324,7 +505,8 @@ var Drawer = {
 			}
 		});
 		jQuery("#izng-width-value").val(dw["forDisp"] + "px");
-		jQuery("#izng-main").css("width", dw["forDisp"] + "px");//.css("height", "auto");
+		jQuery("#izng-main").css("width", dw["forDisp"] + "px");
+		//.css("height", "auto");
 	},
 	screen : function(type)
 	{
@@ -344,7 +526,8 @@ var Drawer = {
 			if(_type == "full") {
 				w = iw;
 			} else if(_type == "fit") {
-				w = iw;//- DEFAULT_WIDTH["taskbar"];
+				w = iw;
+				//- DEFAULT_WIDTH["taskbar"];
 			} else if(_type == "narrow") {
 				w = DEFAULT_WIDTH["visible"] - DEFAULT_WIDTH["canchange"];
 			} else if(_type == "defaultFit") {
@@ -352,7 +535,7 @@ var Drawer = {
 			} else {
 				w = 0;
 			}
-			this.width(w);			
+			this.width(w);
 		} else {
 			return false;
 		}
@@ -372,23 +555,23 @@ var Binder = {
 	init : function()
 	{
 		/* bind event */
-		jQuery("#izng-main").css({			
+		jQuery("#izng-main").css({
 		})
 		$(window).bind("resize", function()
-		{			
+		{
 			var h = window.innerHeight;
 			jQuery("#izng-main").css({
 			});
 		});
 		//jQuery("#izng-main").resizable({
-			//constraint : "#izng-wrapper",
-			//ghost : true,
-			//minWidth : 544,
-			//nstop : function(event, ui)
-			//{
-				//Izng.Drawer.width(ui.size.width);
-			//}
-		//});		
+		//constraint : "#izng-wrapper",
+		//ghost : true,
+		//minWidth : 544,
+		//nstop : function(event, ui)
+		//{
+		//Izng.Drawer.width(ui.size.width);
+		//}
+		//});
 	}
 }
 

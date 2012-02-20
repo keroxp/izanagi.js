@@ -40,42 +40,45 @@
     <body>
         <div id="izng">
             <div id="izng-load-layer"></div>
-            <div id="izng-main" class="">
+            <div id="izng-main" class="shadow">
                 <div id="izng-header" class="navbar">
                     <div id="izng-header-inner"  class="navbar-inner">
-                        <button class="btn" onclick="$('#izng-taskbar').toggle()"><i class="icon-th-list"></i></button>
+                        <button class="btn" onclick="Drawer.slide('taskbar')"><i class="icon-th-list"></i></button>
                         <span id="izng-brand"></span>
-                        <button class="btn pull-right" onclick="$('#izng-infobar').toggle()"><i class="icon-info-sign"></i></button>
+                        <button class="btn pull-right" onclick="Drawer.slide('infobar')"><i class="icon-info-sign"></i></button>
                     </div>
                 </div>
-                <aside id="izng-taskbar" class="shadow izng-bar">
-                    <hr />
+                <aside id="izng-taskbar" class="">
                     <label rel="izng-font-task" onclick="Izng.Drawer.toggle('font-task')" class="list-label toggler">文字設定</label>
                     <div id="izng-font-task" class="taskgroup hidden">
                         <div class="slider-box">
                             <div class="slider-label-box">
-                                <label for="fontsize-value" class="slider-name">サイズ</label>
+                                <label for="izng-fontsize-value" class="slider-name">サイズ</label>
                                 <input type="text" id="izng-fontsize-value" class="slider-value"/>
                             </div>
-                            <div id="izng-fontsize" class="slider"></div>
+                            <div id="izng-fontsize" class="slider">
+                                <input type="range" id="izng-fontsize-range" />
+                            </div>
                         </div>
                         <div class="slider-box">
                             <div class="slider-label-box">
-                                <label for="fontcolor-value" class="slider-name">カラー</label>
+                                <label for="izng-fontcolor-range" class="slider-name">カラー</label>
                                 <input type="text" id="izng-fontcolor-value" class="slider-value" />
                             </div>
-                            <div id="izng-fontcolor" class="slider"></div>
+                            <div id="izng-fontcolor" class="slider">
+                                <input type="range" id="izng-fontcolor-range"/>
+                            </div>
                         </div>
                         <div class="field-box">
                             <div class="field-label-box">
                                 <label for="fontface" class="field-box-name">フォント</label>
                                 <input type="text" id="izng-fontface-value" class="field-box-value"/>
                             </div>
-                            <div  id="izng-fontface" class="field-list">
-                                <button id="izng-bold-mincho" onclick="Izng.Drawer.fontface('bold-mincho')" class="boxradio mincho bold"> あA </button>
-                                <button id="izng-mincho" onclick="Izng.Drawer.fontface('mincho')" class="boxradio mincho"> あA </button>
-                                <button id="izng-bold-gothic" onclick="Izng.Drawer.fontface('bold-gothic')" class="boxradio gothic bold"> あA </button>
-                                <button id="izng-gothic" onclick="Izng.Drawer.fontface('gothic')" class="boxradio gothic holc"> あA </button>
+                            <div  id="izng-fontface" class="field-list btn-group" data-toggle="buttons-radio">
+                                <button id="izng-bold-mincho" data-fontface="mincho-bold" class="btn btn-primary mincho bold"> あA </button>
+                                <button id="izng-mincho" data-fontface="mincho" class="btn btn-primary mincho"> あA </button>
+                                <button id="izng-bold-gothic" data-fontface="gothic-bold" class="btn btn-brimary gothic bold"> あA </button>
+                                <button id="izng-gothic" data-fontface="gothic" class="btn btn-primary gothic holc"> あA </button>
                             </div>
                         </div>
                         <div class="slider-box">
@@ -150,8 +153,7 @@
                     </div>
                     <hr>
                 </aside>
-                <aside id="izng-infobar" class="shadow izng-bar">
-                    <hr />
+                <aside id="izng-infobar" class="">
                     <label  rel="izng-basicinfo" onclick="Izng.Drawer.toggle('basicinfo')" class="list-label toggler">作品情報</label>
                     <div id="izng-basicinfo" class="infogroup hidden">
                         <div class="field-box">

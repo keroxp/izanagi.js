@@ -60,9 +60,9 @@ button {
     color: inherit;
     margin: 0;
     padding: 0;
-    width:100%;
-    height:100%;
-    background:white url(images/bg/backw.png)
+    width: 100%;
+    height: 100%;
+    background: white url(images/bg/backw.png)
 }
 #izng-log input {
     max-width: 120px;
@@ -74,16 +74,16 @@ button {
     padding: 0;
 }
 #izng-main {
-    height:100%;
+    height: 100%;
     position: relative;
     margin: 0 auto;
     padding: 0;
-    overflow:hidden;
 }
 #izng-header {
-    width:100%;
-    height:46px;
-    margin:0!important;
+    width: 100%;
+    height: 46px;
+    margin: 0!important;
+    background: url("images/bg/cardboard.png")!important;
 }
 #izng-header-inner {
     padding: 8px;
@@ -105,30 +105,36 @@ button {
 }
 #izng-taskbar, #izng-infobar {
     position: absolute;
-    background-color: rgba(0,0,0,0.7);
-    top:46px;
+    /*top:46px;*/
     width: 280px;
     height: 100%;
     z-index: 125;
-    display: none;
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    background: url("images/bg/cardboard.png");
 }
 #izng-taskbar {
     left: 0;
+    border-radius: 7px 0 0 7px;
+    -webkit-border-radius: 7px 0 0 7px;
+    -moz-border-radius: 7px 0 0 7px;
 }
 #izng-infobar {
     right: 0;
+    border-radius: 0 7px 7px 0;
+    -webkit-border-radius: 0 7px 7px 0;
+    -moz-border-radius: 0 7px 7px 0;
 }
 #izng-body {
-    position:absolute;
-    top:46px;
-    bottom:0;
+    position: absolute;
+    top: 46px;
+    z-index: 150;
+    bottom: 0;
     overflow-x: visible;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    background-color: white;    
+    background-color: white;
     border-right: 1px solid #ccc;
     border-left: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
